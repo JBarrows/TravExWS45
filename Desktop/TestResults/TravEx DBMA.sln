@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravEx DBMA", "TravEx DBMA\TravEx DBMA.csproj", "{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsPackages", "TravelExpertsPackages\TravelExpertsPackages.csproj", "{F7EB4511-31DD-40A8-A009-7AA092260651}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Test|Any CPU = Test|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{08CABF98-C838-4CFC-B8A5-B2D24A4FB9EB}.Test|Any CPU.Build.0 = Test|Any CPU
+		{F7EB4511-31DD-40A8-A009-7AA092260651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7EB4511-31DD-40A8-A009-7AA092260651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7EB4511-31DD-40A8-A009-7AA092260651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7EB4511-31DD-40A8-A009-7AA092260651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7EB4511-31DD-40A8-A009-7AA092260651}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{F7EB4511-31DD-40A8-A009-7AA092260651}.Test|Any CPU.Build.0 = Test|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64D2F291-7617-4496-9D92-96E86DE21073}
+	EndGlobalSection
+EndGlobal

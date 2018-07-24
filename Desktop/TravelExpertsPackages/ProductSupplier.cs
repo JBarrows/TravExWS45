@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Team4_Workshop4
 {
-    class ProductSupplier
+    public class ProductSupplier
     {
         public int ProductSupplierId { get; set; }
         public int ProductId { get; set; }

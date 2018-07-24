@@ -17,6 +17,8 @@ namespace TravelExpertsPackages
         public double BasePrice { get;  set; }
         public double Commission { get;  set; }
 
+        public List<NamedProductSupplier> ProductsAndSuppliers
+            { get => PackageProdSuppDB.GetPackageProductSuppliersByPackage(this.ID); }
 
         public TravelPackage(SqlDataReader reader)
         {

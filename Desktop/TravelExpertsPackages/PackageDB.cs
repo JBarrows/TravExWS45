@@ -10,15 +10,10 @@ namespace TravelExpertsPackages
 {
     public abstract class PackageDB
     {
-        public static SqlConnection GetConnection()
-        {
-            return new SqlConnection(@"Data Source=ELF7OOSD219978\SQLEXPRESS;Initial Catalog=TravelExperts;Integrated Security=True");
-        }
-
         public static List<TravelPackage> GetTravelPackages()
         {
             List<TravelPackage> packages = new List<TravelPackage>();
-            SqlConnection conn = GetConnection();
+            SqlConnection conn = TravelExpertsDB.GetConnection();
             string selStmt = "SELECT * FROM Packages";
             SqlCommand cmd = new SqlCommand(selStmt, conn);
             try
@@ -48,7 +43,7 @@ namespace TravelExpertsPackages
             if (oldPkg.ID != newPkg.ID)
                 throw new ArgumentException("ID mismatch between old package and new package");
 
-            SqlConnection conn = GetConnection();
+            SqlConnection conn = TravelExpertsDB.GetConnection();
             string updStmt = "UPDATE Packages " +
                                 "SET PkgName = @name, " +
                                 "PkgStartDate = @start, " +
@@ -84,7 +79,7 @@ namespace TravelExpertsPackages
 
         public static TravelPackage Insert(TravelPackage newPkg)
         {
-            SqlConnection conn = GetConnection();
+            SqlConnection conn = TravelExpertsDB.GetConnection();
             string columns = "PkgName, PkgStartDate, PkgEndDate, PkgDesc, PkgBasePrice, PkgAgencyCommission";
             string values = "@name, @start, @end, @desc, @price, @commiss";
             string insStmt = "INSERT INTO Packages (" + columns + ") VALUES (" + values + ")";

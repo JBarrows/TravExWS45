@@ -42,7 +42,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstPkgProductSuppliers = new System.Windows.Forms.ListView();
             this.colSuppliers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colProducts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDeleteProd_Supplier = new System.Windows.Forms.Button();
@@ -167,7 +167,7 @@
             this.tabPackages.Controls.Add(this.button1);
             this.tabPackages.Controls.Add(this.textBox1);
             this.tabPackages.Controls.Add(this.dataGridView1);
-            this.tabPackages.Controls.Add(this.listView1);
+            this.tabPackages.Controls.Add(this.lstPkgProductSuppliers);
             this.tabPackages.Controls.Add(this.btnDeleteProd_Supplier);
             this.tabPackages.Controls.Add(this.btnAddProduct_Supplier);
             this.tabPackages.Controls.Add(this.btnPkgSave);
@@ -220,17 +220,17 @@
             this.dataGridView1.Size = new System.Drawing.Size(613, 150);
             this.dataGridView1.TabIndex = 19;
             // 
-            // listView1
+            // lstPkgProductSuppliers
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstPkgProductSuppliers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colSuppliers,
             this.colProducts});
-            this.listView1.Location = new System.Drawing.Point(323, 26);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(296, 189);
-            this.listView1.TabIndex = 18;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lstPkgProductSuppliers.Location = new System.Drawing.Point(323, 26);
+            this.lstPkgProductSuppliers.Name = "lstPkgProductSuppliers";
+            this.lstPkgProductSuppliers.Size = new System.Drawing.Size(296, 189);
+            this.lstPkgProductSuppliers.TabIndex = 18;
+            this.lstPkgProductSuppliers.UseCompatibleStateImageBehavior = false;
+            this.lstPkgProductSuppliers.View = System.Windows.Forms.View.Details;
             // 
             // colSuppliers
             // 
@@ -373,7 +373,7 @@
         private System.Windows.Forms.TabPage tabPackages;
         private System.Windows.Forms.Button btnAddPackage;
         private System.Windows.Forms.ComboBox cmbPackageID;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstPkgProductSuppliers;
         private System.Windows.Forms.ColumnHeader colSuppliers;
         private System.Windows.Forms.ColumnHeader colProducts;
         private System.Windows.Forms.Button btnDeleteProd_Supplier;

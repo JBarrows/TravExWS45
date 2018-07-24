@@ -28,6 +28,16 @@ namespace TravEx_DBMA
             InitializeComponent();
         }
 
+        #region PRODUCT_TAB
+
+        #endregion
+
+        #region SUPPLIER_TAB
+
+        #endregion
+
+        #region PACKAGE_TAB
+
         /// <summary>
         /// Fills the package ComboBox.
         /// </summary>
@@ -69,9 +79,26 @@ namespace TravEx_DBMA
 
             selectedPackage = cmbPackageID.SelectedItem as TravelPackage;
             FillPackageControls(selectedPackage);
+            FillPackageProductList(selectedPackage);
             accessMode = AccessMode.Read;
             btnPkgSave.Enabled = false;
             lblStatus.Text = "Package loaded";
+        }
+
+        /// <summary>
+        /// Fills the package product list box with named Product_Supplier objects.
+        /// </summary>
+        /// <param name="selectedPackage">The selected package.</param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void FillPackageProductList(TravelPackage selectedPackage)
+        {
+            foreach (NamedProductSupplier prodSup in selectedPackage.ProductsAndSuppliers)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(prodSup.ProductName);
+                item.SubItems.Add(prodSup.SupplierName);
+                lstPkgProductSuppliers.Items.Add(item);
+            }
         }
 
         /// <summary>
@@ -215,5 +242,7 @@ namespace TravEx_DBMA
             txtPkgBasePrice.ResetText();
             txtPkgCommission.ResetText();
         }
+
+        #endregion
     }
 }

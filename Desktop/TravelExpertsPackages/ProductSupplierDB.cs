@@ -12,7 +12,7 @@ namespace Team4_Workshop4
         //the method of getting connection with the database
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection(@"Data Source = ICTVMOO - 3HACPF6\SQLEXPRESS; Initial Catalog = TravelExperts; Integrated Security = True");
+            return new SqlConnection(@"Data Source = localhost\SQLEXPRESS; Initial Catalog = TravelExperts; Integrated Security = True");
         }
 
         //the method of getting all the suppliers data from the database

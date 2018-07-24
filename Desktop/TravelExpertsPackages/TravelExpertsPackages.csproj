@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NamedProductSupplier.cs" />
     <Compile Include="PackageDB.cs" />
     <Compile Include="PackageProdSupp.cs" />
     <Compile Include="PackageProdSuppDB.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="ProductSupplierDB.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="SupplierDB.cs" />
+    <Compile Include="TravelExpertsDB.cs" />
     <Compile Include="TravelPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

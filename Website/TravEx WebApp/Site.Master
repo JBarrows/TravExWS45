@@ -14,17 +14,15 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div class="container">
-        <header></header>
-        <main>
-            <form id="form1" runat="server">
-                <div>
-                    <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </form>
-        </main>
-        <footer></footer>
-    </div>
+    <form id="form1" runat="server">
+        <div class="container">
+            <header></header>
+            <main>
+                <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>           
+            </main>
+            <footer></footer>
+        </div>
+    </form>
 </body>
 </html>

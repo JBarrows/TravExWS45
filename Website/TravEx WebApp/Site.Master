@@ -4,16 +4,27 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Travel Expert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
+    <div class="container">
+        <header></header>
+        <main>
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
+        </main>
+        <footer></footer>
+    </div>
 </body>
 </html>

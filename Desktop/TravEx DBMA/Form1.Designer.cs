@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label descriptionLabel;
             System.Windows.Forms.Label iDLabel;
             System.Windows.Forms.Label label1;
@@ -35,9 +36,27 @@
             System.Windows.Forms.Label departureDateLabel;
             System.Windows.Forms.Label commissionLabel;
             System.Windows.Forms.Label basePriceLabel;
+            System.Windows.Forms.Label supNameLabel;
+            System.Windows.Forms.Label supplierIdLabel;
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProducts = new System.Windows.Forms.TabPage();
             this.tabSuppliers = new System.Windows.Forms.TabPage();
+            this.txtSupplierId = new System.Windows.Forms.TextBox();
+            this.cmbSupName = new System.Windows.Forms.ComboBox();
+            this.btnSaveSup = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lvProducts = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lvSuppliedProds = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnDeleteSup = new System.Windows.Forms.Button();
+            this.btnNewSup = new System.Windows.Forms.Button();
             this.tabPackages = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -56,6 +75,7 @@
             this.txtPkgDesc = new System.Windows.Forms.TextBox();
             this.cmbPackageID = new System.Windows.Forms.ComboBox();
             this.datPkgEnd = new System.Windows.Forms.DateTimePicker();
+            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             descriptionLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
@@ -63,9 +83,13 @@
             departureDateLabel = new System.Windows.Forms.Label();
             commissionLabel = new System.Windows.Forms.Label();
             basePriceLabel = new System.Windows.Forms.Label();
+            supNameLabel = new System.Windows.Forms.Label();
+            supplierIdLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
+            this.tabSuppliers.SuspendLayout();
             this.tabPackages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // descriptionLabel
@@ -131,6 +155,24 @@
             basePriceLabel.TabIndex = 0;
             basePriceLabel.Text = "Base Price:";
             // 
+            // supNameLabel
+            // 
+            supNameLabel.AutoSize = true;
+            supNameLabel.Location = new System.Drawing.Point(27, 63);
+            supNameLabel.Name = "supNameLabel";
+            supNameLabel.Size = new System.Drawing.Size(38, 13);
+            supNameLabel.TabIndex = 14;
+            supNameLabel.Text = "Name:";
+            // 
+            // supplierIdLabel
+            // 
+            supplierIdLabel.AutoSize = true;
+            supplierIdLabel.Location = new System.Drawing.Point(27, 33);
+            supplierIdLabel.Name = "supplierIdLabel";
+            supplierIdLabel.Size = new System.Drawing.Size(21, 13);
+            supplierIdLabel.TabIndex = 16;
+            supplierIdLabel.Text = "ID:";
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabProducts);
@@ -154,6 +196,20 @@
             // 
             // tabSuppliers
             // 
+            this.tabSuppliers.Controls.Add(this.txtSupplierId);
+            this.tabSuppliers.Controls.Add(this.cmbSupName);
+            this.tabSuppliers.Controls.Add(supNameLabel);
+            this.tabSuppliers.Controls.Add(supplierIdLabel);
+            this.tabSuppliers.Controls.Add(this.btnSaveSup);
+            this.tabSuppliers.Controls.Add(this.label6);
+            this.tabSuppliers.Controls.Add(this.lvProducts);
+            this.tabSuppliers.Controls.Add(this.btnRemove);
+            this.tabSuppliers.Controls.Add(this.btnAdd);
+            this.tabSuppliers.Controls.Add(this.label5);
+            this.tabSuppliers.Controls.Add(this.lvSuppliedProds);
+            this.tabSuppliers.Controls.Add(this.label4);
+            this.tabSuppliers.Controls.Add(this.btnDeleteSup);
+            this.tabSuppliers.Controls.Add(this.btnNewSup);
             this.tabSuppliers.Location = new System.Drawing.Point(4, 22);
             this.tabSuppliers.Name = "tabSuppliers";
             this.tabSuppliers.Padding = new System.Windows.Forms.Padding(3);
@@ -161,6 +217,145 @@
             this.tabSuppliers.TabIndex = 1;
             this.tabSuppliers.Text = "Suppliers";
             this.tabSuppliers.UseVisualStyleBackColor = true;
+            this.tabSuppliers.Enter += new System.EventHandler(this.tabSuppliersEnter);
+            this.tabSuppliers.Leave += new System.EventHandler(this.tabSuppliersLeave);
+            // 
+            // txtSupplierId
+            // 
+            this.txtSupplierId.Location = new System.Drawing.Point(71, 30);
+            this.txtSupplierId.Name = "txtSupplierId";
+            this.txtSupplierId.ReadOnly = true;
+            this.txtSupplierId.Size = new System.Drawing.Size(103, 20);
+            this.txtSupplierId.TabIndex = 18;
+            // 
+            // cmbSupName
+            // 
+            this.cmbSupName.DisplayMember = "SupName";
+            this.cmbSupName.FormattingEnabled = true;
+            this.cmbSupName.Location = new System.Drawing.Point(71, 60);
+            this.cmbSupName.Name = "cmbSupName";
+            this.cmbSupName.Size = new System.Drawing.Size(222, 21);
+            this.cmbSupName.TabIndex = 17;
+            this.cmbSupName.ValueMember = "SupplierID";
+            this.cmbSupName.SelectedIndexChanged += new System.EventHandler(this.cmbSupName_SelectedIndexChanged);
+            // 
+            // btnSaveSup
+            // 
+            this.btnSaveSup.Location = new System.Drawing.Point(33, 287);
+            this.btnSaveSup.Name = "btnSaveSup";
+            this.btnSaveSup.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveSup.TabIndex = 13;
+            this.btnSaveSup.Text = "Save";
+            this.btnSaveSup.UseVisualStyleBackColor = true;
+            this.btnSaveSup.Click += new System.EventHandler(this.btnSaveSup_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(363, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Products list:";
+            // 
+            // lvProducts
+            // 
+            this.lvProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lvProducts.Location = new System.Drawing.Point(366, 43);
+            this.lvProducts.Name = "lvProducts";
+            this.lvProducts.Size = new System.Drawing.Size(206, 267);
+            this.lvProducts.TabIndex = 11;
+            this.lvProducts.UseCompatibleStateImageBehavior = false;
+            this.lvProducts.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "ProductId";
+            this.columnHeader3.Width = 70;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Product Name";
+            this.columnHeader4.Width = 130;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(265, 213);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(69, 23);
+            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Text = "=>";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(265, 154);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(70, 23);
+            this.btnAdd.TabIndex = 9;
+            this.btnAdd.Text = "<=";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(30, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Supplied Products:";
+            // 
+            // lvSuppliedProds
+            // 
+            this.lvSuppliedProds.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lvSuppliedProds.Location = new System.Drawing.Point(30, 124);
+            this.lvSuppliedProds.Name = "lvSuppliedProds";
+            this.lvSuppliedProds.Size = new System.Drawing.Size(204, 146);
+            this.lvSuppliedProds.TabIndex = 7;
+            this.lvSuppliedProds.UseCompatibleStateImageBehavior = false;
+            this.lvSuppliedProds.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ProductId";
+            this.columnHeader1.Width = 70;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Product Name";
+            this.columnHeader2.Width = 130;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(30, 124);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 6;
+            // 
+            // btnDeleteSup
+            // 
+            this.btnDeleteSup.Location = new System.Drawing.Point(240, 28);
+            this.btnDeleteSup.Name = "btnDeleteSup";
+            this.btnDeleteSup.Size = new System.Drawing.Size(53, 23);
+            this.btnDeleteSup.TabIndex = 3;
+            this.btnDeleteSup.Text = "Delete";
+            this.btnDeleteSup.UseVisualStyleBackColor = true;
+            this.btnDeleteSup.Click += new System.EventHandler(this.btnDeleteSup_Click);
+            // 
+            // btnNewSup
+            // 
+            this.btnNewSup.Location = new System.Drawing.Point(184, 28);
+            this.btnNewSup.Name = "btnNewSup";
+            this.btnNewSup.Size = new System.Drawing.Size(50, 23);
+            this.btnNewSup.TabIndex = 2;
+            this.btnNewSup.Text = "New";
+            this.btnNewSup.UseVisualStyleBackColor = true;
+            this.btnNewSup.Click += new System.EventHandler(this.btnNewSup_Click);
             // 
             // tabPackages
             // 
@@ -349,6 +544,10 @@
             this.datPkgEnd.TabIndex = 13;
             this.datPkgEnd.ValueChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
+            // supplierBindingSource
+            // 
+            this.supplierBindingSource.DataSource = typeof(Team4_Workshop4.Supplier);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,9 +557,12 @@
             this.Name = "Form1";
             this.Text = "Travel Experts";
             this.tabControl1.ResumeLayout(false);
+            this.tabSuppliers.ResumeLayout(false);
+            this.tabSuppliers.PerformLayout();
             this.tabPackages.ResumeLayout(false);
             this.tabPackages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -388,6 +590,23 @@
         private System.Windows.Forms.DateTimePicker datPkgStart;
         private System.Windows.Forms.TextBox txtPkgDesc;
         private System.Windows.Forms.DateTimePicker datPkgEnd;
+        private System.Windows.Forms.Button btnNewSup;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnDeleteSup;
+        private System.Windows.Forms.Button btnSaveSup;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.BindingSource supplierBindingSource;
+        private System.Windows.Forms.ListView lvProducts;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView lvSuppliedProds;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.TextBox txtSupplierId;
+        private System.Windows.Forms.ComboBox cmbSupName;
     }
 }
 

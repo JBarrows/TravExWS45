@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TravEx_WebApp.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Travel Expert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <header></header>
+            <main>
+                <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>           
+            </main>
+            <footer></footer>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,6 +1,0 @@
-C:\Users\776592\Documents\RAD Programming\TravEx DBMA\TravelExpertsPackages\bin\Test\TravelExpertsPackages.dll
-C:\Users\776592\Documents\RAD Programming\TravEx DBMA\TravelExpertsPackages\bin\Test\TravelExpertsPackages.pdb
-C:\Users\776592\Documents\RAD Programming\TravEx DBMA\TravelExpertsPackages\obj\Test\TravelExpertsPackages.csprojAssemblyReference.cache
-C:\Users\776592\Documents\RAD Programming\TravEx DBMA\TravelExpertsPackages\obj\Test\TravelExpertsPackages.csproj.CoreCompileInputs.cache
-C:\Users\776592\Documents\RAD Programming\TravEx DBMA\TravelExpertsPackages\obj\Test\TravelExpertsPackages.dll
-C:\Users\776592\Documents\RAD Programming\TravEx DBMA\TravelExpertsPackages\obj\Test\TravelExpertsPackages.pdb

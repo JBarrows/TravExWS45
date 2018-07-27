@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsPackages
 {
-    class PackageProdSupp
+    public class PackageProdSupplier
     {
         public int PackageID { get; set; }
         public int ProdSuppID { get; set; }

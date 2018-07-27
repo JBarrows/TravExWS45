@@ -4,23 +4,19 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelExpertsPackages;
 
 namespace Team4_Workshop4
 {
     class ProductSupplierDB
     {
-        //the method of getting connection with the database
-        public static SqlConnection GetConnection()
-        {
-            return new SqlConnection(@"Data Source = localhost\SQLEXPRESS; Initial Catalog = TravelExperts; Integrated Security = True");
-        }
-
+       
         //the method of getting all the suppliers data from the database
         public static List<ProductSupplier> GetProdudtSuppliers()
         {
             List<ProductSupplier> prodSups = new List<ProductSupplier>();
             ProductSupplier prodSup;
-            SqlConnection con = GetConnection();
+            SqlConnection con = TravelExpertsDB.GetConnection();
             string SelectSmt = "SELECT ProductSupplierId, ProductId, SupplierId" +
                                 "FROM Products_Suppliers " +
                                 "ORDER BY ProductSupplierId";
@@ -50,6 +46,70 @@ namespace Team4_Workshop4
                 con.Close();
             }
             return prodSups;
+        }
+
+        /// <summary>
+        /// Adds a record to the Products_Suppliers table in Travel Experts database
+        /// </summary>
+        /// <param name="supProd"> ProductSupplier object that containg data for the new record</param>
+        /// <returns>generated productSupplierId</returns>
+        public static int AddSupProd(ProductSupplier supProd)
+        {
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string insertSmt = "INSERT INTO Products_Suppliers (SupplierId, ProductId) " +
+                                "VALUES(@SupplierId, @ProductId)";
+            SqlCommand cmd = new SqlCommand(insertSmt, con);
+            cmd.Parameters.AddWithValue("@SupplierId", supProd.SupplierId);
+            cmd.Parameters.AddWithValue("@ProductId", supProd.ProductId);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery(); // run the insert command
+                //get the generated ID - current identity value of Products_Suppliers table
+                string selectQuery = "SELECT INDENT_CURRENT('Products_Suppliers') From Products_Suppliers";
+                SqlCommand selectCmd = new SqlCommand(selectQuery, con);
+                int productSupplierId = Convert.ToInt32(selectCmd.ExecuteScalar());
+                return productSupplierId;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        /// <summary>
+        /// Delete a record to the Products_Suppliers table in Travel Experts database
+        /// </summary>
+        /// <param name="supProd">ProductSupplier object that containg data for the new record</param>
+        /// <returns>generated productSupplierId</returns>
+        public static bool DeleteSupProd(ProductSupplier supProd)
+        {
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            String deleteSmt = "DELETE FROM Products_Suppliers " +
+                                "WHERE SupplierId = @SupplierId " +
+                                "And ProductId = @ProductId";
+            SqlCommand cmd = new SqlCommand(deleteSmt, con);
+            cmd.Parameters.AddWithValue("@SupplierId", supProd.SupplierId);
+            cmd.Parameters.AddWithValue("@ProductId", supProd.ProductId);
+            try
+            {
+                con.Open();
+                int count = cmd.ExecuteNonQuery();
+                if (count > 0) return true;
+                else return false;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

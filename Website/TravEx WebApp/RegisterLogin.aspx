@@ -1,25 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegisterLogin.aspx.cs" Inherits="WebApplication1.RegisterLogin" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
-</head>
-<body>
-    <form id="frmRegister" runat="server" class="container-fluid">
+﻿<%@ Page Title="Login/Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegisterLogin.aspx.cs" Inherits="TravEx_WebApp.WebForm4" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
         <div class="row m-5">
             <div class="card bg-warning col-lg-7 p-4">
                     <h1 class="row">Register</h1>
                 <div class="card-body">
                     <div class="form-row">
-                        <!-- First name -->
+                        <%-- First name --%>
                         <div class="col-md-6 form-group">
                             First Name
                             <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
                         </div>
-                        <!-- Last name -->
+                        <%-- Last name --%>
                         <div class="col-md-6 form-group ">
                             Last Name
                             <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
@@ -78,14 +71,14 @@
             <div class="card bg-info text-white col-lg-4 p-4">
                 <h1 class="row">Login</h1>
                 <div class="card-body">
-                <!-- Email -->
+                <%-- Email --%>
                 <div class="form-row">
                     <div class="col form-group">
                         Email
                         <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                <!-- Password -->
+                <%--Password --%>
                 <div class="form-row">
                     <div class="col form-group">
                         Password
@@ -95,6 +88,4 @@
                 </div>
             </div>
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>

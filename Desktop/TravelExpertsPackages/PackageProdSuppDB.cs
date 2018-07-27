@@ -10,11 +10,11 @@ namespace TravelExpertsPackages
 {
     public static class PackageProdSuppDB
     {
-        public static List<NamedProductSupplier> GetPackageProductSuppliersByPackage(int pkgID)
+        public static List<NamedPackageProductSupplier> GetPackageProductSuppliersByPackage(int pkgID)
         {
-            List<NamedProductSupplier> productSuppliers = new List<NamedProductSupplier>();
+            List<NamedPackageProductSupplier> productSuppliers = new List<NamedPackageProductSupplier>();
             SqlConnection conn = TravelExpertsDB.GetConnection();
-            string sqlQuery = "SELECT  ps.ProductSupplierID as psID, p.ProductId as pID, ProdName, s.SupplierId as sID, SupName " +
+            string sqlQuery = "SELECT pkgps.PackageId as pkgID, ps.ProductSupplierId as psID, ProdName, SupName " +
                                 "FROM Products p " +
                                 "INNER JOIN Products_Suppliers ps ON p.ProductId = ps.ProductId " +
                                 "INNER JOIN Suppliers s ON s.SupplierId = ps.SupplierId " +
@@ -24,7 +24,7 @@ namespace TravelExpertsPackages
             //string sqlQuery = "SELECT PackageID, ProductSupplierID FROM Packages_Products_Suppliers "+
             //                    "WHERE PackageID = @PackageID ORDER BY ProductSupplierID";
             SqlCommand cmd = new SqlCommand(sqlQuery, conn);
-            cmd.Parameters.AddWithValue("@PackageID", pkgID);
+            cmd.Parameters.AddWithValue("@PackageId", pkgID);
 
             try
             {
@@ -33,12 +33,11 @@ namespace TravelExpertsPackages
 
                 while (reader.Read())
                 {
-                    NamedProductSupplier prodSup = new NamedProductSupplier
+                    NamedPackageProductSupplier prodSup = new NamedPackageProductSupplier
                     {
-                        ProductSupplierId = (int)reader["psID"],
-                        ProductId = (int)reader["pID"],
+                        PackageID = (int)reader["pkgID"],
+                        ProdSuppID = (int)reader["psID"],
                         ProductName = reader["ProdName"].ToString(),
-                        SupplierId = (int)reader["sID"],
                         SupplierName = reader["SupName"].ToString()
                     };
 
@@ -58,7 +57,7 @@ namespace TravelExpertsPackages
             return productSuppliers;
         }
 
-        public static List<NamedProductSupplier> GetPackageProductSuppliersByPackage(TravelPackage pkg)
+        public static List<NamedPackageProductSupplier> GetPackageProductSuppliersByPackage(TravelPackage pkg)
         {
             return GetPackageProductSuppliersByPackage(pkg.ID);
         }

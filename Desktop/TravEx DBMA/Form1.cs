@@ -161,7 +161,7 @@ namespace TravEx_DBMA
         /// <exception cref="NotImplementedException"></exception>
         private void FillPackageProductList(TravelPackage selectedPackage)
         {
-            foreach (NamedProductSupplier prodSup in selectedPackage.ProductsAndSuppliers)
+            foreach (NamedPackageProductSupplier prodSup in selectedPackage.ProductsAndSuppliers)
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Add(prodSup.ProductName);
@@ -258,7 +258,6 @@ namespace TravEx_DBMA
         {
             string message = string.Empty;
 
-            double val;
             //Check that Name is not empty
             if (cmbPackageID.Text.Length < 0)
                 message = "Name cannot be left empty";
@@ -267,7 +266,7 @@ namespace TravEx_DBMA
                 message = "End date cannot be before start date";
             //Check that Price is not empty, not negative
             else if (string.IsNullOrWhiteSpace(txtPkgBasePrice.Text)
-                    || !double.TryParse(txtPkgBasePrice.Text, out val)
+                    || !double.TryParse(txtPkgBasePrice.Text, out double val)
                     || val < 0)
                 message = "Base Price must have a non-negative numeric value";
             //TODO: Check that Commission is not negative

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,11 +28,101 @@ namespace TravEx_DBMA
         {
             InitializeComponent();
         }
-
+        //================================================================================================
         #region PRODUCT_TAB
 
         #endregion
+        //----------------------------------------------------------------------------------------------
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            List<Product> products = ProductDB.GetProducts();  //get all the products in products List from Products table
 
+            foreach (var p in products)   //add all the orderID values to orderIDComboBox
+            {
+                productIdComboBox.Items.Add(p.ProductId);
+            }
+
+            //get data from Products table and display in list view
+            var product = from pro in products
+                          select new
+                          {
+                              pro.ProductId,
+                              pro.ProdName
+                          };
+
+            lvProducts.Items.Clear();
+
+            int j = 0;
+            foreach (var p in products)
+            {
+                lvProducts.Items.Add(p.ProductId.ToString());
+
+                lvProducts.Items[j].SubItems.Add(p.ProdName.ToString());
+
+                j++;
+            }
+        }
+
+        //----------------------------------------------------------------------------------------------
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = ProductDB.GetConnection();
+            string updateStatement = "UPDATE Products " +
+                                     "SET ProdName = @ProdName " +
+                                     " WHERE ProductId = @selectedProductId";
+            SqlCommand cmd = new SqlCommand(updateStatement, con);
+            cmd.Parameters.AddWithValue("@ProdName", txtProdName.Text);
+            cmd.Parameters.AddWithValue("@selectedProductId", (int)productIdComboBox.SelectedItem);
+
+            try
+            {
+                con.Open();
+                int count = cmd.ExecuteNonQuery();
+                if (count > 0)
+                {
+                    MessageBox.Show("Product Name updated successfully !");
+                }
+                else
+                {
+                    MessageBox.Show("Product Name is not updated successfully !");
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            List<Product> products = ProductDB.GetProducts();
+
+            lvProducts.Items.Clear();
+
+            int j = 0;
+            foreach (var p in products)
+            {
+                lvProducts.Items.Add(p.ProductId.ToString());
+
+                lvProducts.Items[j].SubItems.Add(p.ProdName.ToString());
+
+                j++;
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        //-------------------------------------------------------------------------------------------
+
+
+
+
+
+        //==========================================================================================
         #region SUPPLIER_TAB
 
         #endregion
@@ -142,7 +233,7 @@ namespace TravEx_DBMA
             if (!ValidatePkgTab())
                 return;
 
-            
+
 
             if (accessMode == AccessMode.Add)
             {
@@ -244,5 +335,7 @@ namespace TravEx_DBMA
         }
 
         #endregion
+
+
     }
 }

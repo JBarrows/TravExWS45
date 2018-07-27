@@ -76,6 +76,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\TravelExpertsPackages.PackageDB.datasource" />
+    <None Include="Properties\DataSources\TravelExpertsPackages.Product.datasource" />
     <None Include="Properties\DataSources\TravelExpertsPackages.TravelPackage.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -55,11 +55,11 @@ namespace TravelExpertsPackages
             SqlCommand cmd = new SqlCommand(updStmt, conn);
 
             cmd.Parameters.AddWithValue("@name", newPkg.Name);
-            cmd.Parameters.AddWithValue("@desc", newPkg.Description);
+            cmd.Parameters.AddWithValue("@desc", newPkg.Description ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@start", newPkg.StartDate);
             cmd.Parameters.AddWithValue("@end", newPkg.EndDate);
             cmd.Parameters.AddWithValue("@price", newPkg.BasePrice);
-            cmd.Parameters.AddWithValue("@commiss", newPkg.Commission);
+            cmd.Parameters.AddWithValue("@commiss", newPkg.Commission ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@id", oldPkg.ID);
 
             try
@@ -88,9 +88,9 @@ namespace TravelExpertsPackages
             cmd.Parameters.AddWithValue("@name", newPkg.Name);
             cmd.Parameters.AddWithValue("@start", newPkg.StartDate);
             cmd.Parameters.AddWithValue("@end", newPkg.EndDate);
-            cmd.Parameters.AddWithValue("@desc", newPkg.Description);
+            cmd.Parameters.AddWithValue("@desc", newPkg.Description ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@price", newPkg.BasePrice);
-            cmd.Parameters.AddWithValue("@commiss", newPkg.Commission);
+            cmd.Parameters.AddWithValue("@commiss", newPkg.Commission ?? (object)DBNull.Value);
 
             try
             {
@@ -112,6 +112,49 @@ namespace TravelExpertsPackages
             }
 
             return newPkg;
+        }
+
+        public static int Delete(TravelPackage package)
+        {
+            //Delete all related Package_Product_Suppliers
+            foreach (PackageProdSupplier pps in package.ProductsAndSuppliers)
+            {
+                if (PackageProdSuppDB.Delete(pps) < 1) throw new Exception("Error deleting Package Product/Supplier");
+            }
+
+            int deletedPkgs = 0;
+            SqlConnection conn = TravelExpertsDB.GetConnection();
+            string sqlQuery = "DELETE FROM Packages " +
+                                "WHERE PackageId = @pkgID AND PkgName = @Name " +
+                                "AND PkgStartDate = @start AND PkgEndDate = @end " +
+                                "AND PkgDesc = @desc AND PkgBasePrice = @price " +
+                                "AND PkgAgencyCommission = @commission";
+            SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+
+            //TODO: Account for null values
+            cmd.Parameters.AddWithValue("@pkgID", package.ID);
+            cmd.Parameters.AddWithValue("@name", package.Name);
+            // cmd.Parameters.AddWithValue("@start", package.StartDate); //Nullable
+            cmd.Parameters.AddWithValue("@start", package.StartDate == null ? (object)DBNull.Value : package.StartDate);
+            cmd.Parameters.AddWithValue("@end", package.EndDate); //Nullable
+            cmd.Parameters.AddWithValue("@desc", package.Description ?? (object)DBNull.Value); //Nullable
+            cmd.Parameters.AddWithValue("@price", package.BasePrice);
+            cmd.Parameters.AddWithValue("@commission", package.Commission ?? (object)DBNull.Value); //Nullable
+            try
+            {
+                conn.Open();
+                deletedPkgs += cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return deletedPkgs;
         }
     }
 }

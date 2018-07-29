@@ -61,5 +61,32 @@ namespace TravelExpertsPackages
         {
             return GetPackageProductSuppliersByPackage(pkg.ID);
         }
+
+        public static int Delete(PackageProdSupplier packagePS)
+        {
+            int deletedRows = 0;
+            SqlConnection conn = TravelExpertsDB.GetConnection();
+            string sqlQuery = "DELETE FROM Packages_Products_Suppliers "+
+                                "WHERE PackageId = @pkgID AND ProductSupplierId = @psID";
+            SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+            cmd.Parameters.AddWithValue("@pkgID", packagePS.PackageID);
+            cmd.Parameters.AddWithValue("@psID", packagePS.ProdSuppID);
+            try
+            {
+                conn.Open();
+                deletedRows += cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return deletedRows;
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team4_Workshop4;
 using TravelExpertsPackages;
 
 namespace TravEx_DBMA
@@ -32,6 +33,73 @@ namespace TravEx_DBMA
         #endregion
 
         #region SUPPLIER_TAB
+
+        List<Supplier> suppliers;// list of all suppliers
+        Supplier sup;
+        List<NamedProductSupplier> suppliedProds;
+
+        // Fills the suppliers information when enter the tabSuppliers.
+        private void tabSuppliersEnter(object sender, EventArgs e)
+        {           
+            try
+            {
+                cmbSupName.Items.Clear();
+                suppliers = SupplierDB.GetAllSuppliers(); // get the supplier list
+                //add items to the SupName combobox
+                cmbSupName.Items.AddRange(suppliers.ToArray());
+                cmbSupName.SelectedIndex = 0;             
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while loading supplier data: " + ex.Message,
+                    ex.GetType().ToString());
+            }
+        }
+
+        //Handles the Leave event of the tabSuppliers control.
+        private void tabSuppliersLeave(object sender, EventArgs e)
+        {
+            //selectedSupplier = null;
+            accessMode = AccessMode.Read;
+            //lblStatus.Text = "";
+        }
+
+        private void DisplaySupplier(int index)
+        {
+
+            int i=0;
+            sup = suppliers[index];
+            lvSuppliedProds.Items.Clear();
+            txtSupplierId.Text = sup.SupplierId.ToString();
+            suppliedProds = SuppliedProdDB.GetProductsBySupplier(sup.SupplierId);
+            foreach (var supProd in suppliedProds)
+            {
+                lvSuppliedProds.Items.Add(supProd.ProductId.ToString());
+                lvSuppliedProds.Items[i].SubItems.Add(supProd.ProductName.ToString());
+                i++;
+            }
+
+        }
+        
+        private void cmbSupName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplaySupplier(cmbSupName.SelectedIndex);
+        }
+
+        private void btnNewSup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteSup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveSup_Click(object sender, EventArgs e)
+        {
+
+        }
 
         #endregion
 
@@ -254,6 +322,73 @@ namespace TravEx_DBMA
             txtPkgBasePrice.ResetText();
             txtPkgCommission.ResetText();
         }
+        
+        // Remove a product from the current package
+        private void btnDeleteProd_Supplier_Click(object sender, EventArgs e)
+        {
+            //Confirm
+            DialogResult confirmation = DialogResult.No;
+            confirmation = MessageBox.Show("Are you sure you want to remove the selected product(s) from '" + 
+                                            selectedPackage.Name + "'?", "Confirm Delete", MessageBoxButtons.YesNo, 
+                                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (confirmation != DialogResult.Yes)
+                return; //Escape if user does not confirm
+
+            int rowsDeleted = 0;
+            foreach (int i in lstPkgProductSuppliers.SelectedIndices)
+            {
+                //Remove each selected product
+                rowsDeleted += PackageProdSuppDB.Delete(selectedPackage.ProductsAndSuppliers[i]);
+            }
+
+            //Display result
+            FillPackageProductList(selectedPackage);
+            lblPkgStatus.Text = "Products removed";
+            MessageBox.Show(rowsDeleted + " record(s) deleted from database.", "Deletion Successful");
+        }
+
+        // Deletes the currently selected package
+        private void btnPkgDelete_Click(object sender, EventArgs e)
+        {
+            //Delete Package
+            DialogResult confirmation = DialogResult.No;
+            confirmation = MessageBox.Show("Are you sure you want to delete the package '" +
+                                            selectedPackage.Name + "'?", "Confirm Delete", MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (confirmation != DialogResult.Yes)
+                return;
+
+            int rowsDeleted = 0;
+            try
+            {
+                rowsDeleted = PackageDB.Delete(selectedPackage);
+                if (rowsDeleted > 0)
+                {
+                    //package deleted. Refill combo box and display result
+                    FillPackageComboBox(btnPkgDelete, EventArgs.Empty);
+                    lblPkgStatus.Text = "Package deleted";
+                    MessageBox.Show("Package deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Deleting Package");
+            }
+        }
+
+        // Show "Add Product to Package" dialog
+        private void btnAddProduct_Supplier_Click(object sender, EventArgs e)
+        {
+            frmNewPackageProductSupplier addDialog = new frmNewPackageProductSupplier
+            {
+                Package = selectedPackage
+            };
+            DialogResult result = addDialog.ShowDialog();
+            if (result != DialogResult.OK) return; //Escape if OK is not returned
+
+            FillPackageProductList(selectedPackage);
+            lblPkgStatus.Text = "Product added to package";
+        }
 
         // Remove a product from the current package
         private void btnDeleteProd_Supplier_Click(object sender, EventArgs e)
@@ -323,5 +458,7 @@ namespace TravEx_DBMA
         }
 
         #endregion
+
+        
     }
 }

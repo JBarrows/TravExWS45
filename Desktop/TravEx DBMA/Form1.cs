@@ -21,7 +21,6 @@ namespace TravEx_DBMA
         }
 
         AccessMode accessMode = AccessMode.Read;
-        TravelPackage selectedPackage;
 
         public Form1()
         {
@@ -37,6 +36,11 @@ namespace TravEx_DBMA
         #endregion
 
         #region PACKAGE_TAB
+
+        /// <summary>
+        /// The selected package on the Package tab
+        /// </summary>
+        TravelPackage selectedPackage;
 
         /// <summary>
         /// Fills the package ComboBox.
@@ -61,7 +65,7 @@ namespace TravEx_DBMA
         {
             selectedPackage = null;
             accessMode = AccessMode.Read;
-            lblStatus.Text = "";
+            lblPkgStatus.Text = "";
         }
 
         /// <summary>
@@ -82,9 +86,9 @@ namespace TravEx_DBMA
             FillPackageProductList(selectedPackage);
             accessMode = AccessMode.Read;
             btnPkgSave.Enabled = false;
-            lblStatus.Text = "Package loaded";
+            lblPkgStatus.Text = "Package loaded";
         }
-
+        
         /// <summary>
         /// Fills the package product list box with named Product_Supplier objects.
         /// </summary>
@@ -92,10 +96,10 @@ namespace TravEx_DBMA
         /// <exception cref="NotImplementedException"></exception>
         private void FillPackageProductList(TravelPackage selectedPackage)
         {
+            lstPkgProductSuppliers.Items.Clear();
             foreach (NamedPackageProductSupplier prodSup in selectedPackage.ProductsAndSuppliers)
             {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(prodSup.ProductName);
+                ListViewItem item = new ListViewItem(prodSup.ProductName);
                 item.SubItems.Add(prodSup.SupplierName);
                 lstPkgProductSuppliers.Items.Add(item);
             }
@@ -123,7 +127,7 @@ namespace TravEx_DBMA
 
             accessMode = AccessMode.Edit;
             btnPkgSave.Enabled = true;
-            lblStatus.Text = "Modifying package";
+            lblPkgStatus.Text = "Modifying package";
         }
 
         /// <summary>
@@ -153,16 +157,18 @@ namespace TravEx_DBMA
                     StartDate = datPkgStart.Value,
                     EndDate = datPkgEnd.Value,
                     BasePrice = double.Parse(txtPkgBasePrice.Text),
-                    Commission = double.Parse(txtPkgCommission.Text)
+                    Commission = null
                 };
+                if (double.TryParse(txtPkgCommission.Text, out double c))
+                    newPackage.Commission = c;
                 //Add package
                 newPackage = PackageDB.Insert(newPackage);
 
                 //Refresh
                 FillPackageComboBox(sender, e);
-                int newIndex = cmbPackageID.Items.IndexOf(newPackage);
-                cmbPackageID.SelectedIndex = newIndex;
-                lblStatus.Text = "Package created";
+                // Maybe loop through packages to find the new ID?
+                cmbPackageID.SelectedIndex = cmbPackageID.Items.Count - 1;
+                lblPkgStatus.Text = "Package created";
             }
             else if (accessMode == AccessMode.Edit)
             {
@@ -173,35 +179,42 @@ namespace TravEx_DBMA
                     StartDate = datPkgStart.Value,
                     EndDate = datPkgEnd.Value,
                     BasePrice = double.Parse(txtPkgBasePrice.Text),
-                    Commission = double.Parse(txtPkgCommission.Text)
+                    Commission = null
                 };
-                //Update Package
-                PackageDB.Update(selectedPackage, newPackage);
+            if (double.TryParse(txtPkgCommission.Text, out double c))
+                newPackage.Commission = c;
+
+            //Update Package
+            PackageDB.Update(selectedPackage, newPackage);
 
                 //Refresh
+                int selectedIndex = cmbPackageID.SelectedIndex;
                 FillPackageComboBox(sender, e);
-                cmbPackageID.SelectedValue = newPackage.ID;
-                lblStatus.Text = "Package updated";
+                cmbPackageID.SelectedIndex = selectedIndex;
+                lblPkgStatus.Text = "Package updated";
             }
         }
 
         private bool ValidatePkgTab()
         {
             string message = string.Empty;
-
             //Check that Name is not empty
             if (cmbPackageID.Text.Length < 0)
                 message = "Name cannot be left empty";
             //Check that start date is before end date
-            else if (datPkgStart != null && datPkgEnd != null && datPkgStart.Value > datPkgEnd.Value)
+            else if (datPkgStart.Value != null && datPkgEnd.Value != null && datPkgStart.Value > datPkgEnd.Value)
                 message = "End date cannot be before start date";
             //Check that Price is not empty, not negative
             else if (string.IsNullOrWhiteSpace(txtPkgBasePrice.Text)
-                    || !double.TryParse(txtPkgBasePrice.Text, out double val)
-                    || val < 0)
+                    || !double.TryParse(txtPkgBasePrice.Text, out double price)
+                    || price < 0)
                 message = "Base Price must have a non-negative numeric value";
-            //TODO: Check that Commission is not negative
-
+            // Check that Commission is not negative
+            else if (double.TryParse(txtPkgCommission.Text, out double commission)
+                        && (commission < 0 || commission > price))
+            {
+                message = "Commission must be greater than 0 and less than base price";
+            }
 
             //IF this is reached with no message, return true
             if (message == string.Empty)
@@ -224,7 +237,7 @@ namespace TravEx_DBMA
 
             //Set status to adding
             accessMode = AccessMode.Add;
-            lblStatus.Text = "Adding new package";
+            lblPkgStatus.Text = "Adding new package";
         }
 
         /// <summary>
@@ -237,9 +250,76 @@ namespace TravEx_DBMA
             cmbPackageID.Select();
             txtPkgDesc.ResetText();
             datPkgStart.Value = DateTime.Today;
-            datPkgEnd.Value = DateTime.Today;
+            datPkgEnd.Value = DateTime.Today + TimeSpan.FromDays(1); //Tomorrow
             txtPkgBasePrice.ResetText();
             txtPkgCommission.ResetText();
+        }
+
+        // Remove a product from the current package
+        private void btnDeleteProd_Supplier_Click(object sender, EventArgs e)
+        {
+            //Confirm
+            DialogResult confirmation = DialogResult.No;
+            confirmation = MessageBox.Show("Are you sure you want to remove the selected product(s) from '" + 
+                                            selectedPackage.Name + "'?", "Confirm Delete", MessageBoxButtons.YesNo, 
+                                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (confirmation != DialogResult.Yes)
+                return; //Escape if user does not confirm
+
+            int rowsDeleted = 0;
+            foreach (int i in lstPkgProductSuppliers.SelectedIndices)
+            {
+                //Remove each selected product
+                rowsDeleted += PackageProdSuppDB.Delete(selectedPackage.ProductsAndSuppliers[i]);
+            }
+
+            //Display result
+            FillPackageProductList(selectedPackage);
+            lblPkgStatus.Text = "Products removed";
+            MessageBox.Show(rowsDeleted + " record(s) deleted from database.", "Deletion Successful");
+        }
+
+        // Deletes the currently selected package
+        private void btnPkgDelete_Click(object sender, EventArgs e)
+        {
+            //Delete Package
+            DialogResult confirmation = DialogResult.No;
+            confirmation = MessageBox.Show("Are you sure you want to delete the package '" +
+                                            selectedPackage.Name + "'?", "Confirm Delete", MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (confirmation != DialogResult.Yes)
+                return;
+
+            int rowsDeleted = 0;
+            try
+            {
+                rowsDeleted = PackageDB.Delete(selectedPackage);
+                if (rowsDeleted > 0)
+                {
+                    //package deleted. Refill combo box and display result
+                    FillPackageComboBox(btnPkgDelete, EventArgs.Empty);
+                    lblPkgStatus.Text = "Package deleted";
+                    MessageBox.Show("Package deleted");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Deleting Package");
+            }
+        }
+
+        // Show "Add Product to Package" dialog
+        private void btnAddProduct_Supplier_Click(object sender, EventArgs e)
+        {
+            frmNewPackageProductSupplier addDialog = new frmNewPackageProductSupplier
+            {
+                Package = selectedPackage
+            };
+            DialogResult result = addDialog.ShowDialog();
+            if (result != DialogResult.OK) return; //Escape if OK is not returned
+
+            FillPackageProductList(selectedPackage);
+            lblPkgStatus.Text = "Product added to package";
         }
 
         #endregion

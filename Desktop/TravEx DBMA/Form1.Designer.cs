@@ -39,8 +39,7 @@
             this.tabProducts = new System.Windows.Forms.TabPage();
             this.tabSuppliers = new System.Windows.Forms.TabPage();
             this.tabPackages = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnPkgDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lstPkgProductSuppliers = new System.Windows.Forms.ListView();
             this.colSuppliers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,7 +47,7 @@
             this.btnDeleteProd_Supplier = new System.Windows.Forms.Button();
             this.btnAddProduct_Supplier = new System.Windows.Forms.Button();
             this.btnPkgSave = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblPkgStatus = new System.Windows.Forms.Label();
             this.btnAddPackage = new System.Windows.Forms.Button();
             this.txtPkgBasePrice = new System.Windows.Forms.TextBox();
             this.txtPkgCommission = new System.Windows.Forms.TextBox();
@@ -71,7 +70,7 @@
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new System.Drawing.Point(3, 50);
+            descriptionLabel.Location = new System.Drawing.Point(3, 88);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new System.Drawing.Size(63, 13);
             descriptionLabel.TabIndex = 6;
@@ -164,14 +163,13 @@
             // 
             // tabPackages
             // 
-            this.tabPackages.Controls.Add(this.button1);
-            this.tabPackages.Controls.Add(this.textBox1);
+            this.tabPackages.Controls.Add(this.btnPkgDelete);
             this.tabPackages.Controls.Add(this.dataGridView1);
             this.tabPackages.Controls.Add(this.lstPkgProductSuppliers);
             this.tabPackages.Controls.Add(this.btnDeleteProd_Supplier);
             this.tabPackages.Controls.Add(this.btnAddProduct_Supplier);
             this.tabPackages.Controls.Add(this.btnPkgSave);
-            this.tabPackages.Controls.Add(this.lblStatus);
+            this.tabPackages.Controls.Add(this.lblPkgStatus);
             this.tabPackages.Controls.Add(this.btnAddPackage);
             this.tabPackages.Controls.Add(basePriceLabel);
             this.tabPackages.Controls.Add(this.txtPkgBasePrice);
@@ -195,27 +193,21 @@
             this.tabPackages.Enter += new System.EventHandler(this.FillPackageComboBox);
             this.tabPackages.Leave += new System.EventHandler(this.tabPackages_Leave);
             // 
-            // button1
+            // btnPkgDelete
             // 
-            this.button1.Location = new System.Drawing.Point(112, 306);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 306);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 20;
-            this.textBox1.Text = "Search";
+            this.btnPkgDelete.Image = global::TravEx_DBMA.Properties.Resources.small_minus;
+            this.btnPkgDelete.Location = new System.Drawing.Point(215, 26);
+            this.btnPkgDelete.Name = "btnPkgDelete";
+            this.btnPkgDelete.Size = new System.Drawing.Size(25, 21);
+            this.btnPkgDelete.TabIndex = 21;
+            this.btnPkgDelete.TabStop = false;
+            this.btnPkgDelete.UseVisualStyleBackColor = true;
+            this.btnPkgDelete.Click += new System.EventHandler(this.btnPkgDelete_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 332);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 250);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(613, 150);
             this.dataGridView1.TabIndex = 19;
@@ -225,6 +217,7 @@
             this.lstPkgProductSuppliers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colSuppliers,
             this.colProducts});
+            this.lstPkgProductSuppliers.FullRowSelect = true;
             this.lstPkgProductSuppliers.Location = new System.Drawing.Point(323, 26);
             this.lstPkgProductSuppliers.Name = "lstPkgProductSuppliers";
             this.lstPkgProductSuppliers.Size = new System.Drawing.Size(296, 189);
@@ -235,7 +228,7 @@
             // colSuppliers
             // 
             this.colSuppliers.Text = "Supplier";
-            this.colSuppliers.Width = 164;
+            this.colSuppliers.Width = 142;
             // 
             // colProducts
             // 
@@ -244,49 +237,58 @@
             // 
             // btnDeleteProd_Supplier
             // 
+            this.btnDeleteProd_Supplier.Image = global::TravEx_DBMA.Properties.Resources.small_minus;
             this.btnDeleteProd_Supplier.Location = new System.Drawing.Point(544, 221);
             this.btnDeleteProd_Supplier.Name = "btnDeleteProd_Supplier";
             this.btnDeleteProd_Supplier.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteProd_Supplier.TabIndex = 17;
-            this.btnDeleteProd_Supplier.Text = "X Delete";
+            this.btnDeleteProd_Supplier.TabStop = false;
+            this.btnDeleteProd_Supplier.Text = "Delete";
+            this.btnDeleteProd_Supplier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDeleteProd_Supplier.UseVisualStyleBackColor = true;
+            this.btnDeleteProd_Supplier.Click += new System.EventHandler(this.btnDeleteProd_Supplier_Click);
             // 
             // btnAddProduct_Supplier
             // 
+            this.btnAddProduct_Supplier.Image = global::TravEx_DBMA.Properties.Resources.Small_Plus;
             this.btnAddProduct_Supplier.Location = new System.Drawing.Point(323, 221);
             this.btnAddProduct_Supplier.Name = "btnAddProduct_Supplier";
             this.btnAddProduct_Supplier.Size = new System.Drawing.Size(75, 23);
-            this.btnAddProduct_Supplier.TabIndex = 17;
-            this.btnAddProduct_Supplier.Text = "+ Add";
+            this.btnAddProduct_Supplier.TabIndex = 70;
+            this.btnAddProduct_Supplier.Text = "Add";
+            this.btnAddProduct_Supplier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddProduct_Supplier.UseVisualStyleBackColor = true;
+            this.btnAddProduct_Supplier.Click += new System.EventHandler(this.btnAddProduct_Supplier_Click);
             // 
             // btnPkgSave
             // 
             this.btnPkgSave.Enabled = false;
+            this.btnPkgSave.Image = global::TravEx_DBMA.Properties.Resources.small_pencil;
             this.btnPkgSave.Location = new System.Drawing.Point(6, 221);
             this.btnPkgSave.Name = "btnPkgSave";
             this.btnPkgSave.Size = new System.Drawing.Size(75, 23);
-            this.btnPkgSave.TabIndex = 17;
+            this.btnPkgSave.TabIndex = 68;
             this.btnPkgSave.Text = "Save";
+            this.btnPkgSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPkgSave.UseVisualStyleBackColor = true;
             this.btnPkgSave.Click += new System.EventHandler(this.btnPkgSave_Click);
             // 
-            // lblStatus
+            // lblPkgStatus
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(87, 226);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(43, 13);
-            this.lblStatus.TabIndex = 16;
-            this.lblStatus.Text = "[----------]";
+            this.lblPkgStatus.AutoSize = true;
+            this.lblPkgStatus.Location = new System.Drawing.Point(87, 226);
+            this.lblPkgStatus.Name = "lblPkgStatus";
+            this.lblPkgStatus.Size = new System.Drawing.Size(43, 13);
+            this.lblPkgStatus.TabIndex = 16;
+            this.lblPkgStatus.Text = "[----------]";
             // 
             // btnAddPackage
             // 
-            this.btnAddPackage.Location = new System.Drawing.Point(246, 26);
+            this.btnAddPackage.Image = global::TravEx_DBMA.Properties.Resources.Small_Plus;
+            this.btnAddPackage.Location = new System.Drawing.Point(184, 26);
             this.btnAddPackage.Name = "btnAddPackage";
-            this.btnAddPackage.Size = new System.Drawing.Size(71, 21);
-            this.btnAddPackage.TabIndex = 14;
-            this.btnAddPackage.Text = "New";
+            this.btnAddPackage.Size = new System.Drawing.Size(25, 21);
+            this.btnAddPackage.TabIndex = 69;
             this.btnAddPackage.UseVisualStyleBackColor = true;
             this.btnAddPackage.Click += new System.EventHandler(this.btnAddPackage_Click);
             // 
@@ -295,7 +297,7 @@
             this.txtPkgBasePrice.Location = new System.Drawing.Point(6, 195);
             this.txtPkgBasePrice.Name = "txtPkgBasePrice";
             this.txtPkgBasePrice.Size = new System.Drawing.Size(114, 20);
-            this.txtPkgBasePrice.TabIndex = 1;
+            this.txtPkgBasePrice.TabIndex = 66;
             this.txtPkgBasePrice.TextChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
             // txtPkgCommission
@@ -303,7 +305,7 @@
             this.txtPkgCommission.Location = new System.Drawing.Point(126, 195);
             this.txtPkgCommission.Name = "txtPkgCommission";
             this.txtPkgCommission.Size = new System.Drawing.Size(114, 20);
-            this.txtPkgCommission.TabIndex = 3;
+            this.txtPkgCommission.TabIndex = 67;
             this.txtPkgCommission.TextChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
             // datPkgStart
@@ -312,17 +314,17 @@
             this.datPkgStart.Location = new System.Drawing.Point(6, 156);
             this.datPkgStart.Name = "datPkgStart";
             this.datPkgStart.Size = new System.Drawing.Size(114, 20);
-            this.datPkgStart.TabIndex = 5;
+            this.datPkgStart.TabIndex = 64;
             this.datPkgStart.ValueChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
             // txtPkgDesc
             // 
-            this.txtPkgDesc.Location = new System.Drawing.Point(6, 66);
+            this.txtPkgDesc.Location = new System.Drawing.Point(6, 104);
             this.txtPkgDesc.MaxLength = 50;
             this.txtPkgDesc.Multiline = true;
             this.txtPkgDesc.Name = "txtPkgDesc";
             this.txtPkgDesc.Size = new System.Drawing.Size(234, 33);
-            this.txtPkgDesc.TabIndex = 7;
+            this.txtPkgDesc.TabIndex = 63;
             this.txtPkgDesc.TextChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
             // cmbPackageID
@@ -335,7 +337,7 @@
             this.cmbPackageID.MaxLength = 50;
             this.cmbPackageID.Name = "cmbPackageID";
             this.cmbPackageID.Size = new System.Drawing.Size(170, 21);
-            this.cmbPackageID.TabIndex = 9;
+            this.cmbPackageID.TabIndex = 60;
             this.cmbPackageID.ValueMember = "ID";
             this.cmbPackageID.SelectedValueChanged += new System.EventHandler(this.cmbPackageID_SelectedValueChanged);
             this.cmbPackageID.TextChanged += new System.EventHandler(this.OnPackageDataModified);
@@ -346,7 +348,7 @@
             this.datPkgEnd.Location = new System.Drawing.Point(126, 156);
             this.datPkgEnd.Name = "datPkgEnd";
             this.datPkgEnd.Size = new System.Drawing.Size(114, 20);
-            this.datPkgEnd.TabIndex = 13;
+            this.datPkgEnd.TabIndex = 65;
             this.datPkgEnd.ValueChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
             // Form1
@@ -378,11 +380,10 @@
         private System.Windows.Forms.ColumnHeader colProducts;
         private System.Windows.Forms.Button btnDeleteProd_Supplier;
         private System.Windows.Forms.Button btnAddProduct_Supplier;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnPkgDelete;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnPkgSave;
-        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblPkgStatus;
         private System.Windows.Forms.TextBox txtPkgBasePrice;
         private System.Windows.Forms.TextBox txtPkgCommission;
         private System.Windows.Forms.DateTimePicker datPkgStart;

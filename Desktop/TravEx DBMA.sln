@@ -7,6 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravEx DBMA", "TravEx DBMA\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsPackages", "TravelExpertsPackages\TravelExpertsPackages.csproj", "{F7EB4511-31DD-40A8-A009-7AA092260651}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D59C9C2-DD2C-4590-83E5-B8869370941D}"
+	ProjectSection(SolutionItems) = preProject
+		sources.txt = sources.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Icons", "Icons", "{67B6329E-75DC-4DB7-B5BB-B16ABA49CC09}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Pictures\TravExIcons\icons8-cancel.png = ..\..\..\..\..\Pictures\TravExIcons\icons8-cancel.png
+		..\..\..\..\..\Pictures\TravExIcons\icons8-circled-plus.png = ..\..\..\..\..\Pictures\TravExIcons\icons8-circled-plus.png
+		..\..\..\..\..\Pictures\TravExIcons\icons8-minus.png = ..\..\..\..\..\Pictures\TravExIcons\icons8-minus.png
+		..\..\..\..\..\Pictures\TravExIcons\icons8-pencil-drawing.png = ..\..\..\..\..\Pictures\TravExIcons\icons8-pencil-drawing.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

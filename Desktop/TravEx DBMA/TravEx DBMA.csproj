@@ -85,6 +85,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\Team4_Workshop4.Supplier.datasource" />
+    <None Include="Properties\DataSources\TravelExpertsPackages.NamedProductSupplier.datasource" />
     <None Include="Properties\DataSources\TravelExpertsPackages.PackageDB.datasource" />
     <None Include="Properties\DataSources\TravelExpertsPackages.TravelPackage.datasource" />
     <None Include="Properties\Settings.settings">

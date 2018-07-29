@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Team4_Workshop4;
 using TravelExpertsPackages;
 
 namespace TravEx_DBMA
@@ -32,6 +33,73 @@ namespace TravEx_DBMA
         #endregion
 
         #region SUPPLIER_TAB
+
+        List<Supplier> suppliers;// list of all suppliers
+        Supplier sup;
+        List<NamedProductSupplier> suppliedProds;
+
+        // Fills the suppliers information when enter the tabSuppliers.
+        private void tabSuppliersEnter(object sender, EventArgs e)
+        {           
+            try
+            {
+                cmbSupName.Items.Clear();
+                suppliers = SupplierDB.GetAllSuppliers(); // get the supplier list
+                //add items to the SupName combobox
+                cmbSupName.Items.AddRange(suppliers.ToArray());
+                cmbSupName.SelectedIndex = 0;             
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while loading supplier data: " + ex.Message,
+                    ex.GetType().ToString());
+            }
+        }
+
+        //Handles the Leave event of the tabSuppliers control.
+        private void tabSuppliersLeave(object sender, EventArgs e)
+        {
+            //selectedSupplier = null;
+            accessMode = AccessMode.Read;
+            //lblStatus.Text = "";
+        }
+
+        private void DisplaySupplier(int index)
+        {
+
+            int i=0;
+            sup = suppliers[index];
+            lvSuppliedProds.Items.Clear();
+            txtSupplierId.Text = sup.SupplierId.ToString();
+            suppliedProds = SuppliedProdDB.GetProductsBySupplier(sup.SupplierId);
+            foreach (var supProd in suppliedProds)
+            {
+                lvSuppliedProds.Items.Add(supProd.ProductId.ToString());
+                lvSuppliedProds.Items[i].SubItems.Add(supProd.ProductName.ToString());
+                i++;
+            }
+
+        }
+        
+        private void cmbSupName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplaySupplier(cmbSupName.SelectedIndex);
+        }
+
+        private void btnNewSup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteSup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveSup_Click(object sender, EventArgs e)
+        {
+
+        }
 
         #endregion
 
@@ -254,7 +322,7 @@ namespace TravEx_DBMA
             txtPkgBasePrice.ResetText();
             txtPkgCommission.ResetText();
         }
-
+        
         // Remove a product from the current package
         private void btnDeleteProd_Supplier_Click(object sender, EventArgs e)
         {
@@ -323,5 +391,7 @@ namespace TravEx_DBMA
         }
 
         #endregion
+
+        
     }
 }

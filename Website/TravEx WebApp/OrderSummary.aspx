@@ -24,10 +24,10 @@
     <form id="form1" runat="server">
         <div class="container">
             <h1 class="jumbotron text-center text-secondary">Booking Summary</h1>
-            <h4 class="text-secondary">Congratulaltions ! Your booking is confirmed.</h4><br />
+            <h4 class="text-secondary">Here are the list of your bookings.</h4><br />
             <asp:DropDownList CssClass="form-control col-sm-3 bg-mute" ID="ddlBookingId" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource1" DataTextField="BookingId" DataValueField="BookingId">
             </asp:DropDownList>
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetBookings" TypeName="TravEx_WebApp.App_Code.BookingDB"></asp:ObjectDataSource>
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllBookingId" TypeName="TravEx_WebApp.App_Code.BookingDB"></asp:ObjectDataSource>
             <asp:Button CssClass="btn" ID="btnPrint" runat="server" Text="Print" OnClinetClick="return window.print();" OnClick="btnPrint_Click"/>
         <br />
         <asp:GridView CssClass="table table-secondary" ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource2">
@@ -120,7 +120,28 @@
                 <asp:ControlParameter ControlID="ddlBookingId" Name="BookingId" PropertyName="SelectedValue" Type="Int32" />
             </SelectParameters>
         </asp:ObjectDataSource>
+            <br />
         </div>
+        <asp:DropDownList ID="ddlCustomerId" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource7" DataTextField="CustomerId" DataValueField="CustomerId">
+        </asp:DropDownList>
+        <asp:ObjectDataSource ID="ObjectDataSource7" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllCustomers" TypeName="TravEx_WebApp.App_Code.CustomerDB"></asp:ObjectDataSource>
+        <asp:GridView ID="GridView6" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource8">
+            <Columns>
+                <asp:BoundField DataField="BookingId" HeaderText="BookingId" SortExpression="BookingId" />
+                <asp:BoundField DataField="BookingDate" HeaderText="BookingDate" SortExpression="BookingDate" />
+                <asp:BoundField DataField="BookingNo" HeaderText="BookingNo" SortExpression="BookingNo" />
+                <asp:BoundField DataField="TravelerCount" HeaderText="TravelerCount" SortExpression="TravelerCount" />
+                <asp:BoundField DataField="CustomerId" HeaderText="CustomerId" SortExpression="CustomerId" />
+                <asp:BoundField DataField="TripTypeId" HeaderText="TripTypeId" SortExpression="TripTypeId" />
+                <asp:BoundField DataField="PackageId" HeaderText="PackageId" SortExpression="PackageId" />
+            </Columns>
+        </asp:GridView>
+        <asp:ObjectDataSource ID="ObjectDataSource8" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetBookingsByCustomerId" TypeName="TravEx_WebApp.App_Code.BookingDB">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="ddlCustomerId" Name="CustomerId" PropertyName="SelectedValue" Type="Int32" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
+        <br />
     </form>
 </body>
 </html>

@@ -485,8 +485,9 @@
             this.lblSupMessage.ForeColor = System.Drawing.Color.Black;
             this.lblSupMessage.Location = new System.Drawing.Point(23, 286);
             this.lblSupMessage.Name = "lblSupMessage";
-            this.lblSupMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblSupMessage.Size = new System.Drawing.Size(72, 13);
             this.lblSupMessage.TabIndex = 19;
+            this.lblSupMessage.Text = "[------Note------]";
             // 
             // groupBox1
             // 
@@ -592,21 +593,21 @@
             // 
             // btnRemoveSuppliedProd
             // 
+            this.btnRemoveSuppliedProd.Image = global::TravEx_DBMA.Properties.Resources.small_arrow_right;
             this.btnRemoveSuppliedProd.Location = new System.Drawing.Point(243, 224);
             this.btnRemoveSuppliedProd.Name = "btnRemoveSuppliedProd";
             this.btnRemoveSuppliedProd.Size = new System.Drawing.Size(69, 23);
             this.btnRemoveSuppliedProd.TabIndex = 10;
-            this.btnRemoveSuppliedProd.Text = "=>";
             this.btnRemoveSuppliedProd.UseVisualStyleBackColor = true;
             this.btnRemoveSuppliedProd.Click += new System.EventHandler(this.btnRemoveSuppliedProd_Click);
             // 
             // btnAddSuppliedProd
             // 
+            this.btnAddSuppliedProd.Image = global::TravEx_DBMA.Properties.Resources.small_arrow_left;
             this.btnAddSuppliedProd.Location = new System.Drawing.Point(243, 165);
             this.btnAddSuppliedProd.Name = "btnAddSuppliedProd";
             this.btnAddSuppliedProd.Size = new System.Drawing.Size(70, 23);
             this.btnAddSuppliedProd.TabIndex = 9;
-            this.btnAddSuppliedProd.Text = "<=";
             this.btnAddSuppliedProd.UseVisualStyleBackColor = true;
             this.btnAddSuppliedProd.Click += new System.EventHandler(this.btnAddSuppliedProd_Click);
             // 

@@ -18,5 +18,6 @@ namespace TravEx_WebApp
         {
             btnPrint.Attributes.Add("onclick", "window.print();");
         }
+
     }
 }

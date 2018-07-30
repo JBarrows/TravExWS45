@@ -157,6 +157,12 @@
     <Content Include="App_Code\Package.cs" />
     <Content Include="App_Code\PackageDB.cs" />
     <Content Include="App_Code\TravelExpertsDB.cs" />
+    <Content Include="App_Code\Product.cs" />
+    <Content Include="App_Code\Supplier.cs" />
+    <Content Include="App_Code\Product_Supplier.cs" />
+    <Content Include="App_Code\ProductDB.cs" />
+    <Content Include="App_Code\SupplierDB.cs" />
+    <Content Include="App_Code\Product_SupplierDB.cs" />
     <Compile Include="HeaderFooter.aspx.cs">
       <DependentUpon>HeaderFooter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

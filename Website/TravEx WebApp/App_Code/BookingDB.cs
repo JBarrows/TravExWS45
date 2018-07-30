@@ -53,6 +53,7 @@ namespace TravEx_WebApp.App_Code
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static Booking GetBookingByBookingId(int BookingId)
         {
+            
             Booking booking = null; // found booking
             // define connection
             SqlConnection connection = TravelExpertsDB.GetConnection();
@@ -98,8 +99,9 @@ namespace TravEx_WebApp.App_Code
 
         // retrieves customer with given ID
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public static Booking GetBookingsByCustomerId(int CustomerId)
+        public static List<Booking> GetBookingsByCustomerId(int CustomerId)
         {
+            List<Booking> bookings = new List<Booking>();
             Booking booking = null; // found booking
             // define connection
             SqlConnection connection = TravelExpertsDB.GetConnection();
@@ -116,10 +118,10 @@ namespace TravEx_WebApp.App_Code
                 connection.Open();
 
                 // execute the query
-                SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow);
+                SqlDataReader reader = selectCommand.ExecuteReader();
 
                 // process the result if any
-                if (reader.Read()) // if there is customer
+                while (reader.Read()) // if there is customer
                 {
                     booking = new Booking();
                     booking.BookingId = (int)reader["BookingId"];
@@ -129,6 +131,7 @@ namespace TravEx_WebApp.App_Code
                     booking.CustomerId = reader["CustomerId"] as int?;
                     booking.TripTypeId = reader["TripTypeId"].ToString();
                     booking.PackageId = reader["PackageId"] as int?;
+                    bookings.Add(booking);
                 }
             }
             catch (Exception ex)
@@ -140,7 +143,7 @@ namespace TravEx_WebApp.App_Code
                 connection.Close(); // close connecto no matter what
             }
 
-            return booking;
+            return bookings;
         }
 
     }

@@ -46,7 +46,7 @@ namespace TravEx_DBMA
             cmbSupId.Text = "";
             cmbSupId.Items.Clear();
             lvSuppliedProds.Items.Clear();
-            lvProducts.Items.Clear();
+            lvUnsuppliedProducts.Items.Clear();
             lblProdMessage.Text = "";
             lblSupMessage.Text = "";
         }
@@ -117,11 +117,11 @@ namespace TravEx_DBMA
                 List<Product> products;
                 products = ProductDB.GetProducts();
                 //display the data in the lvProducts
-                lvProducts.Items.Clear();
+                lvUnsuppliedProducts.Items.Clear();
                 foreach (var prod in products)
                 {
-                    lvProducts.Items.Add(prod.ProductId.ToString());
-                    lvProducts.Items[i].SubItems.Add(prod.ProdName);
+                    lvUnsuppliedProducts.Items.Add(prod.ProductId.ToString());
+                    lvUnsuppliedProducts.Items[i].SubItems.Add(prod.ProdName);
                     i++;
                 }
             }
@@ -141,11 +141,11 @@ namespace TravEx_DBMA
 
                 //get all products not supplied by the supplier
                 unsuppliedProds = SupplierDB.GetProdsUnsuppliedBySup(sup.SupplierId);
-                lvProducts.Items.Clear();
+                lvUnsuppliedProducts.Items.Clear();
                 foreach (var supProd in unsuppliedProds)
                 {
-                    lvProducts.Items.Add(supProd.ProductId.ToString());
-                    lvProducts.Items[j].SubItems.Add(supProd.ProdName);
+                    lvUnsuppliedProducts.Items.Add(supProd.ProductId.ToString());
+                    lvUnsuppliedProducts.Items[j].SubItems.Add(supProd.ProdName);
                     j++;
                 }
             }
@@ -178,16 +178,30 @@ namespace TravEx_DBMA
         //clicks the button to delete the supplier from the batabase
         private void btnDeleteSup_Click(object sender, EventArgs e)
         {
-            sup.SupplierId = Convert.ToInt32(txtSupplierId.Text);
-            sup.SupName = cmbSupId.Text;
-            if (SupplierDB.DeleteSupplier(sup))
+            DialogResult result = MessageBox.Show("Are you sure?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                tabSuppliersDefaultStatus();
+                sup.SupplierId = Convert.ToInt32(txtSupplierId.Text);
+                sup.SupName = cmbSupId.Text;
+                try
+                {
+                    if (!SupplierDB.DeleteSupplier(sup))
+                    {
+                        MessageBox.Show("Another user has updated or deleted that supplier.", "Database Error");
+                        this.DialogResult = DialogResult.Retry;
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        tabSuppliersDefaultStatus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }    
             }
-            else
-            {
-                lblSupMessage.Text = "Failed to delete the supplier.";
-            }           
+                   
         }
 
         //click the Save button to save the new data or updated data
@@ -209,16 +223,24 @@ namespace TravEx_DBMA
                 {
                     sup.SupName = cmbSupId.Text;
                     sup.SupplierId = Convert.ToInt32(txtSupplierId.Text);
-                    if (SupplierDB.UpdateSupplier(oldSup, sup))
+                    try
                     {
-                        lblSupMessage.Text = "Successfully updated the supplier name.";
-                        refreshCmbSupIdItems();
-                        oldSup = sup.CopySupplier();
-                        btnSaveSup.Enabled = false;
+                        if (!SupplierDB.UpdateSupplier(oldSup, sup))
+                        {
+                            MessageBox.Show("Another user has updated or deleted that supplier.", "Database Error");
+                            this.DialogResult = DialogResult.Retry;
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            refreshCmbSupIdItems();
+                            oldSup = sup.CopySupplier();
+                            btnSaveSup.Enabled = false;
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        lblSupMessage.Text = "Failed to update the supplier name.";
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
                     }
                 }
                 else if (tabSupplierAccessMode == AccessMode.Add)
@@ -226,21 +248,23 @@ namespace TravEx_DBMA
                     sup.SupplierId = SupplierDB.GetNewSupplierId();//create a new supplierId
                     sup.SupName = cmbSupId.Text; //get the entered name
 
-                    if (SupplierDB.AddSupplier(sup))
+                    try
                     {
+                        SupplierDB.AddSupplier(sup);
+                        this.DialogResult = DialogResult.OK;
                         // once a new supplier's data is inserted into the Suppliers table
                         txtSupplierId.Text = sup.SupplierId.ToString();//display the new supplierId                   
                         btnDeleteSup.Enabled = true;// let the Delete button enabled 
                         btnAddSuppliedProd.Enabled = true;// let the supplied products can be edited
                         btnRemoveSuppliedProd.Enabled = true;// let the supplied products can be edited
-                        lblSupMessage.Text = "Successfully added the new supplier.";
+                        lblSupMessage.Text = "Supplier added.";
                         refreshCmbSupIdItems();
                         btnSaveSup.Enabled = false;
                         tabSupplierAccessMode = AccessMode.Edit;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        lblSupMessage.Text = "Failed to add the new supplier.";
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
                     }
                 }
 
@@ -254,12 +278,12 @@ namespace TravEx_DBMA
             tabSupplierAccessMode = AccessMode.Edit;
             ProductSupplier removeSupProd = new ProductSupplier();
             //get the single selected Item
-            ListView.SelectedListViewItemCollection selectedProds = lvProducts.SelectedItems;
+            ListView.SelectedListViewItemCollection selectedProds = lvUnsuppliedProducts.SelectedItems;
 
-            if (lvProducts.SelectedItems.Count > 0)//if there is selected item
+            if (lvUnsuppliedProducts.SelectedItems.Count > 0)//if there is selected item
             {
                 //get the value of the selected item
-                ListViewItem item = lvProducts.SelectedItems[0];
+                ListViewItem item = lvUnsuppliedProducts.SelectedItems[0];
                 removeSupProd.ProductId = Convert.ToInt32(item.SubItems[0].Text);
                 removeSupProd.SupplierId = Convert.ToInt32(txtSupplierId.Text);
                 // add the data to the Products_Suppliers table and return a ProductsSupplierId

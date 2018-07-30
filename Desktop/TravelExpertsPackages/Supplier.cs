@@ -11,12 +11,14 @@ namespace TravelExpertsPackages
         public Supplier() { }
         public int SupplierId { get; set; }
         public string SupName { get; set; }
+        public bool SupEnable { get; set; }
 
         public Supplier CopySupplier()
         {
             Supplier copy = new Supplier();
             copy.SupplierId = SupplierId;
             copy.SupName = SupName;
+            copy.SupEnable = SupEnable;
             return copy;
         }
 

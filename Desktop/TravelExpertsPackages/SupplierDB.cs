@@ -112,7 +112,7 @@ namespace TravelExpertsPackages
         /// </summary>
         /// <param name="sup"> Supplier object that containg data for the new record</param>
         /// <returns>generated SupplierID</returns>
-        public static bool AddSupplier(Supplier sup)
+        public static void AddSupplier(Supplier sup)
         {
             SqlConnection con = TravelExpertsDB.GetConnection();            
             string insertSmt = "INSERT INTO Suppliers (Supplierid, SupName) " +
@@ -123,9 +123,7 @@ namespace TravelExpertsPackages
             try
             {
                 con.Open();
-                int count = cmd.ExecuteNonQuery();
-                if (count > 0) return true;
-                else return false;
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
@@ -202,80 +200,6 @@ namespace TravelExpertsPackages
                 con.Close();
             }
         }
-
-        ////getting all the products supplieried by the supplier
-        //public static List<NamedProductSupplier> GetProductsBySupplier(int supplierId)
-        //{
-        //    List<NamedProductSupplier> SuppliedProds = new List<NamedProductSupplier>();
-        //    NamedProductSupplier suppliedProd;
-        //    SqlConnection con = TravelExpertsDB.GetConnection();
-        //    string SelectSmt = "SELECT SupplierId, p.ProductId, p.ProdName " +
-        //                        "FROM Products_Suppliers ps JOIN Products p " +
-        //                        "ON ps.ProductId = p.ProductId " +
-        //                        "WHERE SupplierId = @SupplierId " +
-        //                        "ORDER BY p.ProductId";
-        //    SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
-        //    selectCmd.Parameters.AddWithValue("@SupplierId", supplierId);
-
-        //    try
-        //    {
-        //        con.Open();
-        //        SqlDataReader dr = selectCmd.ExecuteReader();
-        //        while (dr.Read())
-        //        {
-        //            suppliedProd = new NamedProductSupplier();
-        //            suppliedProd.SupplierId = (int)dr["SupplierId"];
-        //            suppliedProd.ProductId = (int)dr["ProductId"];
-        //            suppliedProd.ProductName = dr["prodName"].ToString();
-        //            SuppliedProds.Add(suppliedProd);
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //    return SuppliedProds;
-        //}
-
-        ////getting all the products not supplieried by the supplier
-        //public static List<NamedProductSupplier> GetProdsUnsuppliedBySup(int supplierId)
-        //{
-        //    List<NamedProductSupplier> unsuppliedProds = new List<NamedProductSupplier>();
-        //    NamedProductSupplier unsupplied;
-        //    SqlConnection con = TravelExpertsDB.GetConnection();
-        //    string SelectSmt = "SELECT ProductId, ProdName FROM Products " +
-        //                        "WHERE ProductId NOT IN " +
-        //                        "(SELECT ProductId FROM Products_Suppliers " +
-        //                        "WHERE SupplierId = @SupplierId)";
-        //    SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
-        //    selectCmd.Parameters.AddWithValue("@SupplierId", supplierId);
-
-        //    try
-        //    {
-        //        con.Open();
-        //        SqlDataReader dr = selectCmd.ExecuteReader();
-        //        while (dr.Read())
-        //        {
-        //            unsupplied = new NamedProductSupplier();
-        //            unsupplied.ProductId = (int)dr["ProductId"];
-        //            unsupplied.ProductName = dr["prodName"].ToString();
-        //            unsuppliedProds.Add(unsupplied);
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //    return unsuppliedProds;
-        //}
 
         //getting all the products supplieried by the supplier
         public static List<Product> GetProductsBySupplier(int supplierId)

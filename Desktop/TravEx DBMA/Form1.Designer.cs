@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label descriptionLabel;
             System.Windows.Forms.Label iDLabel;
-            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label lblPkgProdSppliers;
             System.Windows.Forms.Label returnDateLabel;
             System.Windows.Forms.Label departureDateLabel;
             System.Windows.Forms.Label commissionLabel;
@@ -70,8 +70,8 @@
             this.txtSupplierId = new System.Windows.Forms.TextBox();
             this.lblSupMessage = new System.Windows.Forms.Label();
             this.btnNewSup = new System.Windows.Forms.Button();
-            this.btnDeleteSup = new System.Windows.Forms.Button();
             this.cmbSupId = new System.Windows.Forms.ComboBox();
+            this.btnDeleteSup = new System.Windows.Forms.Button();
             this.btnSaveSup = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lvUnsuppliedProducts = new System.Windows.Forms.ListView();
@@ -80,11 +80,8 @@
             this.btnRemoveSuppliedProd = new System.Windows.Forms.Button();
             this.btnAddSuppliedProd = new System.Windows.Forms.Button();
             this.lvSuppliedProds = new System.Windows.Forms.ListView();
-
             this.colSupProdId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSupProdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label4 = new System.Windows.Forms.Label();
-
             this.tabPackages = new System.Windows.Forms.TabPage();
             this.btnPkgDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -105,7 +102,7 @@
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             descriptionLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
+            lblPkgProdSppliers = new System.Windows.Forms.Label();
             returnDateLabel = new System.Windows.Forms.Label();
             departureDateLabel = new System.Windows.Forms.Label();
             commissionLabel = new System.Windows.Forms.Label();
@@ -143,14 +140,14 @@
             iDLabel.TabIndex = 8;
             iDLabel.Text = "Package:";
             // 
-            // label1
+            // lblPkgProdSppliers
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(320, 10);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(95, 13);
-            label1.TabIndex = 8;
-            label1.Text = "Included products:";
+            lblPkgProdSppliers.AutoSize = true;
+            lblPkgProdSppliers.Location = new System.Drawing.Point(320, 10);
+            lblPkgProdSppliers.Name = "lblPkgProdSppliers";
+            lblPkgProdSppliers.Size = new System.Drawing.Size(95, 13);
+            lblPkgProdSppliers.TabIndex = 8;
+            lblPkgProdSppliers.Text = "Included products:";
             // 
             // returnDateLabel
             // 
@@ -220,6 +217,28 @@
             lblProSupplierList.TabIndex = 11;
             lblProSupplierList.Text = "Supplier List";
             lblProSupplierList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblProProductList
+            // 
+            lblProProductList.BackColor = System.Drawing.Color.Gainsboro;
+            lblProProductList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblProProductList.Location = new System.Drawing.Point(732, 16);
+            lblProProductList.Name = "lblProProductList";
+            lblProProductList.Size = new System.Drawing.Size(126, 23);
+            lblProProductList.TabIndex = 11;
+            lblProProductList.Text = "Product List";
+            lblProProductList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblProProSupList
+            // 
+            lblProProSupList.BackColor = System.Drawing.Color.Gainsboro;
+            lblProProSupList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblProProSupList.Location = new System.Drawing.Point(484, 283);
+            lblProProSupList.Name = "lblProProSupList";
+            lblProProSupList.Size = new System.Drawing.Size(177, 23);
+            lblProProSupList.TabIndex = 11;
+            lblProProSupList.Text = "Supplying This Product";
+            lblProProSupList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // supNameLabel
             // 
@@ -503,16 +522,6 @@
             this.btnNewSup.UseVisualStyleBackColor = true;
             this.btnNewSup.Click += new System.EventHandler(this.btnNewSup_Click);
             // 
-            // btnDeleteSup
-            // 
-            this.btnDeleteSup.Location = new System.Drawing.Point(227, 30);
-            this.btnDeleteSup.Name = "btnDeleteSup";
-            this.btnDeleteSup.Size = new System.Drawing.Size(51, 23);
-            this.btnDeleteSup.TabIndex = 3;
-            this.btnDeleteSup.Text = "Delete";
-            this.btnDeleteSup.UseVisualStyleBackColor = true;
-            this.btnDeleteSup.Click += new System.EventHandler(this.btnDeleteSup_Click);
-            // 
             // cmbSupId
             // 
             this.cmbSupId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -526,6 +535,16 @@
             this.cmbSupId.ValueMember = "SupplierID";
             this.cmbSupId.SelectedValueChanged += new System.EventHandler(this.cmbSupId_SelectedValueChanged);
             this.cmbSupId.TextChanged += new System.EventHandler(this.cmbSupId_TextChanged);
+            // 
+            // btnDeleteSup
+            // 
+            this.btnDeleteSup.Location = new System.Drawing.Point(227, 30);
+            this.btnDeleteSup.Name = "btnDeleteSup";
+            this.btnDeleteSup.Size = new System.Drawing.Size(51, 23);
+            this.btnDeleteSup.TabIndex = 3;
+            this.btnDeleteSup.Text = "Delete";
+            this.btnDeleteSup.UseVisualStyleBackColor = true;
+            this.btnDeleteSup.Click += new System.EventHandler(this.btnDeleteSup_Click);
             // 
             // btnSaveSup
             // 
@@ -613,7 +632,6 @@
             this.colSupProdName.Text = "Product Name";
             this.colSupProdName.Width = 130;
             // 
-
             // tabPackages
             // 
             this.tabPackages.Controls.Add(this.btnPkgDelete);
@@ -632,7 +650,7 @@
             this.tabPackages.Controls.Add(this.datPkgStart);
             this.tabPackages.Controls.Add(descriptionLabel);
             this.tabPackages.Controls.Add(this.txtPkgDesc);
-            this.tabPackages.Controls.Add(label1);
+            this.tabPackages.Controls.Add(lblPkgProdSppliers);
             this.tabPackages.Controls.Add(iDLabel);
             this.tabPackages.Controls.Add(this.cmbPackageID);
             this.tabPackages.Controls.Add(returnDateLabel);
@@ -807,28 +825,6 @@
             // supplierBindingSource
             // 
             this.supplierBindingSource.DataSource = typeof(TravelExpertsPackages.Supplier);
-            // 
-            // lblProProductList
-            // 
-            lblProProductList.BackColor = System.Drawing.Color.Gainsboro;
-            lblProProductList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblProProductList.Location = new System.Drawing.Point(732, 16);
-            lblProProductList.Name = "lblProProductList";
-            lblProProductList.Size = new System.Drawing.Size(126, 23);
-            lblProProductList.TabIndex = 11;
-            lblProProductList.Text = "Product List";
-            lblProProductList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblProProSupList
-            // 
-            lblProProSupList.BackColor = System.Drawing.Color.Gainsboro;
-            lblProProSupList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblProProSupList.Location = new System.Drawing.Point(484, 283);
-            lblProProSupList.Name = "lblProProSupList";
-            lblProProSupList.Size = new System.Drawing.Size(177, 23);
-            lblProProSupList.TabIndex = 11;
-            lblProProSupList.Text = "Supplying This Product";
-            lblProProSupList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 

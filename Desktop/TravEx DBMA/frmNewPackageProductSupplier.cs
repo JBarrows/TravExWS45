@@ -38,7 +38,7 @@ namespace TravEx_DBMA
             int productID = (int)cboProduct.SelectedValue;
             //Populate supplier list for all suppliers offering the selected product
             //Get supplierIDs
-            var possibleSuppliers = ProductSupplierDB.GetProdudtSuppliers();
+            var possibleSuppliers = ProductSupplierDB.GetProductSuppliers();
             var availableSupplierIDs = from supplier in possibleSuppliers
                                      where supplier.ProductId == productID
                                      select supplier.SupplierId;

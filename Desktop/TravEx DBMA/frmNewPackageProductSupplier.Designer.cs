@@ -30,7 +30,7 @@
         {
             this.cboProduct = new System.Windows.Forms.ComboBox();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboSuppliers = new System.Windows.Forms.ComboBox();
             this.lblSupplier = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -38,11 +38,13 @@
             // 
             // cboProduct
             // 
+            this.cboProduct.DisplayMember = "ProdName";
             this.cboProduct.FormattingEnabled = true;
             this.cboProduct.Location = new System.Drawing.Point(22, 38);
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(119, 21);
             this.cboProduct.TabIndex = 0;
+            this.cboProduct.ValueMember = "ProductId";
             this.cboProduct.SelectedIndexChanged += new System.EventHandler(this.cboProduct_SelectedIndexChanged);
             // 
             // lblProduct
@@ -54,16 +56,16 @@
             this.lblProduct.TabIndex = 1;
             this.lblProduct.Text = "Product:";
             // 
-            // comboBox1
+            // cboSuppliers
             // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(147, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(256, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cboSuppliers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboSuppliers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboSuppliers.Enabled = false;
+            this.cboSuppliers.FormattingEnabled = true;
+            this.cboSuppliers.Location = new System.Drawing.Point(147, 38);
+            this.cboSuppliers.Name = "cboSuppliers";
+            this.cboSuppliers.Size = new System.Drawing.Size(256, 21);
+            this.cboSuppliers.TabIndex = 0;
             // 
             // lblSupplier
             // 
@@ -76,6 +78,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::TravEx_DBMA.Properties.Resources.small_cancel;
             this.btnCancel.Location = new System.Drawing.Point(328, 74);
             this.btnCancel.Name = "btnCancel";
@@ -108,7 +111,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblSupplier);
             this.Controls.Add(this.lblProduct);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboSuppliers);
             this.Controls.Add(this.cboProduct);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -124,7 +127,7 @@
 
         private System.Windows.Forms.ComboBox cboProduct;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboSuppliers;
         private System.Windows.Forms.Label lblSupplier;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCancel;

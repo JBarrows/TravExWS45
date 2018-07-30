@@ -158,6 +158,7 @@
     <Content Include="App_Code\PackageDB.cs" />
     <Content Include="App_Code\TravelExpertsDB.cs" />
     <Content Include="App_Code\Class1.cs" />
+    <Content Include="App_Code\CustomerLogin.cs" />
     <Compile Include="HeaderFooter.aspx.cs">
       <DependentUpon>HeaderFooter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

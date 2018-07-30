@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-    <form id="frmAccount" runat="server" class="container-fluid">
+
         <div class="row m-5">
             <div class="card bg-secondary text-white col-lg-7 p-4">
                     <h2 class="row">Personal Information</h2>
@@ -106,6 +106,4 @@
                 </div>
             </div>
         </div>
-    </form>
-
 </asp:Content>

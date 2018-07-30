@@ -47,17 +47,18 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lvSuppliers = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colSuppliersID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colSuppliersname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvProductSupplier = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colProdSupplierSupID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colProdSupplierSupName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colProdSupplierProdID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colProdSupplierPSID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtProdName = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
-            this.lvProducts = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvProProducts = new System.Windows.Forms.ListView();
+            this.prod_colProductsID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prod_colProductsName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnModify = new System.Windows.Forms.Button();
             this.productIdComboBox = new System.Windows.Forms.ComboBox();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -80,7 +81,6 @@
             this.txtPkgDesc = new System.Windows.Forms.TextBox();
             this.cmbPackageID = new System.Windows.Forms.ComboBox();
             this.datPkgEnd = new System.Windows.Forms.DateTimePicker();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             descriptionLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
@@ -239,7 +239,7 @@
             this.tabProducts.Controls.Add(this.lvProductSupplier);
             this.tabProducts.Controls.Add(this.txtProdName);
             this.tabProducts.Controls.Add(this.btnExit);
-            this.tabProducts.Controls.Add(this.lvProducts);
+            this.tabProducts.Controls.Add(this.lvProProducts);
             this.tabProducts.Controls.Add(this.btnModify);
             this.tabProducts.Controls.Add(label2);
             this.tabProducts.Controls.Add(label4);
@@ -291,8 +291,8 @@
             // lvSuppliers
             // 
             this.lvSuppliers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader7});
+            this.prod_colSuppliersID,
+            this.prod_colSuppliersname});
             this.lvSuppliers.Location = new System.Drawing.Point(487, 42);
             this.lvSuppliers.Name = "lvSuppliers";
             this.lvSuppliers.Size = new System.Drawing.Size(190, 216);
@@ -300,23 +300,23 @@
             this.lvSuppliers.UseCompatibleStateImageBehavior = false;
             this.lvSuppliers.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader4
+            // prod_colSuppliersID
             // 
-            this.columnHeader4.Text = "Supplier ID";
-            this.columnHeader4.Width = 70;
+            this.prod_colSuppliersID.Text = "Supplier ID";
+            this.prod_colSuppliersID.Width = 70;
             // 
-            // columnHeader7
+            // prod_colSuppliersname
             // 
-            this.columnHeader7.Text = "Supplier Name";
-            this.columnHeader7.Width = 110;
+            this.prod_colSuppliersname.Text = "Supplier Name";
+            this.prod_colSuppliersname.Width = 110;
             // 
             // lvProductSupplier
             // 
             this.lvProductSupplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader8});
+            this.prod_colProdSupplierSupID,
+            this.prod_colProdSupplierSupName,
+            this.prod_colProdSupplierProdID,
+            this.prod_colProdSupplierPSID});
             this.lvProductSupplier.Location = new System.Drawing.Point(487, 309);
             this.lvProductSupplier.Name = "lvProductSupplier";
             this.lvProductSupplier.Size = new System.Drawing.Size(454, 135);
@@ -324,20 +324,25 @@
             this.lvProductSupplier.UseCompatibleStateImageBehavior = false;
             this.lvProductSupplier.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // prod_colProdSupplierSupID
             // 
-            this.columnHeader1.Text = "Supplier ID";
-            this.columnHeader1.Width = 70;
+            this.prod_colProdSupplierSupID.Text = "Supplier ID";
+            this.prod_colProdSupplierSupID.Width = 70;
             // 
-            // columnHeader2
+            // prod_colProdSupplierSupName
             // 
-            this.columnHeader2.Text = "Supplier Name";
-            this.columnHeader2.Width = 180;
+            this.prod_colProdSupplierSupName.Text = "Supplier Name";
+            this.prod_colProdSupplierSupName.Width = 180;
             // 
-            // columnHeader3
+            // prod_colProdSupplierProdID
             // 
-            this.columnHeader3.Text = "Product ID";
-            this.columnHeader3.Width = 70;
+            this.prod_colProdSupplierProdID.Text = "Product ID";
+            this.prod_colProdSupplierProdID.Width = 70;
+            // 
+            // prod_colProdSupplierPSID
+            // 
+            this.prod_colProdSupplierPSID.Text = "ProductSupplierId";
+            this.prod_colProdSupplierPSID.Width = 80;
             // 
             // txtProdName
             // 
@@ -357,27 +362,27 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // lvProducts
+            // lvProProducts
             // 
-            this.lvProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lvProducts.Location = new System.Drawing.Point(735, 42);
-            this.lvProducts.Name = "lvProducts";
-            this.lvProducts.Size = new System.Drawing.Size(169, 217);
-            this.lvProducts.TabIndex = 15;
-            this.lvProducts.UseCompatibleStateImageBehavior = false;
-            this.lvProducts.View = System.Windows.Forms.View.Details;
+            this.lvProProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.prod_colProductsID,
+            this.prod_colProductsName});
+            this.lvProProducts.Location = new System.Drawing.Point(735, 42);
+            this.lvProProducts.Name = "lvProProducts";
+            this.lvProProducts.Size = new System.Drawing.Size(169, 217);
+            this.lvProProducts.TabIndex = 15;
+            this.lvProProducts.UseCompatibleStateImageBehavior = false;
+            this.lvProProducts.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader5
+            // prod_colProductsID
             // 
-            this.columnHeader5.Text = "Product ID";
-            this.columnHeader5.Width = 81;
+            this.prod_colProductsID.Text = "Product ID";
+            this.prod_colProductsID.Width = 81;
             // 
-            // columnHeader6
+            // prod_colProductsName
             // 
-            this.columnHeader6.Text = "Product Name";
-            this.columnHeader6.Width = 112;
+            this.prod_colProductsName.Text = "Product Name";
+            this.prod_colProductsName.Width = 112;
             // 
             // btnModify
             // 
@@ -601,11 +606,6 @@
             this.datPkgEnd.TabIndex = 13;
             this.datPkgEnd.ValueChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "ProductSupplierId";
-            this.columnHeader8.Width = 80;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -649,24 +649,24 @@
         private System.Windows.Forms.TextBox txtPkgDesc;
         private System.Windows.Forms.DateTimePicker datPkgEnd;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.ListView lvProducts;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ListView lvProProducts;
+        private System.Windows.Forms.ColumnHeader prod_colProductsID;
+        private System.Windows.Forms.ColumnHeader prod_colProductsName;
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.ComboBox productIdComboBox;
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.TextBox txtProdName;
         private System.Windows.Forms.ListView lvProductSupplier;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader prod_colProdSupplierSupID;
+        private System.Windows.Forms.ColumnHeader prod_colProdSupplierSupName;
+        private System.Windows.Forms.ColumnHeader prod_colProdSupplierProdID;
         private System.Windows.Forms.ListView lvSuppliers;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader prod_colSuppliersID;
+        private System.Windows.Forms.ColumnHeader prod_colSuppliersname;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader prod_colProdSupplierPSID;
     }
 }
 

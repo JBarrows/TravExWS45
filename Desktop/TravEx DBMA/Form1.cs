@@ -70,14 +70,14 @@ namespace TravEx_DBMA
                               pro.ProdName
                           };
 
-            lvProducts.Items.Clear();
+            lvProProducts.Items.Clear();
 
             int j = 0;
             foreach (var p in products)
             {
-                lvProducts.Items.Add(p.ProductId.ToString());
+                lvProProducts.Items.Add(p.ProductId.ToString());
 
-                lvProducts.Items[j].SubItems.Add(p.ProdName.ToString());
+                lvProProducts.Items[j].SubItems.Add(p.ProdName.ToString());
 
                 j++;
             }

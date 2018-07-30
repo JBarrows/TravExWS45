@@ -47,7 +47,7 @@ namespace TravEx_WebApp
                 CustEmail = txtEmail.Text
             };
 
-            /*int customerID = */CustomerDB.InsertCustomer(customer);
+            int customerID = CustomerDB.InsertCustomer(customer);
 
             //Create Login
             /*

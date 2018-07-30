@@ -65,17 +65,17 @@
                             <asp:DropDownList ID="drpProvince" runat="server" CssClass="form-control">
                                 <asp:ListItem Value="AB">AB</asp:ListItem>
                                 <asp:ListItem Value="BC">BC</asp:ListItem>
-                                <asp:ListItem>MB</asp:ListItem>
-                                <asp:ListItem>NB</asp:ListItem>
-                                <asp:ListItem>NL</asp:ListItem>
-                                <asp:ListItem>NT</asp:ListItem>
-                                <asp:ListItem>NS</asp:ListItem>
-                                <asp:ListItem>NU</asp:ListItem>
-                                <asp:ListItem>ON</asp:ListItem>
-                                <asp:ListItem>PE</asp:ListItem>
-                                <asp:ListItem>QC</asp:ListItem>
-                                <asp:ListItem>SK</asp:ListItem>
-                                <asp:ListItem>YT</asp:ListItem>
+                                <asp:ListItem Value="MB">MB</asp:ListItem>
+                                <asp:ListItem Value="NB">NB</asp:ListItem>
+                                <asp:ListItem Value="NL">NL</asp:ListItem>
+                                <asp:ListItem Value="NT">NT</asp:ListItem>
+                                <asp:ListItem Value="NS">NS</asp:ListItem>
+                                <asp:ListItem Value="NU">NU</asp:ListItem>
+                                <asp:ListItem Value="ON">ON</asp:ListItem>
+                                <asp:ListItem Value="PE">PE</asp:ListItem>
+                                <asp:ListItem Value="QC">QC</asp:ListItem>
+                                <asp:ListItem Value="SK">SK</asp:ListItem>
+                                <asp:ListItem Value="YT">YT</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <%--Password --%>
@@ -91,7 +91,6 @@
                         <div class="col-md-6 form-group">
                             Home Phone
                             <asp:TextBox ID="txtHomePhone" CssClass="form-control" runat="server" Width="100%" TextMode="Phone"></asp:TextBox>
-
                         </div>
                         <%--Password --%>
                         <div class="col-md-6 form-group ">

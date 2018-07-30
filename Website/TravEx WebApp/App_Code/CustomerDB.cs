@@ -113,5 +113,12 @@ namespace TravEx_WebApp.App_Code
         {         
             return GetCustomerByCustomerId(GetCustomerIdByBookingId(BookingId));
         }
+
+        //updates customer's information by customerId
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public static bool UpdateCustomerByCustomerId(int customerId)
+        {
+            
+        }
     }
 }

@@ -135,6 +135,8 @@
     <None Include="Resources\small-minus.png" />
     <None Include="Resources\small-cancel.png" />
     <None Include="Resources\small-pencil.png" />
+    <None Include="Resources\small-arrow-right.png" />
+    <None Include="Resources\small-arrow-left.png" />
     <Content Include="Resources\Small-Plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

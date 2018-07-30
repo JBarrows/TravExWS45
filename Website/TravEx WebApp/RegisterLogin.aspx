@@ -1,11 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyAccount.aspx.cs" Inherits="TravEx_WebApp.WebForm3" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-    <form id="frmAccount" runat="server" class="container-fluid">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegisterLogin.aspx.cs" Inherits="WebApplication1.RegisterLogin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+</head>
+<body>
+    <form id="frmRegister" runat="server" class="container-fluid">
         <div class="row m-5">
-            <div class="card bg-secondary text-white col-lg-7 p-4">
-                    <h2 class="row">Personal Information</h2>
+            <div class="card bg-warning col-lg-7 p-4">
+                    <h1 class="row">Register</h1>
                 <div class="card-body">
                     <div class="form-row">
                         <%-- First name --%>
@@ -55,14 +61,14 @@
                             <asp:TextBox ID="TextBox3" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
                         </div>
                     </div>
-                    <br/>
-                    <%-- Buttons --%>
                     <div class="form-row">
-                        <div class="col-md-6">
-                            <asp:Button ID="Button3" runat="server" CssClass="btn btn-warning mb-2" Text="Update" Width="100%" />
+                        <div class="col-md-6 form-group">
+                            Password
+                            <asp:TextBox ID="TextBox8" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
                         </div>
-                        <div class="col-md-6">
-                            <asp:Button ID="Button4" runat="server" CssClass="btn btn-warning" Text="Cancle" CausesValidation="False" Width="100%" />
+                        <div class="col-md-6 form-group ">
+                            Confirm Password
+                            <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -70,42 +76,25 @@
             <div class="col-lg"></div>
 
             <div class="card bg-info text-white col-lg-4 p-4">
-                <h2 class="row">Reset Password</h2>
+                <h1 class="row">Login</h1>
                 <div class="card-body">
-                    <%-- Current Password --%>
-                    <div class="form-row">
-                        <div class="col form-group">
-                            Current Password
-                            <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
+                <%-- Email --%>
+                <div class="form-row">
+                    <div class="col form-group">
+                        Email
+                        <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
-                    <%-- New Password --%>
-                    <div class="form-row">
-                        <div class="col form-group">
-                            New Password
-                            <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
+                </div>
+                <%-- Password --%>
+                <div class="form-row">
+                    <div class="col form-group">
+                        Password
+                        <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
-                     <%-- Comfirm Password --%>
-                    <div class="form-row">
-                        <div class="col form-group">
-                            Confirm Password
-                            <asp:TextBox ID="TextBox12" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-                    <br/>
-                    <%-- Buttons --%>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-warning mb-2" Text="Submit" Width="100%" />
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-warning" Text="Clear" CausesValidation="False" Width="100%" />
-                        </div>
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
     </form>
-
-</asp:Content>
+</body>
+</html>

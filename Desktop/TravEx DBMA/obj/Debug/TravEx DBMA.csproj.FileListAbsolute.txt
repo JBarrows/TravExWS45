@@ -38,3 +38,4 @@ C:\Users\699135\source\repos\Team4_Project2\TravExWS45\Desktop\TravEx DBMA\obj\D
 C:\Users\699135\source\repos\Team4_Project2\TravExWS45\Desktop\TravEx DBMA\obj\Debug\TravEx DBMA.exe
 C:\Users\699135\source\repos\Team4_Project2\TravExWS45\Desktop\TravEx DBMA\obj\Debug\TravEx DBMA.pdb
 C:\Users\776592\Documents\RAD Programming\TravEx DBMA (2)\TravExWS45\Desktop\TravEx DBMA\obj\Debug\TravEx_DBMA.frmNewPackageProductSupplier.resources
+C:\Users\776592\Documents\RAD Programming\TravEx DBMA (2)\TravExWS45\Desktop\TravEx DBMA\obj\Debug\TravEx_DBMA.frmAddUpdateProduct.resources

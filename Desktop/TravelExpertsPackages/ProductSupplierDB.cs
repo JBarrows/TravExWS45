@@ -17,7 +17,7 @@ namespace TravelExpertsPackages
             List<ProductSupplier> prodSups = new List<ProductSupplier>();
             ProductSupplier prodSup;
             SqlConnection con = TravelExpertsDB.GetConnection();
-            string SelectSmt = "SELECT ProductSupplierId, ProductId, SupplierId" +
+            string SelectSmt = "SELECT ProductSupplierId, ProductId, SupplierId " +
                                 "FROM Products_Suppliers " +
                                 "ORDER BY ProductSupplierId";
             SqlCommand selectCmd = new SqlCommand(SelectSmt, con);

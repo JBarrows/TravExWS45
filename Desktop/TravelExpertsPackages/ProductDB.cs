@@ -22,7 +22,7 @@ namespace TravelExpertsPackages
         {
             List<Product> products = new List<Product>();
             Product product;
-            SqlConnection con = GetConnection();
+            SqlConnection con = TravelExpertsDB.GetConnection();
             string selectStatement = "SELECT ProductId, ProdName " +
                                      "FROM Products ORDER BY ProductId";
 

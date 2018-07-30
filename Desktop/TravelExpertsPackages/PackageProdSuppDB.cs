@@ -61,6 +61,33 @@ namespace TravelExpertsPackages
             return GetPackageProductSuppliersByPackage(pkg.ID);
         }
 
+        public static bool Insert(PackageProdSupplier pkgProdSup)
+        {
+            bool successfulInsert = false;
+
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string insertSmt = "INSERT INTO Packages_Products_Suppliers (PackageId, ProductSupplierId) " +
+                                "VALUES(@pkgID, @psID)";
+            SqlCommand cmd = new SqlCommand(insertSmt, con);
+            cmd.Parameters.AddWithValue("@pkgID", pkgProdSup.PackageID);
+            cmd.Parameters.AddWithValue("@psID", pkgProdSup.ProdSuppID);
+            try
+            {
+                con.Open();
+                successfulInsert = cmd.ExecuteNonQuery() >= 1; // run the insert command
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return successfulInsert;
+        }
+
         public static int Delete(PackageProdSupplier packagePS)
         {
             int deletedRows = 0;

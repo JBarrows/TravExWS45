@@ -79,6 +79,41 @@ namespace TravelExpertsPackages
             }
         }
 
+        public static ProductSupplier GetProductSupplier(int productID, int supplierID)
+        {
+            ProductSupplier prodSup = null;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string SelectSmt = "SELECT ProductSupplierId, ProductId, SupplierId " +
+                                "FROM Products_Suppliers " +
+                                "WHERE ProductId = @pID AND SupplierId = @sID " +
+                                "ORDER BY ProductSupplierId";
+            SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
+            selectCmd.Parameters.AddWithValue("@pID", productID);
+            selectCmd.Parameters.AddWithValue("@sID", supplierID);
+
+            try
+            {
+                con.Open();
+                SqlDataReader dr = selectCmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
+                if (dr.Read())
+                {
+                    prodSup = new ProductSupplier();
+                    prodSup.ProductSupplierId = (int)dr["ProductSupplierId"];
+                    prodSup.ProductId = (int)dr["ProductId"];
+                    prodSup.SupplierId = (int)dr["SupplierId"];
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return prodSup;
+        }
+
         /// <summary>
         /// Delete a record to the Products_Suppliers table in Travel Experts database
         /// </summary>

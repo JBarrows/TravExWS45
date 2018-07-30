@@ -103,6 +103,26 @@ namespace TravEx_DBMA.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap small_arrow_left {
+            get {
+                object obj = ResourceManager.GetObject("small_arrow_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_arrow_right {
+            get {
+                object obj = ResourceManager.GetObject("small_arrow_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap small_cancel {
             get {
                 object obj = ResourceManager.GetObject("small_cancel", resourceCulture);

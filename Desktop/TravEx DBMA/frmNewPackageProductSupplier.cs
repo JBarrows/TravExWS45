@@ -33,7 +33,6 @@ namespace TravEx_DBMA
         private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             suppliers = new List<Supplier>();
-            cboSuppliers.Items.Clear();
 
             int productID = (int)cboProduct.SelectedValue;
             //Populate supplier list for all suppliers offering the selected product
@@ -64,9 +63,32 @@ namespace TravEx_DBMA
         {
             if (Package == null) throw new MissingMemberException("Package is not assigned");
 
+            ProductSupplier prodSup = GetProductSupplier();
+            if (prodSup == null)
+            {
+                MessageBox.Show("Product/Supplier not found in database", "ERROR");
+                return;
+            }
+
             // Add ProductPackageSupplier to database
+            PackageProdSupplier pkgProdSup = new PackageProdSupplier
+            {
+                PackageID = Package.ID,
+                ProdSuppID = prodSup.ProductSupplierId
+            };
+
+            PackageProdSuppDB.Insert(pkgProdSup);
+
+            //Return
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        ProductSupplier GetProductSupplier()
+        {
+            int productID = 0;
+            int supplierID = 0;
+            return ProductSupplierDB.GetProductSupplier(productID, supplierID);
         }
     }
 }

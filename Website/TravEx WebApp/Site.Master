@@ -14,8 +14,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <%--<form id="form1" runat="server"--%>
-        <div class="container">
+    <form id="form1" runat="server">
+        <div class="container-fluid">
             <header></header>
             <main>
                 <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
@@ -23,6 +23,6 @@
             </main>
             <footer></footer>
         </div>
-    <%--</form>--%>
+    </form>
 </body>
 </html>

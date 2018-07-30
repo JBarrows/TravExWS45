@@ -60,12 +60,13 @@
             // 
             this.cboSuppliers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboSuppliers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboSuppliers.Enabled = false;
+            this.cboSuppliers.DisplayMember = "SupName";
             this.cboSuppliers.FormattingEnabled = true;
             this.cboSuppliers.Location = new System.Drawing.Point(147, 38);
             this.cboSuppliers.Name = "cboSuppliers";
             this.cboSuppliers.Size = new System.Drawing.Size(256, 21);
             this.cboSuppliers.TabIndex = 0;
+            this.cboSuppliers.ValueMember = "SupplierId";
             // 
             // lblSupplier
             // 

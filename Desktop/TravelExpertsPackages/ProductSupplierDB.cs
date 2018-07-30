@@ -4,15 +4,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelExpertsPackages;
+
 
 namespace TravelExpertsPackages
 {
-    public class ProductSupplierDB
+    public static class ProductSupplierDB
     {
        
         //the method of getting all the suppliers data from the database
-        public static List<ProductSupplier> GetProductsSuppliers()
+        public static List<ProductSupplier> GetProductSuppliers()
         {
             List<ProductSupplier> prodSups = new List<ProductSupplier>();
             ProductSupplier prodSup;
@@ -31,9 +31,7 @@ namespace TravelExpertsPackages
                     prodSup = new ProductSupplier();
                     prodSup.ProductSupplierId = (int)dr["ProductSupplierId"];
                     prodSup.ProductId = (int)dr["ProductId"];
-                    prodSup.SupplierId = (int)dr["SupplierId"];
-                    
-
+                    prodSup.SupplierId = (int)dr["SupplierId"];                  
                     prodSups.Add(prodSup);
                 }
             }
@@ -66,7 +64,7 @@ namespace TravelExpertsPackages
                 con.Open();
                 cmd.ExecuteNonQuery(); // run the insert command
                 //get the generated ID - current identity value of Products_Suppliers table
-                string selectQuery = "SELECT INDENT_CURRENT('Products_Suppliers') From Products_Suppliers";
+                string selectQuery = "SELECT IDENT_CURRENT('Products_Suppliers') From Products_Suppliers";
                 SqlCommand selectCmd = new SqlCommand(selectQuery, con);
                 int productSupplierId = Convert.ToInt32(selectCmd.ExecuteScalar());
                 return productSupplierId;
@@ -111,5 +109,6 @@ namespace TravelExpertsPackages
                 con.Close();
             }
         }
+
     }
 }

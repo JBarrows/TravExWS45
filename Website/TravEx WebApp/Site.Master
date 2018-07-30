@@ -17,7 +17,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <%--<form id="form1" runat="server"--%>
+    <form id="form1" runat="server">
         <div class="container">
             <header>
                             <div class="bg-info text-white">
@@ -76,6 +76,6 @@
                 <h5 class="text-info">Copyright &copy; Travel Experts 2018</h5>
             </footer>
         </div>
-    <%--</form>--%>
+    </form>
 </body>
 </html>

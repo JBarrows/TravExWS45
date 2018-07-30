@@ -65,15 +65,15 @@
             this.productIdComboBox = new System.Windows.Forms.ComboBox();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabSuppliers = new System.Windows.Forms.TabPage();
-            this.lblProdMessage = new System.Windows.Forms.Label();
+            this.lblSuppliedProds = new System.Windows.Forms.Label();
+            this.lblSupMessage = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSupplierId = new System.Windows.Forms.TextBox();
-            this.lblSupMessage = new System.Windows.Forms.Label();
             this.btnNewSup = new System.Windows.Forms.Button();
             this.cmbSupId = new System.Windows.Forms.ComboBox();
             this.btnDeleteSup = new System.Windows.Forms.Button();
             this.btnSaveSup = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblUnsuppliedProds = new System.Windows.Forms.Label();
             this.lvUnsuppliedProducts = new System.Windows.Forms.ListView();
             this.colUnsupProdId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUnsupProdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -451,9 +451,11 @@
             // 
             // tabSuppliers
             // 
-            this.tabSuppliers.Controls.Add(this.lblProdMessage);
+            this.tabSuppliers.BackColor = System.Drawing.Color.White;
+            this.tabSuppliers.Controls.Add(this.lblSuppliedProds);
+            this.tabSuppliers.Controls.Add(this.lblSupMessage);
             this.tabSuppliers.Controls.Add(this.groupBox1);
-            this.tabSuppliers.Controls.Add(this.label6);
+            this.tabSuppliers.Controls.Add(this.lblUnsuppliedProds);
             this.tabSuppliers.Controls.Add(this.lvUnsuppliedProducts);
             this.tabSuppliers.Controls.Add(this.btnRemoveSuppliedProd);
             this.tabSuppliers.Controls.Add(this.btnAddSuppliedProd);
@@ -464,23 +466,31 @@
             this.tabSuppliers.Size = new System.Drawing.Size(973, 485);
             this.tabSuppliers.TabIndex = 1;
             this.tabSuppliers.Text = "Suppliers";
-            this.tabSuppliers.UseVisualStyleBackColor = true;
             this.tabSuppliers.Enter += new System.EventHandler(this.tabSuppliersEnter);
             this.tabSuppliers.Leave += new System.EventHandler(this.tabSuppliersLeave);
             // 
-            // lblProdMessage
+            // lblSuppliedProds
             // 
-            this.lblProdMessage.AutoSize = true;
-            this.lblProdMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblProdMessage.Location = new System.Drawing.Point(31, 335);
-            this.lblProdMessage.Name = "lblProdMessage";
-            this.lblProdMessage.Size = new System.Drawing.Size(0, 13);
-            this.lblProdMessage.TabIndex = 21;
+            this.lblSuppliedProds.AutoSize = true;
+            this.lblSuppliedProds.Location = new System.Drawing.Point(31, 118);
+            this.lblSuppliedProds.Name = "lblSuppliedProds";
+            this.lblSuppliedProds.Size = new System.Drawing.Size(96, 13);
+            this.lblSuppliedProds.TabIndex = 22;
+            this.lblSuppliedProds.Text = "Supplied Products:";
+            // 
+            // lblSupMessage
+            // 
+            this.lblSupMessage.AutoSize = true;
+            this.lblSupMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupMessage.ForeColor = System.Drawing.Color.Black;
+            this.lblSupMessage.Location = new System.Drawing.Point(23, 286);
+            this.lblSupMessage.Name = "lblSupMessage";
+            this.lblSupMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblSupMessage.TabIndex = 19;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtSupplierId);
-            this.groupBox1.Controls.Add(this.lblSupMessage);
             this.groupBox1.Controls.Add(this.btnNewSup);
             this.groupBox1.Controls.Add(this.cmbSupId);
             this.groupBox1.Controls.Add(this.btnDeleteSup);
@@ -489,7 +499,7 @@
             this.groupBox1.Controls.Add(this.supplierIdLabel);
             this.groupBox1.Location = new System.Drawing.Point(21, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(294, 124);
+            this.groupBox1.Size = new System.Drawing.Size(294, 103);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Supplier";
@@ -502,23 +512,13 @@
             this.txtSupplierId.Size = new System.Drawing.Size(77, 20);
             this.txtSupplierId.TabIndex = 18;
             // 
-            // lblSupMessage
-            // 
-            this.lblSupMessage.AutoSize = true;
-            this.lblSupMessage.ForeColor = System.Drawing.Color.Black;
-            this.lblSupMessage.Location = new System.Drawing.Point(10, 99);
-            this.lblSupMessage.Name = "lblSupMessage";
-            this.lblSupMessage.Size = new System.Drawing.Size(54, 13);
-            this.lblSupMessage.TabIndex = 19;
-            this.lblSupMessage.Text = "asdfghfdb";
-            // 
             // btnNewSup
             // 
-            this.btnNewSup.Location = new System.Drawing.Point(137, 29);
+            this.btnNewSup.Image = global::TravEx_DBMA.Properties.Resources.Small_Plus;
+            this.btnNewSup.Location = new System.Drawing.Point(150, 30);
             this.btnNewSup.Name = "btnNewSup";
-            this.btnNewSup.Size = new System.Drawing.Size(37, 23);
+            this.btnNewSup.Size = new System.Drawing.Size(24, 23);
             this.btnNewSup.TabIndex = 2;
-            this.btnNewSup.Text = "New";
             this.btnNewSup.UseVisualStyleBackColor = true;
             this.btnNewSup.Click += new System.EventHandler(this.btnNewSup_Click);
             // 
@@ -538,32 +538,34 @@
             // 
             // btnDeleteSup
             // 
-            this.btnDeleteSup.Location = new System.Drawing.Point(227, 30);
+            this.btnDeleteSup.Image = global::TravEx_DBMA.Properties.Resources.small_minus;
+            this.btnDeleteSup.Location = new System.Drawing.Point(180, 30);
             this.btnDeleteSup.Name = "btnDeleteSup";
-            this.btnDeleteSup.Size = new System.Drawing.Size(51, 23);
+            this.btnDeleteSup.Size = new System.Drawing.Size(25, 23);
             this.btnDeleteSup.TabIndex = 3;
-            this.btnDeleteSup.Text = "Delete";
             this.btnDeleteSup.UseVisualStyleBackColor = true;
             this.btnDeleteSup.Click += new System.EventHandler(this.btnDeleteSup_Click);
             // 
             // btnSaveSup
             // 
-            this.btnSaveSup.Location = new System.Drawing.Point(180, 29);
+            this.btnSaveSup.Image = global::TravEx_DBMA.Properties.Resources.small_pencil;
+            this.btnSaveSup.Location = new System.Drawing.Point(211, 29);
             this.btnSaveSup.Name = "btnSaveSup";
-            this.btnSaveSup.Size = new System.Drawing.Size(41, 23);
+            this.btnSaveSup.Size = new System.Drawing.Size(65, 23);
             this.btnSaveSup.TabIndex = 13;
             this.btnSaveSup.Text = "Save";
+            this.btnSaveSup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSaveSup.UseVisualStyleBackColor = true;
             this.btnSaveSup.Click += new System.EventHandler(this.btnSaveSup_Click);
             // 
-            // label6
+            // lblUnsuppliedProds
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(338, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Product list:";
+            this.lblUnsuppliedProds.AutoSize = true;
+            this.lblUnsuppliedProds.Location = new System.Drawing.Point(338, 15);
+            this.lblUnsuppliedProds.Name = "lblUnsuppliedProds";
+            this.lblUnsuppliedProds.Size = new System.Drawing.Size(62, 13);
+            this.lblUnsuppliedProds.TabIndex = 12;
+            this.lblUnsuppliedProds.Text = "Product list:";
             // 
             // lvUnsuppliedProducts
             // 
@@ -572,9 +574,8 @@
             this.colUnsupProdName});
             this.lvUnsuppliedProducts.FullRowSelect = true;
             this.lvUnsuppliedProducts.Location = new System.Drawing.Point(340, 41);
-            this.lvUnsuppliedProducts.MultiSelect = false;
             this.lvUnsuppliedProducts.Name = "lvUnsuppliedProducts";
-            this.lvUnsuppliedProducts.Size = new System.Drawing.Size(206, 277);
+            this.lvUnsuppliedProducts.Size = new System.Drawing.Size(206, 268);
             this.lvUnsuppliedProducts.TabIndex = 11;
             this.lvUnsuppliedProducts.UseCompatibleStateImageBehavior = false;
             this.lvUnsuppliedProducts.View = System.Windows.Forms.View.Details;
@@ -591,7 +592,7 @@
             // 
             // btnRemoveSuppliedProd
             // 
-            this.btnRemoveSuppliedProd.Location = new System.Drawing.Point(246, 259);
+            this.btnRemoveSuppliedProd.Location = new System.Drawing.Point(243, 224);
             this.btnRemoveSuppliedProd.Name = "btnRemoveSuppliedProd";
             this.btnRemoveSuppliedProd.Size = new System.Drawing.Size(69, 23);
             this.btnRemoveSuppliedProd.TabIndex = 10;
@@ -601,7 +602,7 @@
             // 
             // btnAddSuppliedProd
             // 
-            this.btnAddSuppliedProd.Location = new System.Drawing.Point(246, 200);
+            this.btnAddSuppliedProd.Location = new System.Drawing.Point(243, 165);
             this.btnAddSuppliedProd.Name = "btnAddSuppliedProd";
             this.btnAddSuppliedProd.Size = new System.Drawing.Size(70, 23);
             this.btnAddSuppliedProd.TabIndex = 9;
@@ -615,7 +616,7 @@
             this.colSupProdId,
             this.colSupProdName});
             this.lvSuppliedProds.FullRowSelect = true;
-            this.lvSuppliedProds.Location = new System.Drawing.Point(24, 172);
+            this.lvSuppliedProds.Location = new System.Drawing.Point(21, 137);
             this.lvSuppliedProds.Name = "lvSuppliedProds";
             this.lvSuppliedProds.Size = new System.Drawing.Size(205, 146);
             this.lvSuppliedProds.TabIndex = 7;
@@ -894,7 +895,7 @@
         private System.Windows.Forms.Button btnNewSup;
         private System.Windows.Forms.Button btnDeleteSup;
         private System.Windows.Forms.Button btnSaveSup;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblUnsuppliedProds;
         private System.Windows.Forms.Button btnRemoveSuppliedProd;
         private System.Windows.Forms.Button btnAddSuppliedProd;
         private System.Windows.Forms.BindingSource supplierBindingSource;
@@ -910,7 +911,7 @@
         private System.Windows.Forms.Label supplierIdLabel;
         private System.Windows.Forms.Label lblSupMessage;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblProdMessage;
+        private System.Windows.Forms.Label lblSuppliedProds;
     }
 }
 

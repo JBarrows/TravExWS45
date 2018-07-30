@@ -308,7 +308,6 @@ namespace TravEx_DBMA
             cmbSupId.Items.Clear();
             lvSuppliedProds.Items.Clear();
             lvUnsuppliedProducts.Items.Clear();
-            lblProdMessage.Text = "";
             lblSupMessage.Text = "";
         }
 
@@ -328,7 +327,6 @@ namespace TravEx_DBMA
                 cmbSupId.SelectedIndex = 0;
                 btnSaveSup.Enabled = false;
                 lblSupMessage.Text = "";
-                lblProdMessage.Text = "";
             }
             catch (Exception ex)
             {
@@ -354,7 +352,6 @@ namespace TravEx_DBMA
             tabSupplierAccessMode = AccessMode.Edit;
             btnSaveSup.Enabled = false;
             lblSupMessage.Text = "";
-            lblProdMessage.Text = "";
             btnDeleteSup.Enabled = true;// let the Delete button enabled 
             btnAddSuppliedProd.Enabled = true;// let the supplied products can be edited
             btnRemoveSuppliedProd.Enabled = true;// let the supplied products can be edited
@@ -416,7 +413,6 @@ namespace TravEx_DBMA
         private void cmbSupId_TextChanged(object sender, EventArgs e)
         {
             btnSaveSup.Enabled = true;
-            lblProdMessage.Text = "";
             lblSupMessage.Text = "";
         }
 
@@ -428,7 +424,6 @@ namespace TravEx_DBMA
             txtSupplierId.Text = "";
             cmbSupId.Text = "";            
             lblSupMessage.Text = "";
-            lblProdMessage.Text = "";
             btnDeleteSup.Enabled = false;//Can not be used before a new supplier is created.
             btnAddSuppliedProd.Enabled = false; //Can not be used before a new supplier is created.
             btnRemoveSuppliedProd.Enabled = false; //Can not be used before a new supplier is created.
@@ -476,7 +471,7 @@ namespace TravEx_DBMA
             //validate the cmbSupName
             if (cmbSupId.Text =="")
             {
-                lblSupMessage.Text = "Please enter a supplier name.";
+                lblSupMessage.Text = "Note:Please enter a supplier name.";
             }
             else
             {
@@ -494,6 +489,7 @@ namespace TravEx_DBMA
                         else
                         {
                             this.DialogResult = DialogResult.OK;
+                            lblSupMessage.Text = "Note:The supplier updated.";
                             refreshCmbSupIdItems();
                             oldSup = sup.CopySupplier();
                             btnSaveSup.Enabled = false;
@@ -518,7 +514,7 @@ namespace TravEx_DBMA
                         btnDeleteSup.Enabled = true;// let the Delete button enabled 
                         btnAddSuppliedProd.Enabled = true;// let the supplied products can be edited
                         btnRemoveSuppliedProd.Enabled = true;// let the supplied products can be edited
-                        lblSupMessage.Text = "Supplier added.";
+                        lblSupMessage.Text = "Note:The supplier added.";
                         refreshCmbSupIdItems();
                         btnSaveSup.Enabled = false;
                         tabSupplierAccessMode = AccessMode.Edit;
@@ -537,30 +533,33 @@ namespace TravEx_DBMA
         private void btnAddSuppliedProd_Click(object sender, EventArgs e)
         {
             tabSupplierAccessMode = AccessMode.Edit;
-            ProductSupplier removeSupProd = new ProductSupplier();
-            //get the single selected Item
+            ProductSupplier newSupProd = new ProductSupplier();
+            //get the selected Items
             ListView.SelectedListViewItemCollection selectedProds = lvUnsuppliedProducts.SelectedItems;
 
             if (lvUnsuppliedProducts.SelectedItems.Count > 0)//if there is selected item
             {
-                //get the value of the selected item
-                ListViewItem item = lvUnsuppliedProducts.SelectedItems[0];
-                removeSupProd.ProductId = Convert.ToInt32(item.SubItems[0].Text);
-                removeSupProd.SupplierId = Convert.ToInt32(txtSupplierId.Text);
-                // add the data to the Products_Suppliers table and return a ProductsSupplierId
-                if (ProductSupplierDB.AddSupProd(removeSupProd) > 0) //if a ProductSupplierId is created
-                {                    
-                    lblProdMessage.Text = "Successfully added a new supplied product.";
-                    refreshTabSuppliersListViews(); //refresh the ListViews
-                }
-                else
+                //add the data of each item into the database
+                foreach (ListViewItem item in selectedProds)
                 {
-                    lblProdMessage.Text = "Failed to add a new supplied product.";
+                    newSupProd.ProductId = Convert.ToInt32(item.SubItems[0].Text);
+                    newSupProd.SupplierId = Convert.ToInt32(txtSupplierId.Text);
+                    // add the data to the Products_Suppliers table and get the ProductsSupplierId
+                    try
+                    {
+                        newSupProd.ProductSupplierId = ProductSupplierDB.AddSupProd(newSupProd);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    }
                 }
+                refreshTabSuppliersListViews(); //refresh the ListViews
+                
             }
             else
             {
-                lblProdMessage.Text = "Please select a productId";
+                lblSupMessage.Text = "Note:Please select a product";
             }
         }
 
@@ -569,34 +568,44 @@ namespace TravEx_DBMA
         {
             tabSupplierAccessMode = AccessMode.Edit;
             ProductSupplier removeSupProd = new ProductSupplier();
-            //get the single selected Item
+            //get the selected Items
             ListView.SelectedListViewItemCollection selectedProds = lvSuppliedProds.SelectedItems;
        
             if (lvSuppliedProds.SelectedItems.Count > 0)//if there is selected item
             {
-                //get the value of the selected item
-                ListViewItem item = lvSuppliedProds.SelectedItems[0];
-                removeSupProd.ProductId = Convert.ToInt32(item.SubItems[0].Text);
-                removeSupProd.SupplierId = Convert.ToInt32(txtSupplierId.Text);
-                // delete the data from the Products_Suppliers table
-                if (ProductSupplierDB.DeleteSupProd(removeSupProd)) //if it is true
+                //remove each product from the database
+                foreach (ListViewItem item in selectedProds)
                 {
-                    lblProdMessage.Text = "Successfully removed the product.";
-                    refreshTabSuppliersListViews(); //refresh the ListViews
+                    removeSupProd.ProductId = Convert.ToInt32(item.SubItems[0].Text);
+                    removeSupProd.SupplierId = Convert.ToInt32(txtSupplierId.Text);
+                    // delete the data from the Products_Suppliers table
+                    try
+                    {
+                        if (!(ProductSupplierDB.DeleteSupProd(removeSupProd)))
+                        {
+                            MessageBox.Show("Another user has updated or deleted that product.", "Database Error");
+                            this.DialogResult = DialogResult.Retry;
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    }                  
                 }
-                else
-                {
-                    lblProdMessage.Text = "Failed to remove the supplied product.";
-                }
+                refreshTabSuppliersListViews(); //refresh the ListViews
             }
             else
             {
-                lblProdMessage.Text = "Please select a productId";
+                lblSupMessage.Text = "Note:Please select a product.";
             }
         }
      
         //========== Author: Lindsay ================================================================================
-        #region SUPPLIER_TAB
+ 
 
         #endregion
 
@@ -893,5 +902,4 @@ namespace TravEx_DBMA
 }
 
 
-        #endregion
 

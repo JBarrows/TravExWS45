@@ -31,23 +31,19 @@
 					<li><a href="login.php">Log in</a></li>
                     <li><a href="AgencyContact.php">Contact</a></li>
                 </ul>
-            </nav>
-
-<!-------------------------------------------------------------------------------------------------->
-			<!--Navbar-->
+            </nav>		
 			<nav id="nav2" class="navbar navbar-light light-blue lighten-4">
-
-			<!-- Navbar brand -->
+			
 			<a class="navbar-brand" href="#"></a>
 
-			<!-- Collapse button -->
+			
 			<button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
 				aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
 
-			<!-- Collapsible content -->
+			
 			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
 
-				<!-- Links -->
+			
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
@@ -68,10 +64,8 @@
 				<!-- Links -->
 
 			</div>
-			<!-- Collapsible content -->
-
-			</nav>
-			<!--/.Navbar-->
+		</nav>
+		
 
     </header>
     <main style="height:500px;">

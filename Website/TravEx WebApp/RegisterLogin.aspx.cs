@@ -11,7 +11,17 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+bool validated = RegisterValidate();
+        }
 
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            bool validated = RegisterValidate();
+        }
+
+        private bool RegisterValidate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

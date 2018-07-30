@@ -390,72 +390,7 @@ namespace TravEx_DBMA
             lblPkgStatus.Text = "Product added to package";
         }
 
-        //// Remove a product from the current package
-        //private void btnDeleteProd_Supplier_Click(object sender, EventArgs e)
-        //{
-        //    //Confirm
-        //    DialogResult confirmation = DialogResult.No;
-        //    confirmation = MessageBox.Show("Are you sure you want to remove the selected product(s) from '" + 
-        //                                    selectedPackage.Name + "'?", "Confirm Delete", MessageBoxButtons.YesNo, 
-        //                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-        //    if (confirmation != DialogResult.Yes)
-        //        return; //Escape if user does not confirm
 
-        //    int rowsDeleted = 0;
-        //    foreach (int i in lstPkgProductSuppliers.SelectedIndices)
-        //    {
-        //        //Remove each selected product
-        //        rowsDeleted += PackageProdSuppDB.Delete(selectedPackage.ProductsAndSuppliers[i]);
-        //    }
-
-        //    //Display result
-        //    FillPackageProductList(selectedPackage);
-        //    lblPkgStatus.Text = "Products removed";
-        //    MessageBox.Show(rowsDeleted + " record(s) deleted from database.", "Deletion Successful");
-        //}
-
-        //// Deletes the currently selected package
-        //private void btnPkgDelete_Click(object sender, EventArgs e)
-        //{
-        //    //Delete Package
-        //    DialogResult confirmation = DialogResult.No;
-        //    confirmation = MessageBox.Show("Are you sure you want to delete the package '" +
-        //                                    selectedPackage.Name + "'?", "Confirm Delete", MessageBoxButtons.YesNo,
-        //                                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-        //    if (confirmation != DialogResult.Yes)
-        //        return;
-
-        //    int rowsDeleted = 0;
-        //    try
-        //    {
-        //        rowsDeleted = PackageDB.Delete(selectedPackage);
-        //        if (rowsDeleted > 0)
-        //        {
-        //            //package deleted. Refill combo box and display result
-        //            FillPackageComboBox(btnPkgDelete, EventArgs.Empty);
-        //            lblPkgStatus.Text = "Package deleted";
-        //            MessageBox.Show("Package deleted");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "Error Deleting Package");
-        //    }
-        //}
-
-        //// Show "Add Product to Package" dialog
-        //private void btnAddProduct_Supplier_Click(object sender, EventArgs e)
-        //{
-        //    frmNewPackageProductSupplier addDialog = new frmNewPackageProductSupplier
-        //    {
-        //        Package = selectedPackage
-        //    };
-        //    DialogResult result = addDialog.ShowDialog();
-        //    if (result != DialogResult.OK) return; //Escape if OK is not returned
-
-        //    FillPackageProductList(selectedPackage);
-        //    lblPkgStatus.Text = "Product added to package";
-        //}
 
         #endregion
 

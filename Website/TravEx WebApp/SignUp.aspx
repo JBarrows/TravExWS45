@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login/Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegisterLogin.aspx.cs" Inherits="TravEx_WebApp.WebForm4" %>
+﻿<%@ Page Title="Sign Up" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="TravEx_WebApp.SignUp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
@@ -35,21 +35,21 @@
                         <div class="col-md-6 form-group">
                             First Name
                             <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="firstNameRequiredValidator" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First name is Required" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="firstNameRequiredValidator" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First name is Required" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                         <%--Password --%>
                         <div class="col-md-6 form-group ">
                             Last Name
                             <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="lastNameRequiredValidator" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last name is required" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="lastNameRequiredValidator" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last name is required" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
-                        <%-- Email --%>
+                    <%-- Email --%>
                     <div class="form-row">
                         <div class="col form-group">
                             Street Address
                             <asp:TextBox ID="txtAddress" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="addressRequiredValidator" runat="server" ControlToValidate="txtAddress" ErrorMessage="Address is required" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="addressRequiredValidator" runat="server" ControlToValidate="txtAddress" ErrorMessage="Address is required" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-row">
@@ -57,7 +57,7 @@
                         <div class="col-8 col-md-5 form-group">
                             City
                             <asp:TextBox ID="txtCity" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="cityrequiredValidator" runat="server" ControlToValidate="txtCity" ErrorMessage="City is Required" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="cityrequiredValidator" runat="server" ControlToValidate="txtCity" ErrorMessage="City is Required" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                         <%-- Email --%>
                         <div class="col-4 col-md-2 form-group">
@@ -82,7 +82,8 @@
                         <div class="col-md-5 form-group">
                             Postal Code
                             <asp:TextBox ID="txtPostal" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="postalValidator" runat="server" ErrorMessage="Incorrect Postal code format" ControlToValidate="txtPostal" ValidationExpression="[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]" ValidationGroup="registrationGroup"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="postalRequiredValidator" runat="server" ControlToValidate="txtPostal" Display="Dynamic" ErrorMessage="Postal code is required" SetFocusOnError="True" ValidationGroup="registrationGroup" Visible="False"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="postalValidator" runat="server" ErrorMessage="Incorrect Postal code format" ControlToValidate="txtPostal" ValidationExpression="[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="form-row">
@@ -96,37 +97,38 @@
                         <div class="col-md-6 form-group ">
                             Business Phone
                             <asp:TextBox ID="txtWorkPhone" CssClass="form-control" runat="server" Width="100%" TextMode="Phone" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="phoneRequiredValidator" runat="server" ErrorMessage="Business phone is required" ControlToValidate="txtWorkPhone" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="phoneRequiredValidator" runat="server" ErrorMessage="Business phone is required" ControlToValidate="txtWorkPhone" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-row">
-                        <%-- First name --%>
+                        <%-- Email --%>
                         <div class="col form-group">
                             Email
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Width="100%" TextMode="Email" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="emailRequiredValidator" runat="server" ErrorMessage="Email is required" ControlToValidate="txtEmail" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="emailRequiredValidator" runat="server" ErrorMessage="Email is required" ControlToValidate="txtEmail" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-row">
-                        <%-- Last name --%>
+                        <%--Password --%>
                         <div class="col-md-6 form-group">
                             Password
                             <asp:TextBox ID="txtPassword1" CssClass="form-control" runat="server" Width="100%" TextMode="Password" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RangeValidator ID="passwordLengthValidator" runat="server" ErrorMessage="Password must be at least 8 digits" MinimumValue="ZZZZZZZ" ControlToValidate="txtPassword1" MaximumValue="ZZZZZZZZZZZZZZZZZZZZZ" ValidationGroup="registrationGroup"></asp:RangeValidator>
+                            <asp:RequiredFieldValidator ID="passwordRequiredValidator" runat="server" ControlToValidate="txtPassword1" Display="Dynamic" ErrorMessage="Password is required" SetFocusOnError="True" ValidationGroup="registrationGroup" Visible="False"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-md-6 form-group ">
                             Confirm Password
                             <asp:TextBox ID="txtPassword2" CssClass="form-control" runat="server" Width="100%" TextMode="Password" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:CompareValidator ID="passwordMatchValidator" runat="server" ErrorMessage="Passwords do not match" ControlToValidate="txtPassword2" ValidationGroup="registrationGroup" ControlToCompare="txtPassword1"></asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="confirmationRequiredValidator" runat="server" ControlToValidate="txtPassword2" ErrorMessage="Please confirm your password" SetFocusOnError="True" ValidationGroup="registrationGroup" Visible="False"></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="passwordMatchValidator" runat="server" ErrorMessage="Passwords do not match" ControlToValidate="txtPassword2" ValidationGroup="registrationGroup" ControlToCompare="txtPassword1" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:CompareValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
-                            <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="btn btn-primary" OnClick="btnRegister_Click" ValidationGroup="registrationGroup" />
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="Errors found. Please check the following fields:" ShowMessageBox="True" ShowSummary="False" ValidationGroup="registrationGroup" />
                         </div>
                     </div>
                 </div>
                
             </div>
-            
 </asp:Content>

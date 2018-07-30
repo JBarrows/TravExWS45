@@ -8,7 +8,7 @@ using TravelExpertsPackages;
 
 namespace Team4_Workshop4
 {
-    class ProductSupplierDB
+    public class ProductSupplierDB
     {
        
         //the method of getting all the suppliers data from the database

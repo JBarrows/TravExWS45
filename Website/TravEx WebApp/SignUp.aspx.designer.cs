@@ -10,7 +10,7 @@
 namespace TravEx_WebApp {
     
     
-    public partial class WebForm4 {
+    public partial class SignUp {
         
         /// <summary>
         /// plhLogin control.
@@ -139,6 +139,15 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtPostal;
         
         /// <summary>
+        /// postalRequiredValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator postalRequiredValidator;
+        
+        /// <summary>
         /// postalValidator control.
         /// </summary>
         /// <remarks>
@@ -202,13 +211,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtPassword1;
         
         /// <summary>
-        /// passwordLengthValidator control.
+        /// passwordRequiredValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator passwordLengthValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordRequiredValidator;
         
         /// <summary>
         /// txtPassword2 control.
@@ -218,6 +227,15 @@ namespace TravEx_WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword2;
+        
+        /// <summary>
+        /// confirmationRequiredValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator confirmationRequiredValidator;
         
         /// <summary>
         /// passwordMatchValidator control.
@@ -236,5 +254,14 @@ namespace TravEx_WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegister;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }

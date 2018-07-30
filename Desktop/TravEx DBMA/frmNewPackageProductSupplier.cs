@@ -88,6 +88,10 @@ namespace TravEx_DBMA
         {
             int productID = 0;
             int supplierID = 0;
+
+            productID = Convert.ToInt32(cboProduct.SelectedValue);
+            supplierID = Convert.ToInt32(cboSuppliers.SelectedValue);
+
             return ProductSupplierDB.GetProductSupplier(productID, supplierID);
         }
     }

@@ -814,8 +814,7 @@ namespace TravEx_DBMA
 
             //Display result
             FillPackageProductList(selectedPackage);
-            lblPkgStatus.Text = "Products removed";
-            MessageBox.Show(rowsDeleted + " record(s) deleted from database.", "Deletion Successful");
+            lblPkgStatus.Text = "Product(s) removed";
         }
 
         // Deletes the currently selected package

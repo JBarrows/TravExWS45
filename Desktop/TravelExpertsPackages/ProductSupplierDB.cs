@@ -6,18 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelExpertsPackages;
 
-namespace Team4_Workshop4
+namespace TravelExpertsPackages
 {
-    class ProductSupplierDB
+    public class ProductSupplierDB
     {
        
         //the method of getting all the suppliers data from the database
-        public static List<ProductSupplier> GetProdudtSuppliers()
+        public static List<ProductSupplier> GetProductsSuppliers()
         {
             List<ProductSupplier> prodSups = new List<ProductSupplier>();
             ProductSupplier prodSup;
             SqlConnection con = TravelExpertsDB.GetConnection();
-            string SelectSmt = "SELECT ProductSupplierId, ProductId, SupplierId" +
+            string SelectSmt = "SELECT ProductSupplierId, ProductId, SupplierId " +
                                 "FROM Products_Suppliers " +
                                 "ORDER BY ProductSupplierId";
             SqlCommand selectCmd = new SqlCommand(SelectSmt, con);

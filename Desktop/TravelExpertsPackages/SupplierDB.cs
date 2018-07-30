@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelExpertsPackages;
 
-namespace Team4_Workshop4
+namespace TravelExpertsPackages
 {
     public static class SupplierDB
     {

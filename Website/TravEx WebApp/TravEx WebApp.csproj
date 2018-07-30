@@ -80,6 +80,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="HeaderFooter.aspx" />
+    <Content Include="images\logo.png" />
+    <Content Include="OrderSummary.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -106,6 +109,8 @@
     <Content Include="SignIn.aspx" />
     <Content Include="MyAccount.aspx" />
     <Content Include="MyOrders.aspx" />
+    <Content Include="styles\HeaderFooter.css" />
+    <Content Include="webfonts\fa-solid-900.svg" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -119,6 +124,10 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="styles\bootstrap.min.css" />
+    <Content Include="styles\fa-solid.min.css" />
+    <Content Include="styles\fontawesome.min.css" />
+    <Content Include="styles\OrderSummary.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -129,9 +138,40 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="App_Code\Booking.cs" />
+    <Content Include="App_Code\BookingDB.cs" />
+    <Content Include="App_Code\BookingDetail.cs" />
+    <Content Include="App_Code\BookingDetailDB.cs" />
+    <Content Include="App_Code\Customer.cs" />
+    <Content Include="App_Code\CustomerDB.cs" />
+    <Content Include="App_Code\Fee.cs" />
+    <Content Include="App_Code\FeeDB.cs" />
+    <Content Include="App_Code\OrderSummary.cs" />
+    <Content Include="App_Code\OrderSummaryDB.cs" />
+    <Content Include="App_Code\Package.cs" />
+    <Content Include="App_Code\PackageDB.cs" />
+    <Content Include="App_Code\TravelExpertsDB.cs" />
+    <Content Include="App_Code\Class1.cs" />
+    <Compile Include="HeaderFooter.aspx.cs">
+      <DependentUpon>HeaderFooter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HeaderFooter.aspx.designer.cs">
+      <DependentUpon>HeaderFooter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderSummary.aspx.cs">
+      <DependentUpon>OrderSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderSummary.aspx.designer.cs">
+      <DependentUpon>OrderSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,8 +221,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

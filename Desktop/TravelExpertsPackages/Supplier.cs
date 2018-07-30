@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Team4_Workshop4
+namespace TravelExpertsPackages
 {
     public class Supplier
     {

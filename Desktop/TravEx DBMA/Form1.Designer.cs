@@ -38,8 +38,29 @@
             System.Windows.Forms.Label basePriceLabel;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label prodNameLabel;
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProducts = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lvSuppliers = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvProductSupplier = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtProdName = new System.Windows.Forms.TextBox();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.lvProducts = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnModify = new System.Windows.Forms.Button();
+            this.productIdComboBox = new System.Windows.Forms.ComboBox();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabSuppliers = new System.Windows.Forms.TabPage();
             this.tabPackages = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -59,14 +80,7 @@
             this.txtPkgDesc = new System.Windows.Forms.TextBox();
             this.cmbPackageID = new System.Windows.Forms.ComboBox();
             this.datPkgEnd = new System.Windows.Forms.DateTimePicker();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.lvProducts = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.txtProdName = new System.Windows.Forms.TextBox();
-            this.productIdComboBox = new System.Windows.Forms.ComboBox();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             descriptionLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
@@ -76,11 +90,14 @@
             basePriceLabel = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             prodNameLabel = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabProducts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.tabPackages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // descriptionLabel
@@ -146,6 +163,61 @@
             basePriceLabel.TabIndex = 0;
             basePriceLabel.Text = "Base Price:";
             // 
+            // label2
+            // 
+            label2.BackColor = System.Drawing.Color.Gainsboro;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label2.Location = new System.Drawing.Point(38, 113);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(99, 21);
+            label2.TabIndex = 10;
+            label2.Text = "Prod ID:";
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // prodNameLabel
+            // 
+            prodNameLabel.BackColor = System.Drawing.Color.Gainsboro;
+            prodNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            prodNameLabel.Location = new System.Drawing.Point(38, 160);
+            prodNameLabel.Name = "prodNameLabel";
+            prodNameLabel.Size = new System.Drawing.Size(99, 20);
+            prodNameLabel.TabIndex = 11;
+            prodNameLabel.Text = "Prod Name:";
+            prodNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            label3.BackColor = System.Drawing.Color.Gainsboro;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label3.Location = new System.Drawing.Point(484, 16);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(126, 23);
+            label3.TabIndex = 11;
+            label3.Text = "Supplier List";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            label4.BackColor = System.Drawing.Color.Gainsboro;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label4.Location = new System.Drawing.Point(484, 284);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(138, 22);
+            label4.TabIndex = 11;
+            label4.Text = "Product Suppliers:";
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            label5.BackColor = System.Drawing.Color.Gainsboro;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label5.Location = new System.Drawing.Point(732, 16);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(126, 23);
+            label5.TabIndex = 11;
+            label5.Text = "Product List";
+            label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabProducts);
@@ -154,32 +226,190 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(717, 511);
+            this.tabControl1.Size = new System.Drawing.Size(981, 511);
             this.tabControl1.TabIndex = 0;
             // 
             // tabProducts
             // 
             this.tabProducts.BackColor = System.Drawing.Color.RosyBrown;
+            this.tabProducts.Controls.Add(this.btnClear);
+            this.tabProducts.Controls.Add(this.btnDelete);
+            this.tabProducts.Controls.Add(this.btnAdd);
+            this.tabProducts.Controls.Add(this.lvSuppliers);
+            this.tabProducts.Controls.Add(this.lvProductSupplier);
+            this.tabProducts.Controls.Add(this.txtProdName);
             this.tabProducts.Controls.Add(this.btnExit);
             this.tabProducts.Controls.Add(this.lvProducts);
-            this.tabProducts.Controls.Add(this.btnUpdate);
+            this.tabProducts.Controls.Add(this.btnModify);
             this.tabProducts.Controls.Add(label2);
+            this.tabProducts.Controls.Add(label4);
+            this.tabProducts.Controls.Add(label5);
+            this.tabProducts.Controls.Add(label3);
             this.tabProducts.Controls.Add(prodNameLabel);
-            this.tabProducts.Controls.Add(this.txtProdName);
             this.tabProducts.Controls.Add(this.productIdComboBox);
             this.tabProducts.Location = new System.Drawing.Point(4, 22);
             this.tabProducts.Name = "tabProducts";
             this.tabProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProducts.Size = new System.Drawing.Size(709, 485);
+            this.tabProducts.Size = new System.Drawing.Size(973, 485);
             this.tabProducts.TabIndex = 0;
             this.tabProducts.Text = "Products";
+            this.tabProducts.Enter += new System.EventHandler(this.tabProducts_Enter);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(343, 296);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 22;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(242, 296);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 21;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(41, 296);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 20;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lvSuppliers
+            // 
+            this.lvSuppliers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader7});
+            this.lvSuppliers.Location = new System.Drawing.Point(487, 42);
+            this.lvSuppliers.Name = "lvSuppliers";
+            this.lvSuppliers.Size = new System.Drawing.Size(190, 216);
+            this.lvSuppliers.TabIndex = 19;
+            this.lvSuppliers.UseCompatibleStateImageBehavior = false;
+            this.lvSuppliers.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Supplier ID";
+            this.columnHeader4.Width = 70;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Supplier Name";
+            this.columnHeader7.Width = 110;
+            // 
+            // lvProductSupplier
+            // 
+            this.lvProductSupplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader8});
+            this.lvProductSupplier.Location = new System.Drawing.Point(487, 309);
+            this.lvProductSupplier.Name = "lvProductSupplier";
+            this.lvProductSupplier.Size = new System.Drawing.Size(454, 135);
+            this.lvProductSupplier.TabIndex = 18;
+            this.lvProductSupplier.UseCompatibleStateImageBehavior = false;
+            this.lvProductSupplier.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Supplier ID";
+            this.columnHeader1.Width = 70;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Supplier Name";
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Product ID";
+            this.columnHeader3.Width = 70;
+            // 
+            // txtProdName
+            // 
+            this.txtProdName.Location = new System.Drawing.Point(157, 160);
+            this.txtProdName.Name = "txtProdName";
+            this.txtProdName.Size = new System.Drawing.Size(121, 20);
+            this.txtProdName.TabIndex = 17;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(41, 366);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 16;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // lvProducts
+            // 
+            this.lvProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvProducts.Location = new System.Drawing.Point(735, 42);
+            this.lvProducts.Name = "lvProducts";
+            this.lvProducts.Size = new System.Drawing.Size(169, 217);
+            this.lvProducts.TabIndex = 15;
+            this.lvProducts.UseCompatibleStateImageBehavior = false;
+            this.lvProducts.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Product ID";
+            this.columnHeader5.Width = 81;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Product Name";
+            this.columnHeader6.Width = 112;
+            // 
+            // btnModify
+            // 
+            this.btnModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModify.Location = new System.Drawing.Point(136, 295);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(75, 24);
+            this.btnModify.TabIndex = 14;
+            this.btnModify.Text = "Modify";
+            this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
+            // productIdComboBox
+            // 
+            this.productIdComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.productBindingSource, "ProductId", true));
+            this.productIdComboBox.FormattingEnabled = true;
+            this.productIdComboBox.Location = new System.Drawing.Point(157, 113);
+            this.productIdComboBox.Name = "productIdComboBox";
+            this.productIdComboBox.Size = new System.Drawing.Size(121, 21);
+            this.productIdComboBox.TabIndex = 13;
+            this.productIdComboBox.SelectedIndexChanged += new System.EventHandler(this.productIdComboBox_SelectedIndexChanged);
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(TravelExpertsPackages.Product);
             // 
             // tabSuppliers
             // 
             this.tabSuppliers.Location = new System.Drawing.Point(4, 22);
             this.tabSuppliers.Name = "tabSuppliers";
             this.tabSuppliers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSuppliers.Size = new System.Drawing.Size(622, 485);
+            this.tabSuppliers.Size = new System.Drawing.Size(973, 485);
             this.tabSuppliers.TabIndex = 1;
             this.tabSuppliers.Text = "Suppliers";
             this.tabSuppliers.UseVisualStyleBackColor = true;
@@ -210,7 +440,7 @@
             this.tabPackages.Controls.Add(this.datPkgEnd);
             this.tabPackages.Location = new System.Drawing.Point(4, 22);
             this.tabPackages.Name = "tabPackages";
-            this.tabPackages.Size = new System.Drawing.Size(709, 485);
+            this.tabPackages.Size = new System.Drawing.Size(973, 485);
             this.tabPackages.TabIndex = 2;
             this.tabPackages.Text = "Packages";
             this.tabPackages.UseVisualStyleBackColor = true;
@@ -371,110 +601,26 @@
             this.datPkgEnd.TabIndex = 13;
             this.datPkgEnd.ValueChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
-            // btnExit
+            // columnHeader8
             // 
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(298, 257);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 29);
-            this.btnExit.TabIndex = 16;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // lvProducts
-            // 
-            this.lvProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lvProducts.Location = new System.Drawing.Point(441, 95);
-            this.lvProducts.Name = "lvProducts";
-            this.lvProducts.Size = new System.Drawing.Size(225, 271);
-            this.lvProducts.TabIndex = 15;
-            this.lvProducts.UseCompatibleStateImageBehavior = false;
-            this.lvProducts.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Product ID";
-            this.columnHeader5.Width = 81;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Product Name";
-            this.columnHeader6.Width = 112;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(298, 156);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 30);
-            this.btnUpdate.TabIndex = 14;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // label2
-            // 
-            label2.BackColor = System.Drawing.Color.Gainsboro;
-            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(38, 108);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(99, 28);
-            label2.TabIndex = 10;
-            label2.Text = "Prod ID:";
-            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // prodNameLabel
-            // 
-            prodNameLabel.BackColor = System.Drawing.Color.Gainsboro;
-            prodNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            prodNameLabel.Location = new System.Drawing.Point(38, 156);
-            prodNameLabel.Name = "prodNameLabel";
-            prodNameLabel.Size = new System.Drawing.Size(99, 27);
-            prodNameLabel.TabIndex = 11;
-            prodNameLabel.Text = "Prod Name:";
-            prodNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtProdName
-            // 
-            this.txtProdName.Location = new System.Drawing.Point(157, 160);
-            this.txtProdName.Name = "txtProdName";
-            this.txtProdName.Size = new System.Drawing.Size(121, 20);
-            this.txtProdName.TabIndex = 12;
-            // 
-            // productIdComboBox
-            // 
-            this.productIdComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.productBindingSource, "ProductId", true));
-            this.productIdComboBox.DataSource = this.productBindingSource;
-            this.productIdComboBox.DisplayMember = "ProductId";
-            this.productIdComboBox.FormattingEnabled = true;
-            this.productIdComboBox.Location = new System.Drawing.Point(157, 113);
-            this.productIdComboBox.Name = "productIdComboBox";
-            this.productIdComboBox.Size = new System.Drawing.Size(121, 21);
-            this.productIdComboBox.TabIndex = 13;
-            this.productIdComboBox.ValueMember = "ProductId";
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(TravelExpertsPackages.Product);
+            this.columnHeader8.Text = "ProductSupplierId";
+            this.columnHeader8.Width = 80;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 536);
+            this.ClientSize = new System.Drawing.Size(1026, 536);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Travel Experts";
             this.tabControl1.ResumeLayout(false);
             this.tabProducts.ResumeLayout(false);
             this.tabProducts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.tabPackages.ResumeLayout(false);
             this.tabPackages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -506,10 +652,21 @@
         private System.Windows.Forms.ListView lvProducts;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox txtProdName;
+        private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.ComboBox productIdComboBox;
         private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.TextBox txtProdName;
+        private System.Windows.Forms.ListView lvProductSupplier;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ListView lvSuppliers;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }
 

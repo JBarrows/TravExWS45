@@ -4,9 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelExpertsPackages;
 
-namespace Team4_Workshop4
+namespace TravelExpertsPackages
 {
     public static class SupplierDB
     {
@@ -30,7 +29,6 @@ namespace Team4_Workshop4
                     sup = new Supplier();
                     sup.SupplierId = (int)dr["SupplierId"];
                     sup.SupName = dr["SupName"].ToString();
-
                     suppliers.Add(sup);
                 }
             }
@@ -48,7 +46,6 @@ namespace Team4_Workshop4
         //the method of getting the supplier by supplierId
         public static Supplier GetSupplier(int supplierId)
         {
-            //List<Supplier> suppliers = new List<Supplier>();
             Supplier sup = null;
             SqlConnection con = TravelExpertsDB.GetConnection();
             string selectSmt = "SELECT SupplierId, SupName " +
@@ -79,11 +76,11 @@ namespace Team4_Workshop4
         }
 
         //the method of getting new unique supplierId for adding new supplier
-        public static int GetNewSupplierId(/*Supplier sup*/)
+        public static int GetNewSupplierId()
         {
-            int supId = 0;
+            Supplier sup = null;
             SqlConnection con = TravelExpertsDB.GetConnection();
-            string selectSmt = "SELECT TOP 1 SullierId " +
+            string selectSmt = "SELECT TOP 1 SupplierId " +
                                  "FROM Suppliers " +
                                  "ORDER BY SupplierId DESC";
             SqlCommand cmd = new SqlCommand(selectSmt, con);
@@ -91,11 +88,11 @@ namespace Team4_Workshop4
             try
             {
                 con.Open();
-                SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
-                if (dr.Read()) //found a supplierId
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read()) //found a supplier
                 {
-                    supId = 1 + (int)dr["SupplierId"]; // add 1 to current largest supplierId
-                    //sup.SupplierId = supId;
+                    sup = new Supplier();
+                    sup.SupplierId = 1 + (int)dr["SupplierId"];
                 }
             }
             catch (SqlException ex)
@@ -106,7 +103,7 @@ namespace Team4_Workshop4
             {
                 con.Close();
             }
-            return supId;
+            return sup.SupplierId;
 
         }
 
@@ -115,7 +112,7 @@ namespace Team4_Workshop4
         /// </summary>
         /// <param name="sup"> Supplier object that containg data for the new record</param>
         /// <returns>generated SupplierID</returns>
-        public static int AddSupplier(Supplier sup)
+        public static bool AddSupplier(Supplier sup)
         {
             SqlConnection con = TravelExpertsDB.GetConnection();            
             string insertSmt = "INSERT INTO Suppliers (Supplierid, SupName) " +
@@ -126,12 +123,9 @@ namespace Team4_Workshop4
             try
             {
                 con.Open();
-                cmd.ExecuteNonQuery(); // run the insert command
-                //get the generated ID - current identity value of Suppliers table
-                string selectQuery = "SELECT INDENT_CURRENT('Suppliers') From Suppliers";
-                SqlCommand selectCmd = new SqlCommand(selectQuery, con);
-                int supplierId = Convert.ToInt32(selectCmd.ExecuteScalar());
-                return supplierId;
+                int count = cmd.ExecuteNonQuery();
+                if (count > 0) return true;
+                else return false;
             }
             catch (SqlException ex)
             {
@@ -153,7 +147,7 @@ namespace Team4_Workshop4
             SqlConnection con = TravelExpertsDB.GetConnection();
             String deleteSmt = "DELETE FROM Suppliers " +
                                 "WHERE SupplierId = @SupplierId " +
-                                "And Name = @Name";
+                                "And SupName = @SupName";
             SqlCommand cmd = new SqlCommand(deleteSmt, con);
             cmd.Parameters.AddWithValue("@SupplierId", sup.SupplierId);
             cmd.Parameters.AddWithValue("@SupName", sup.SupName);
@@ -207,6 +201,155 @@ namespace Team4_Workshop4
             {
                 con.Close();
             }
+        }
+
+        ////getting all the products supplieried by the supplier
+        //public static List<NamedProductSupplier> GetProductsBySupplier(int supplierId)
+        //{
+        //    List<NamedProductSupplier> SuppliedProds = new List<NamedProductSupplier>();
+        //    NamedProductSupplier suppliedProd;
+        //    SqlConnection con = TravelExpertsDB.GetConnection();
+        //    string SelectSmt = "SELECT SupplierId, p.ProductId, p.ProdName " +
+        //                        "FROM Products_Suppliers ps JOIN Products p " +
+        //                        "ON ps.ProductId = p.ProductId " +
+        //                        "WHERE SupplierId = @SupplierId " +
+        //                        "ORDER BY p.ProductId";
+        //    SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
+        //    selectCmd.Parameters.AddWithValue("@SupplierId", supplierId);
+
+        //    try
+        //    {
+        //        con.Open();
+        //        SqlDataReader dr = selectCmd.ExecuteReader();
+        //        while (dr.Read())
+        //        {
+        //            suppliedProd = new NamedProductSupplier();
+        //            suppliedProd.SupplierId = (int)dr["SupplierId"];
+        //            suppliedProd.ProductId = (int)dr["ProductId"];
+        //            suppliedProd.ProductName = dr["prodName"].ToString();
+        //            SuppliedProds.Add(suppliedProd);
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        con.Close();
+        //    }
+        //    return SuppliedProds;
+        //}
+
+        ////getting all the products not supplieried by the supplier
+        //public static List<NamedProductSupplier> GetProdsUnsuppliedBySup(int supplierId)
+        //{
+        //    List<NamedProductSupplier> unsuppliedProds = new List<NamedProductSupplier>();
+        //    NamedProductSupplier unsupplied;
+        //    SqlConnection con = TravelExpertsDB.GetConnection();
+        //    string SelectSmt = "SELECT ProductId, ProdName FROM Products " +
+        //                        "WHERE ProductId NOT IN " +
+        //                        "(SELECT ProductId FROM Products_Suppliers " +
+        //                        "WHERE SupplierId = @SupplierId)";
+        //    SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
+        //    selectCmd.Parameters.AddWithValue("@SupplierId", supplierId);
+
+        //    try
+        //    {
+        //        con.Open();
+        //        SqlDataReader dr = selectCmd.ExecuteReader();
+        //        while (dr.Read())
+        //        {
+        //            unsupplied = new NamedProductSupplier();
+        //            unsupplied.ProductId = (int)dr["ProductId"];
+        //            unsupplied.ProductName = dr["prodName"].ToString();
+        //            unsuppliedProds.Add(unsupplied);
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        con.Close();
+        //    }
+        //    return unsuppliedProds;
+        //}
+
+        //getting all the products supplieried by the supplier
+        public static List<Product> GetProductsBySupplier(int supplierId)
+        {
+            List<Product> SuppliedProds = new List<Product>();
+            Product suppliedProd;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string SelectSmt = "SELECT SupplierId, p.ProductId, p.ProdName " +
+                                "FROM Products_Suppliers ps JOIN Products p " +
+                                "ON ps.ProductId = p.ProductId " +
+                                "WHERE SupplierId = @SupplierId " +
+                                "ORDER BY p.ProductId";
+            SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
+            selectCmd.Parameters.AddWithValue("@SupplierId", supplierId);
+
+            try
+            {
+                con.Open();
+                SqlDataReader dr = selectCmd.ExecuteReader();
+                while (dr.Read())//while there is a product
+                {
+                    suppliedProd = new Product();
+                    suppliedProd.ProductId = (int)dr["ProductId"];
+                    suppliedProd.ProdName = dr["prodName"].ToString();
+                    SuppliedProds.Add(suppliedProd);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return SuppliedProds;
+        }
+
+
+        //getting all the products not supplieried by the supplier
+        public static List<Product> GetProdsUnsuppliedBySup(int supplierId)
+        {
+            List<Product> unsuppliedProds = new List<Product>();
+            Product unsupplied;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string SelectSmt = "SELECT ProductId, ProdName FROM Products " +
+                                "WHERE ProductId NOT IN " +
+                                "(SELECT ProductId FROM Products_Suppliers " +
+                                "WHERE SupplierId = @SupplierId) " +
+                                "ORDER BY ProductId";
+            SqlCommand selectCmd = new SqlCommand(SelectSmt, con);
+            selectCmd.Parameters.AddWithValue("@SupplierId", supplierId);
+
+            try
+            {
+                con.Open();
+                SqlDataReader dr = selectCmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    unsupplied = new Product();
+                    unsupplied.ProductId = (int)dr["ProductId"];
+                    unsupplied.ProdName = dr["prodName"].ToString();
+                    unsuppliedProds.Add(unsupplied);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return unsuppliedProds;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelExpertsPackages
+namespace TravEx_WebApp.App_Code
 {
     public static class TravelExpertsDB
     {

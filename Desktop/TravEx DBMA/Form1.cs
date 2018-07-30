@@ -27,9 +27,270 @@ namespace TravEx_DBMA
         {
             InitializeComponent();
         }
-
+//======= Start of Product Region ====================== Author: Carol He =========================================================================================
         #region PRODUCT_TAB
 
+        public List<Product> products = ProductDB.GetProducts(); // get product List form Products table
+        public List<Supplier> suppliers = SupplierDB.GetAllSuppliers(); // get supplier List from Suppliers table
+        public List<ProductSupplier> products_suppliers = ProductSupplierDB.GetProductSuppliers();
+        public Product product;
+
+        //----Author: Carol He ----- Load ProductIdComboBox, ProductList and SupplierList when Product Tab is entered
+        public void tabProducts_Enter(object sender, EventArgs e)
+        {
+            //productIdComboBox.SelectedIndex = 1;
+
+            loadProductIdComboBox();
+
+            LoadProductList();
+
+            LoadSupplierList();
+
+        }
+
+        public void loadProductIdComboBox()
+        {
+            products = ProductDB.GetProducts();
+            foreach (var p in products)   //add all the ProductId values to ProductIdComboBox
+            {
+                productIdComboBox.Items.Add(p.ProductId);
+            }
+        }
+
+        public void LoadProductList()
+        {
+            //get data from Products table and display in list view
+            products = ProductDB.GetProducts();
+
+            var product = from pro in products
+                          select new
+                          {
+                              pro.ProductId,
+                              pro.ProdName
+                          };
+
+            lvProProducts.Items.Clear();
+
+            int j = 0;
+            foreach (var p in products)
+            {
+                lvProProducts.Items.Add(p.ProductId.ToString());
+
+                lvProProducts.Items[j].SubItems.Add(p.ProdName.ToString());
+
+                j++;
+            }
+        }
+
+        public void LoadSupplierList()
+        {
+            //get data from Suppliers table and display in list view
+            var supplier = from sup in suppliers
+                           select new
+                           {
+                               sup.SupplierId,
+                               sup.SupName
+                           };
+
+            lvSuppliers.Items.Clear();
+
+            int k = 0;
+            foreach (var s in suppliers)
+            {
+                lvSuppliers.Items.Add(s.SupplierId.ToString());
+
+                lvSuppliers.Items[k].SubItems.Add(s.SupName.ToString());
+
+                k++;
+            }
+        }
+
+        //----- Author: Carol He ------Display ProdName in txtProdName Textbox when user selected a ProductId from productIdComboBox -------------------------------------------------------------------------------
+        //---get the values of product.ProductId and product.ProdName for the current Product instance
+        private void productIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadProductSupplierList();
+
+            //Display ProdName in txtProdName Textbox according to productId given in ProductIdComboBox
+            int productId = Convert.ToInt32(productIdComboBox.SelectedItem);
+            product = ProductDB.GetProduct(productId);
+            txtProdName.Text = product.ProdName;
+
+            //product = new Product();
+            //product.ProductId = Convert.ToInt32(productIdComboBox.SelectedItem);
+            //product.ProdName = txtProdName.Text;
+            
+        }
+
+        public void LoadProductSupplierList()
+        {
+            suppliers = SupplierDB.GetAllSuppliers();
+            products_suppliers = ProductSupplierDB.GetProductSuppliers();
+
+            var sup = from prod_supp in products_suppliers
+                           join supp in suppliers             
+                           on prod_supp.SupplierId equals supp.SupplierId
+                           where prod_supp.ProductId == (int)productIdComboBox.SelectedItem
+                           select new
+                           {
+                               prod_supp.SupplierId,
+                               supp.SupName,
+                               prod_supp.ProductId,
+                               prod_supp.ProductSupplierId
+                           };
+            lvProductSupplier.Items.Clear();
+            int i = 0;
+            foreach (var s in sup)
+            {
+                lvProductSupplier.Items.Add(s.SupplierId.ToString());
+
+                lvProductSupplier.Items[i].SubItems.Add(s.SupName);
+                lvProductSupplier.Items[i].SubItems.Add(s.ProductId.ToString());
+                lvProductSupplier.Items[i].SubItems.Add(s.ProductSupplierId.ToString());
+
+                i++;
+            }
+        }
+
+
+
+ //------ Author: Carol He ----------------------------------------------------------------------------------------
+
+
+        private void DisplayProduct()
+        {
+           
+            txtProdName.Text = product.ProdName;
+            //btnModify.Enabled = true;
+            //btnDelete.Enabled = true;
+        }
+        private void GetProduct(int productID)
+        {
+            try
+            {
+                product = ProductDB.GetProduct(productID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        private void ClearControls()
+        {
+
+            txtProdName.Text = "";
+            productIdComboBox.Text = "";
+            //btnModify.Enabled = false;
+            //btnDelete.Enabled = false;
+            
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateProduct modifyProductForm = new frmAddUpdateProduct();
+            modifyProductForm.addProduct = false;
+            modifyProductForm.product = product;
+            DialogResult result = modifyProductForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                product = modifyProductForm.product;
+                this.DisplayProduct();
+                //modifyProductForm.txtProductId = 
+
+            }
+            else if (result == DialogResult.Retry)
+            {
+                this.GetProduct(product.ProductId);
+                if (product != null)
+                    this.DisplayProduct();
+                else
+                    this.ClearControls();
+            }
+
+            LoadProductList();
+            ClearControls();
+        }
+
+        //--------Author: Carol He ----------Add New Product---------------------------------------------------------------------------------------
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateProduct addProductForm = new frmAddUpdateProduct();
+            addProductForm.addProduct = true;
+            //addProductForm.product = product;
+            DialogResult result = addProductForm.ShowDialog();
+
+            productIdComboBox.Items.Clear();
+            loadProductIdComboBox();
+            LoadProductList();
+            ClearControls();
+
+
+            //if (result == DialogResult.OK)
+            //{
+            //    product = addProductForm.product;
+            //    txtCustomerID.Text = customer.CustomerID.ToString();
+            //    this.DisplayCustomer();
+            //}
+
+
+            //frmAddModifyCustomer addCustomerForm = new frmAddModifyCustomer();
+            //addCustomerForm.addCustomer = true;
+            //DialogResult result = addCustomerForm.ShowDialog();
+            //if (result == DialogResult.OK)
+            //{
+            //    customer = addCustomerForm.customer;
+            //    txtCustomerID.Text = customer.CustomerID.ToString();
+            //    this.DisplayCustomer();
+            //}
+        }
+
+ //--------Author: Carol He ----------Delete Product---------------------------------------------------------------------------------------
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Delete " + product.ProdName + "?",
+               "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    if (!ProductDB.DeleteProduct(product))
+                    {
+                        MessageBox.Show("Another user has updated or deleted " +
+                            "that product.", "Database Error");
+                        this.GetProduct(product.ProductId);
+                        if (product != null)
+                            this.DisplayProduct();
+                        else
+                            this.ClearControls();
+                    }
+                    else
+                        this.ClearControls();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+                MessageBox.Show("Product has been deleted successfully");
+
+                ClearControls();
+                LoadProductList();
+                productIdComboBox.Items.Clear();
+                loadProductIdComboBox();
+            }
+        }
+        //--------Author: Carol He ----------Clear Button-------------------------------------------------------
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearControls();
+        }
+        //--------Author: Carol He ----------Exit Button------------------------------------------------
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        //====== End of Product Region ======================================================================================
         #endregion
 
         #region SUPPLIER_TAB     
@@ -334,6 +595,8 @@ namespace TravEx_DBMA
             }
         }
      
+        //========== Author: Lindsay ================================================================================
+        #region SUPPLIER_TAB
 
         #endregion
 
@@ -554,7 +817,7 @@ namespace TravEx_DBMA
             txtPkgBasePrice.ResetText();
             txtPkgCommission.ResetText();
         }
-        
+
         // Remove a product from the current package
         private void btnDeleteProd_Supplier_Click(object sender, EventArgs e)
         {
@@ -626,6 +889,9 @@ namespace TravEx_DBMA
 
         #endregion
 
-        
     }
 }
+
+
+        #endregion
+

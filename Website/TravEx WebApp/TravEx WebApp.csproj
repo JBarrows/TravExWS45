@@ -148,15 +148,15 @@
     <Content Include="App_Code\BookingDB.cs" />
     <Content Include="App_Code\BookingDetail.cs" />
     <Content Include="App_Code\BookingDetailDB.cs" />
-    <Content Include="App_Code\Customer.cs" />
-    <Content Include="App_Code\CustomerDB.cs" />
+    <Compile Include="App_Code\Customer.cs" />
+    <Compile Include="App_Code\CustomerDB.cs" />
     <Content Include="App_Code\Fee.cs" />
     <Content Include="App_Code\FeeDB.cs" />
     <Content Include="App_Code\OrderSummary.cs" />
     <Content Include="App_Code\OrderSummaryDB.cs" />
     <Content Include="App_Code\Package.cs" />
     <Content Include="App_Code\PackageDB.cs" />
-    <Content Include="App_Code\TravelExpertsDB.cs" />
+    <Compile Include="App_Code\TravelExpertsDB.cs" />
     <Content Include="App_Code\Class1.cs" />
     <Compile Include="HeaderFooter.aspx.cs">
       <DependentUpon>HeaderFooter.aspx</DependentUpon>

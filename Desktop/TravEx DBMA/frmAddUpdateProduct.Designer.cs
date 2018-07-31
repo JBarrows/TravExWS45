@@ -38,7 +38,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(102, 99);
+            this.label1.Location = new System.Drawing.Point(11, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 30);
             this.label1.TabIndex = 0;
@@ -47,14 +47,14 @@
             // 
             // txtProdName
             // 
-            this.txtProdName.Location = new System.Drawing.Point(235, 105);
+            this.txtProdName.Location = new System.Drawing.Point(144, 62);
             this.txtProdName.Name = "txtProdName";
             this.txtProdName.Size = new System.Drawing.Size(126, 20);
             this.txtProdName.TabIndex = 1;
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(133, 177);
+            this.btnAccept.Location = new System.Drawing.Point(114, 105);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 2;
@@ -65,7 +65,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(286, 177);
+            this.btnCancel.Location = new System.Drawing.Point(195, 105);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -74,7 +74,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(102, 60);
+            this.label2.Location = new System.Drawing.Point(11, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(148, 30);
             this.label2.TabIndex = 0;
@@ -84,16 +84,16 @@
             // txtProductId
             // 
             this.txtProductId.FormattingEnabled = true;
-            this.txtProductId.Location = new System.Drawing.Point(235, 66);
+            this.txtProductId.Location = new System.Drawing.Point(144, 23);
             this.txtProductId.Name = "txtProductId";
-            this.txtProductId.Size = new System.Drawing.Size(121, 21);
+            this.txtProductId.Size = new System.Drawing.Size(126, 21);
             this.txtProductId.TabIndex = 4;
             // 
             // frmAddUpdateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(297, 151);
             this.Controls.Add(this.txtProductId);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAccept);

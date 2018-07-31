@@ -64,7 +64,6 @@ namespace TravEx_WebApp
             catch (Exception ex)
             {
                 lblMessage.Text = ex.Message;
-                hnjkmfkdmfk
             }
         }
     }

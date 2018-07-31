@@ -120,5 +120,15 @@ namespace TravEx_WebApp
             if (customerID != null && CustomerDB.CheckPassword(customerID.Value, pwInput))
                 args.IsValid = true;
         }
+
+        protected void emailExistsValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = false;
+            string emailInput = txtEmail.Text;
+
+            Customer existingCust = CustomerDB.GetCustomerByEmail(emailInput);
+            if (existingCust == null) //Email does not exist in database
+                args.IsValid = true;
+        }
     }
 }

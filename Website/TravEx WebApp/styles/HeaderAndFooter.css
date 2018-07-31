@@ -21,11 +21,12 @@ header h2, header h3 {
     font-size: 125%;
 }
 
-#nav1 ul {
+header ul {
     background: #dbdee0;
     list-style: none;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin: 0;
     padding: 10px;
     font-weight: bold;
@@ -53,18 +54,9 @@ header h2, header h3 {
     text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+#nav2 {
+    display: none;
+}
 
 footer {
     background: #dbdee0;
@@ -77,3 +69,22 @@ footer {
         margin: auto;
         font-weight: bold;
     }
+
+@media (max-width: 767px) {
+    #nav2 {
+        display: block;
+        background: #dbdee0;
+    }
+
+    #nav1 {
+        display: none;
+    }
+
+    #nav2 .nav-link {
+        color: white;
+    }
+
+        #nav2 .nav-link:hover {
+            color: #5d6675;
+        }
+}

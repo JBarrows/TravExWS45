@@ -1,12 +1,12 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OrderSummary.aspx.cs" Inherits="TravEx_WebApp.OrderSummary" %>
+﻿<%@ Page Language="C#" Title="Booking Summary" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OrderSummary.aspx.cs" Inherits="TravEx_WebApp.OrderSummary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">          
-    <title>Order Summary</title>
     <link href="styles/OrderSummary.css" rel="stylesheet" />
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-
+       
         <h1 class="jumbotron text-center text-secondary">Booking Summary</h1>
         <h4 class="text-secondary">Here are the list of your bookings.</h4>
         <br />

@@ -103,13 +103,22 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtPostal;
         
         /// <summary>
-        /// CustomValidator1 control.
+        /// vrPostal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrPostal;
+        
+        /// <summary>
+        /// vRegExPostal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator vRegExPostal;
         
         /// <summary>
         /// txtHomePhone control.
@@ -121,13 +130,22 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtHomePhone;
         
         /// <summary>
-        /// CustomValidator2 control.
+        /// vrHomePage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrHomePage;
+        
+        /// <summary>
+        /// vRegExHomePage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator vRegExHomePage;
         
         /// <summary>
         /// txtBusPhone control.
@@ -139,6 +157,15 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtBusPhone;
         
         /// <summary>
+        /// vRegExBusPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator vRegExBusPhone;
+        
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -146,6 +173,15 @@ namespace TravEx_WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// vRegExEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator vRegExEmail;
         
         /// <summary>
         /// btnUpdate control.
@@ -157,22 +193,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// btnCancle control.
+        /// lblUpdateError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancle;
-        
-        /// <summary>
-        /// lblUpdatError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUpdatError;
+        protected global::System.Web.UI.WebControls.Label lblUpdateError;
         
         /// <summary>
         /// txtOldPassword control.
@@ -184,13 +211,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtOldPassword;
         
         /// <summary>
-        /// CustomValidator3 control.
+        /// vrOldPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrOldPwd;
         
         /// <summary>
         /// txtNewPassword control.
@@ -202,13 +229,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
         
         /// <summary>
-        /// CustomValidator4 control.
+        /// vrNewPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrNewPwd;
         
         /// <summary>
         /// txtConfirmPwd control.
@@ -220,13 +247,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtConfirmPwd;
         
         /// <summary>
-        /// CustomValidator5 control.
+        /// vrConfrimPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrConfrimPwd;
         
         /// <summary>
         /// btnReset control.

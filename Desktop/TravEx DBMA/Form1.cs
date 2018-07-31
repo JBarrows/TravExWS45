@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsPackages;
 
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author: Lindsay, Joel, Carol
+ * Date:July, 2018 
+ */
 
 namespace TravEx_DBMA
 {
@@ -293,7 +298,8 @@ namespace TravEx_DBMA
         //====== End of Product Region ======================================================================================
         #endregion
 
-        #region SUPPLIER_TAB     
+        #region SUPPLIER_TAB  
+        //========== Author: Lindsay ================================================================================
 
         AccessMode tabSupplierAccessMode;
 
@@ -444,11 +450,9 @@ namespace TravEx_DBMA
                     if (!SupplierDB.DeleteSupplier(sup))
                     {
                         MessageBox.Show("Another user has updated or deleted that supplier.", "Database Error");
-                        this.DialogResult = DialogResult.Retry;
                     }
                     else
                     {
-                        this.DialogResult = DialogResult.OK;
                         tabSuppliersDefaultStatus();
                     }
                 }
@@ -484,11 +488,9 @@ namespace TravEx_DBMA
                         if (!SupplierDB.UpdateSupplier(oldSup, sup))
                         {
                             MessageBox.Show("Another user has updated or deleted that supplier.", "Database Error");
-                            this.DialogResult = DialogResult.Retry;
                         }
                         else
                         {
-                            this.DialogResult = DialogResult.OK;
                             lblSupMessage.Text = "Note:The supplier updated.";
                             refreshCmbSupIdItems();
                             oldSup = sup.CopySupplier();
@@ -508,7 +510,6 @@ namespace TravEx_DBMA
                     try
                     {
                         SupplierDB.AddSupplier(sup);
-                        this.DialogResult = DialogResult.OK;
                         // once a new supplier's data is inserted into the Suppliers table
                         txtSupplierId.Text = sup.SupplierId.ToString();//display the new supplierId                   
                         btnDeleteSup.Enabled = true;// let the Delete button enabled 
@@ -584,11 +585,6 @@ namespace TravEx_DBMA
                         if (!(ProductSupplierDB.DeleteSupProd(removeSupProd)))
                         {
                             MessageBox.Show("Another user has updated or deleted that product.", "Database Error");
-                            this.DialogResult = DialogResult.Retry;
-                        }
-                        else
-                        {
-                            this.DialogResult = DialogResult.OK;
                         }
                     }
                     catch (Exception ex)

@@ -6,6 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author: Joel
+ * Date:July, 2018 
+ */
+
 namespace TravelExpertsPackages
 {
     public abstract class PackageDB

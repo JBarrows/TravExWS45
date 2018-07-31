@@ -11,19 +11,21 @@
                     <h1>Login</h1>
                 </div>
                 <div class="card-body p-3">
-                    <%-- Email --%> 
+                    <%---------------------------------------------------
+    This page written by Joel Barr
+    -------------------------------------------------%> 
                     <div class="form-row">
                         <div class="form-group col">
-                            Email
+                            Username
                             <asp:TextBox ID="txtLoginEmail" CssClass="form-control" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
-                            <asp:CustomValidator ID="loginEmailvalidator" runat="server" ErrorMessage="Invalid email" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginEmail" OnServerValidate="loginEmailvalidator_ServerValidate" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" SetFocusOnError="True"></asp:CustomValidator>
+                            <asp:CustomValidator ID="loginEmailvalidator" runat="server" ErrorMessage="Invalid username" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginEmail" OnServerValidate="loginEmailvalidator_ServerValidate" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" SetFocusOnError="True"></asp:CustomValidator>
                         </div>
                     </div>
-                    <%--Password --%>
+
                     <div class="form-row">
                         <div class="form-group col">
                             Password
-                            <asp:TextBox ID="txtLoginPassword" CssClass="form-control" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
+                            <asp:TextBox ID="txtLoginPassword" CssClass="form-control" runat="server" ValidationGroup="loginGroup" TextMode="Password"></asp:TextBox>
                             <asp:CustomValidator ID="loginPasswordValidator" runat="server" ErrorMessage="Incorrect password" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginPassword" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" OnServerValidate="loginPasswordValidator_ServerValidate" SetFocusOnError="True"></asp:CustomValidator>
                         </div>
                     </div>
@@ -34,9 +36,9 @@
                         </div>
                     </div>
                 </div>
-            </div> <%-- /Login Card --%>
+            </div> <%-- Email --%>
 
-            <div class="col-lg"></div> <%--Spacer--%>
+            <div class="col-lg"></div> <%--Password --%>
 
             <div class="card border-info bg-light col-lg-7 p-0 order-lg-first">
                 <div class="card-header p-3">
@@ -44,13 +46,13 @@
                 </div>
                 <div class="card-body p-3">
                     <div class="form-row">
-                        <%-- Email --%>
+                        <%-- /Login Card --%>
                         <div class="col-md-6 form-group">
                             First Name
                             <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="firstNameRequiredValidator" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First name is Required" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                         </div>
-                        <%--Password --%>
+                        <%--Spacer--%>
                         <div class="col-md-6 form-group ">
                             Last Name
                             <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="registrationGroup"></asp:TextBox>
@@ -104,32 +106,40 @@
                         <div class="col-md-6 form-group">
                             Home Phone
                             <asp:TextBox ID="txtHomePhone" CssClass="form-control" runat="server" Width="100%" TextMode="Phone"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="phoneRequiredValidator" runat="server" ErrorMessage="Home phone is required" ControlToValidate="txtHomePhone" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="homePhoneregExValidator" runat="server" ControlToValidate="txtHomePhone" ErrorMessage="Invalid home phone" ValidationExpression="(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}" ValidationGroup="registrationGroup" SetFocusOnError="True"></asp:RegularExpressionValidator>
                         </div>
                         <%--Password --%>
                         <div class="col-md-6 form-group ">
                             Business Phone
                             <asp:TextBox ID="txtWorkPhone" CssClass="form-control" runat="server" Width="100%" TextMode="Phone" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="phoneRequiredValidator" runat="server" ErrorMessage="Business phone is required" ControlToValidate="txtWorkPhone" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="busPhoneRegExValidator" runat="server" ControlToValidate="txtWorkPhone" ErrorMessage="Invalid business phone" ValidationExpression="(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}" ValidationGroup="registrationGroup" SetFocusOnError="True"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <%-- Email --%>
-                        <div class="col form-group">
+                        <div class="col-md-6 form-group">
                             Email
-                            <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Width="100%" TextMode="Email" ValidationGroup="registrationGroup"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="emailRequiredValidator" runat="server" ErrorMessage="Email is required" ControlToValidate="txtEmail" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True" Visible="False"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Width="100%" TextMode="Email" ValidationGroup="registrationGroup" CausesValidation="True"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="emailRequiredValidator" runat="server" ErrorMessage="Email is required" ControlToValidate="txtEmail" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="emailExistsValidator" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Email is already registered" OnServerValidate="emailExistsValidator_ServerValidate" SetFocusOnError="True" ValidationGroup="registrationGroup"></asp:CustomValidator>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            Choose a Username
+                            <asp:TextBox ID="txtRegUserName" CssClass="form-control" runat="server" Width="100%" TextMode="SingleLine" ValidationGroup="registrationGroup" CausesValidation="True"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="userNameRequiredValidator" runat="server" ErrorMessage="Username required" ControlToValidate="txtRegUsername" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <%--Password --%>
                         <div class="col-md-6 form-group">
                             Password
-                            <asp:TextBox ID="txtPassword1" CssClass="form-control" runat="server" Width="100%" TextMode="Password" ValidationGroup="registrationGroup"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword1" CssClass="form-control" runat="server" Width="100%" TextMode="Password" ValidationGroup="registrationGroup" CausesValidation="True"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="passwordRequiredValidator" runat="server" ControlToValidate="txtPassword1" Display="Dynamic" ErrorMessage="Password is required" SetFocusOnError="True" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-md-6 form-group ">
                             Confirm Password
-                            <asp:TextBox ID="txtPassword2" CssClass="form-control" runat="server" Width="100%" TextMode="Password" ValidationGroup="registrationGroup"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword2" CssClass="form-control" runat="server" Width="100%" TextMode="Password" ValidationGroup="registrationGroup" CausesValidation="True"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="confirmationRequiredValidator" runat="server" ControlToValidate="txtPassword2" ErrorMessage="Please confirm your password" SetFocusOnError="True" ValidationGroup="registrationGroup"></asp:RequiredFieldValidator>
                             <asp:CompareValidator ID="passwordMatchValidator" runat="server" ErrorMessage="Passwords do not match" ControlToValidate="txtPassword2" ValidationGroup="registrationGroup" ControlToCompare="txtPassword1" Display="Dynamic" SetFocusOnError="True"></asp:CompareValidator>
                         </div>
@@ -141,6 +151,6 @@
                         </div>
                     </div>
                 </div>
-            </div> <%-- /Register Card --%>
-        </div> <%-- /Main Row --%>
+            </div> <%-- Email --%>
+        </div> <%--Password --%>
 </asp:Content>

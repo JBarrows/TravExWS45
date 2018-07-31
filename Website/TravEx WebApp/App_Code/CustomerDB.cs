@@ -6,6 +6,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author: Carol, Lindsay
+ * Date:July, 2018 
+ */
+
 namespace TravEx_WebApp.App_Code
 {
     [DataObject(true)]
@@ -116,6 +122,47 @@ namespace TravEx_WebApp.App_Code
             return cust;
         }
 
+        internal static CustomerLogin GetLoginByUserName(string text)
+        {
+            CustomerLogin login = null; // found customer
+            // define connection
+            SqlConnection connection = TravelExpertsDB.GetConnection();
+
+            // define the select query command
+            string selectQuery = "select * " +
+                                 "from Logins " +
+                                 "where UserName = @uname";
+            SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+            selectCommand.Parameters.AddWithValue("@uname", text);
+            try
+            {
+                // open the connection
+                connection.Open();
+
+                // execute the query
+                SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleResult);
+
+                // process the result if any
+                if (reader.Read()) // if there is customer
+                {
+                    login = new CustomerLogin();
+                    login.CustomerId = (int)reader["CustomerId"];
+                    login.UserName = reader["UserName"].ToString();
+                    login.Password = reader["Password"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; // let the form handle it
+            }
+            finally
+            {
+                connection.Close(); // close connecto no matter what
+            }
+
+            return login;
+        }
+
         internal static Customer GetCustomerByEmail(string email)
         {
             Customer cust = null; // found customer
@@ -216,10 +263,11 @@ namespace TravEx_WebApp.App_Code
         {
             SqlConnection conn = TravelExpertsDB.GetConnection();
             
-            string insStmt = "INSERT INTO Logins (CustomerId, Password) VALUES (@cID, @pw)";
+            string insStmt = "INSERT INTO Logins (CustomerId, UserName, Password) VALUES (@cID, @uname, @pw)";
             SqlCommand cmd = new SqlCommand(insStmt, conn);
 
             cmd.Parameters.AddWithValue("@cID", login.CustomerId);
+            cmd.Parameters.AddWithValue("@uname", login.UserName);
             cmd.Parameters.AddWithValue("@pw", login.Password);
             
             try
@@ -288,6 +336,7 @@ namespace TravEx_WebApp.App_Code
             return GetCustomerByCustomerId(GetCustomerIdByBookingId(BookingId));
         }
 
+        //Author: Lindsay-----------------------------------------------------------
         //updates customer's information by customerId
         [DataObjectMethod(DataObjectMethodType.Update)]
         public static bool UpdateCustomerByCustomerId(int custId, Customer cust)
@@ -305,6 +354,7 @@ namespace TravEx_WebApp.App_Code
                                     "CustEmail = @CustEmail " +
                                 "WHERE CustomerId = @CustomerId";
             SqlCommand cmd = new SqlCommand(UpdateSmt, con);
+            cmd.Parameters.AddWithValue("@CustomerId", custId);
             cmd.Parameters.AddWithValue("@CustFirstName", cust.CustFirstName);
             cmd.Parameters.AddWithValue("@CustLastName", cust.CustLastName);
             cmd.Parameters.AddWithValue("@CustAddress", cust.CustAddress);
@@ -332,19 +382,18 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
+        //Author: Lindsay---------------------------------------------------------------------------
         //reset customer's password by customerId
         [DataObjectMethod(DataObjectMethodType.Update)]
-        public static bool ResetCustomerPassword(CustomerLogin original_Login, CustomerLogin login)
+        public static bool ResetCustomerPassword(CustomerLogin reset)
         {
             SqlConnection con = TravelExpertsDB.GetConnection();
             string UpdateSmt = "Update Logins " +
-                                "SET Password = @NewPassword " +
-                                "WHERE CustomerId = @OldCustomerId " +
-                                "AND Password = @OdPassword";
+                                "SET Password = @Password " +
+                                "WHERE CustomerId = @CustomerId";
             SqlCommand cmd = new SqlCommand(UpdateSmt, con);
-            cmd.Parameters.AddWithValue("@NewPassword", login.Password);
-            cmd.Parameters.AddWithValue("@OldCustomerId", original_Login.CustomerId);
-            cmd.Parameters.AddWithValue("@OldPasswordId", original_Login.Password);
+            cmd.Parameters.AddWithValue("@CustomerId", reset.CustomerId);
+            cmd.Parameters.AddWithValue("@Password", reset.Password);
             try
             {
                 con.Open();
@@ -362,8 +411,7 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
-        //get the customer's password by customerId
-        //[DataObjectMethod(DataObjectMethodType.Select)]
+
 
         /// <summary>
         /// Inserts the customer.

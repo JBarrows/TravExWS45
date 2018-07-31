@@ -175,6 +175,24 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtHomePhone;
         
         /// <summary>
+        /// phoneRequiredValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator phoneRequiredValidator;
+        
+        /// <summary>
+        /// homePhoneregExValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator homePhoneregExValidator;
+        
+        /// <summary>
         /// txtWorkPhone control.
         /// </summary>
         /// <remarks>
@@ -184,13 +202,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtWorkPhone;
         
         /// <summary>
-        /// phoneRequiredValidator control.
+        /// busPhoneRegExValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator phoneRequiredValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator busPhoneRegExValidator;
         
         /// <summary>
         /// txtEmail control.
@@ -209,6 +227,33 @@ namespace TravEx_WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator emailRequiredValidator;
+        
+        /// <summary>
+        /// emailExistsValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator emailExistsValidator;
+        
+        /// <summary>
+        /// txtRegUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRegUserName;
+        
+        /// <summary>
+        /// userNameRequiredValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator userNameRequiredValidator;
         
         /// <summary>
         /// txtPassword1 control.

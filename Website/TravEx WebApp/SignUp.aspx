@@ -16,14 +16,12 @@
     -------------------------------------------------%> 
                     <div class="form-row">
                         <div class="form-group col">
-                            Email
+                            Username
                             <asp:TextBox ID="txtLoginEmail" CssClass="form-control" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
-                            <asp:CustomValidator ID="loginEmailvalidator" runat="server" ErrorMessage="Invalid email" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginEmail" OnServerValidate="loginEmailvalidator_ServerValidate" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" SetFocusOnError="True"></asp:CustomValidator>
+                            <asp:CustomValidator ID="loginEmailvalidator" runat="server" ErrorMessage="Invalid username" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginEmail" OnServerValidate="loginEmailvalidator_ServerValidate" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" SetFocusOnError="True"></asp:CustomValidator>
                         </div>
                     </div>
-                    <%---------------------------------------------------
-    This page written by Joel Barr
-    -------------------------------------------------%>
+
                     <div class="form-row">
                         <div class="form-group col">
                             Password
@@ -120,11 +118,16 @@
                     </div>
                     <div class="form-row">
                         <%-- Email --%>
-                        <div class="col form-group">
+                        <div class="col-md-6 form-group">
                             Email
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Width="100%" TextMode="Email" ValidationGroup="registrationGroup" CausesValidation="True"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="emailRequiredValidator" runat="server" ErrorMessage="Email is required" ControlToValidate="txtEmail" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                             <asp:CustomValidator ID="emailExistsValidator" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Email is already registered" OnServerValidate="emailExistsValidator_ServerValidate" SetFocusOnError="True" ValidationGroup="registrationGroup"></asp:CustomValidator>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            Choose a Username
+                            <asp:TextBox ID="txtRegUserName" CssClass="form-control" runat="server" Width="100%" TextMode="SingleLine" ValidationGroup="registrationGroup" CausesValidation="True"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="userNameRequiredValidator" runat="server" ErrorMessage="Username required" ControlToValidate="txtRegUsername" ValidationGroup="registrationGroup" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-row">

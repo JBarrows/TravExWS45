@@ -116,6 +116,47 @@ namespace TravEx_WebApp.App_Code
             return cust;
         }
 
+        internal static CustomerLogin GetLoginByUserName(string text)
+        {
+            CustomerLogin login = null; // found customer
+            // define connection
+            SqlConnection connection = TravelExpertsDB.GetConnection();
+
+            // define the select query command
+            string selectQuery = "select * " +
+                                 "from Logins " +
+                                 "where UserName = @uname";
+            SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+            selectCommand.Parameters.AddWithValue("@uname", text);
+            try
+            {
+                // open the connection
+                connection.Open();
+
+                // execute the query
+                SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleResult);
+
+                // process the result if any
+                if (reader.Read()) // if there is customer
+                {
+                    login = new CustomerLogin();
+                    login.CustomerId = (int)reader["CustomerId"];
+                    login.UserName = reader["UserName"].ToString();
+                    login.Password = reader["Password"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; // let the form handle it
+            }
+            finally
+            {
+                connection.Close(); // close connecto no matter what
+            }
+
+            return login;
+        }
+
         internal static Customer GetCustomerByEmail(string email)
         {
             Customer cust = null; // found customer
@@ -216,10 +257,11 @@ namespace TravEx_WebApp.App_Code
         {
             SqlConnection conn = TravelExpertsDB.GetConnection();
             
-            string insStmt = "INSERT INTO Logins (CustomerId, Password) VALUES (@cID, @pw)";
+            string insStmt = "INSERT INTO Logins (CustomerId, UserName, Password) VALUES (@cID, @uname, @pw)";
             SqlCommand cmd = new SqlCommand(insStmt, conn);
 
             cmd.Parameters.AddWithValue("@cID", login.CustomerId);
+            cmd.Parameters.AddWithValue("@uname", login.UserName);
             cmd.Parameters.AddWithValue("@pw", login.Password);
             
             try

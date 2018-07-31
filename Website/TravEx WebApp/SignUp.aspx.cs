@@ -61,6 +61,7 @@ namespace TravEx_WebApp
             CustomerLogin login = new CustomerLogin()
             {
                 CustomerId = customerID.Value,
+                UserName = txtRegUserName.Text,
                 Password = txtPassword1.Text
             };
 
@@ -90,11 +91,10 @@ namespace TravEx_WebApp
         {
             if (txtLoginEmail.Text == String.Empty) return null;
 
-            Customer customer = CustomerDB.GetCustomerByEmail(txtLoginEmail.Text);
-            if (customer == null) return null;
+            CustomerLogin login = CustomerDB.GetLoginByUserName(txtLoginEmail.Text);
+            if (login == null) return null;
 
-            int customerId = customer.CustomerId;
-            return customerId;
+            return login.CustomerId;
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

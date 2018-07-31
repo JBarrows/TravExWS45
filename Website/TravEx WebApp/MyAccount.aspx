@@ -128,11 +128,8 @@
                     </div>
                     <br/>
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col">
                             <asp:Button ID="btnReset" runat="server" CssClass="btn btn-warning mb-2" Text="Reset" Width="100%" OnClick="btnSubmit_Click" ValidationGroup="vgReset" />
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-warning" Text="Clear" CausesValidation="False" Width="100%" OnClick="btnClear_Click" />
                         </div>
                     </div>
                     <div class="form-row">

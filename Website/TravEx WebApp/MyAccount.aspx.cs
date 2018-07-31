@@ -96,7 +96,7 @@ namespace TravEx_WebApp
             string confirmPwd = txtConfirmPwd.Text;
 
             if (!CustomerDB.CheckPassword((int)Session["CustomerId"], oldPwd))
-                lblResetError.Text = "Invalid current password. Please try again.";
+                lblResetError.Text = "Current password incorrect. Please try again.";
             else // do reset
             {
                 reset.CustomerId = (int)Session["CustomerId"];

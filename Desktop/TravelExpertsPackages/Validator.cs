@@ -5,6 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author: Carol
+ * Date:July, 2018 
+ */
+
 namespace TravelExpertsPackages
 {
     public static class Validator

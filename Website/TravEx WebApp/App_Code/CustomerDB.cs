@@ -6,6 +6,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author: Carol, Lindsay
+ * Date:July, 2018 
+ */
+
 namespace TravEx_WebApp.App_Code
 {
     [DataObject(true)]
@@ -114,6 +120,7 @@ namespace TravEx_WebApp.App_Code
             return GetCustomerByCustomerId(GetCustomerIdByBookingId(BookingId));
         }
 
+        //Author: Lindsay-----------------------------------------------------------
         //updates customer's information by customerId
         [DataObjectMethod(DataObjectMethodType.Update)]
         public static bool UpdateCustomerByCustomerId(int custId, Customer cust)
@@ -158,6 +165,7 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
+        //Author: Lindsay---------------------------------------------------------------------------
         //reset customer's password by customerId
         [DataObjectMethod(DataObjectMethodType.Update)]
         public static bool ResetCustomerPassword(CustomerLogin original_Login, CustomerLogin login)
@@ -188,8 +196,7 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
-        //get the customer's password by customerId
-        //[DataObjectMethod(DataObjectMethodType.Select)]
+
 
     }
 }

@@ -5,12 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author: Lindsay, Joel
+ * Date:July, 2018 
+ */
 
 namespace TravelExpertsPackages
 {
     public static class ProductSupplierDB
     {
-       
+        //Author: Lindsay-----------------------------------------------------
         //the method of getting all the suppliers data from the database
         public static List<ProductSupplier> GetProductSuppliers()
         {
@@ -46,6 +51,7 @@ namespace TravelExpertsPackages
             return prodSups;
         }
 
+        //Author: Lindsay---------------------------------------------------------------------
         /// <summary>
         /// Adds a record to the Products_Suppliers table in Travel Experts database
         /// </summary>
@@ -79,6 +85,7 @@ namespace TravelExpertsPackages
             }
         }
 
+        //Author: Joel---------------------------------------------------------------------
         public static ProductSupplier GetProductSupplier(int productID, int supplierID)
         {
             ProductSupplier prodSup = null;
@@ -114,6 +121,7 @@ namespace TravelExpertsPackages
             return prodSup;
         }
 
+        //Author: Lindsay-----------------------------------------------------------------------------
         /// <summary>
         /// Delete a record to the Products_Suppliers table in Travel Experts database
         /// </summary>

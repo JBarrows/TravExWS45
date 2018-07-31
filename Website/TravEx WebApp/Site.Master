@@ -26,14 +26,66 @@
                 </div>
 
                 <nav id="nav1">
-                    <ul>
+                    <ul id="navul">
                         <li><a href="index.php">Home</a></li>
                         <li><a href="packages.php">About Us</a></li>
                         <li><a href="customer_registration_form.php">Packages</a></li>
 					    <li><a href="login.php">Contact</a></li>
-                        <li><a href="SignUp.aspx">Login/Register</a></li>
+                        <li><asp:HyperLink ID="HyperLogin1" runat="server" NavigateUrl="~/SignUp.aspx">Login/Register</asp:HyperLink></li>
+                        <li><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MyAccount.aspx">Personal Information</asp:HyperLink></li>
+                        <li><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/OrderSummary.aspx">My Bookings</asp:HyperLink></li>
+                        <li><asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink></li>                                           
                     </ul>
-                </nav>			
+                </nav>
+                
+            <!---Hamburger Menu----------------------------------------------------------------------------------------------->
+			<!--Navbar-->
+			<nav id="nav2" class="navbar navbar-light light-blue lighten-4">
+
+			<!-- Navbar brand -->
+			<a class="navbar-brand" href="#"></a>
+
+			<!-- Collapse button -->
+			<button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+				aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
+
+			<!-- Collapsible content -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+				<!-- Links -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="packages.php">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="customer_registration_form.php">Packages</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="login.php">Contact</a>
+					</li>
+					<li class="nav-item">				
+                        <asp:HyperLink ID="HyperLogin2" CssClass="nav-link" runat="server" NavigateUrl="~/SignUp.aspx">Login/Register</asp:HyperLink>
+					</li>
+                    <li class="nav-item">
+                        <asp:HyperLink ID="HyperLink5" CssClass="nav-link" runat="server" NavigateUrl="~/MyAccount.aspx">Personal Information</asp:HyperLink>
+                    </li>
+                    <li class="nav-item">
+                        <asp:HyperLink ID="HyperLink6" CssClass="nav-link" runat="server" NavigateUrl="~/OrderSummary.aspx">My Bookings</asp:HyperLink>
+                    </li>
+                    <li class="nav-item">
+                        <asp:HyperLink ID="HyperLink7" CssClass="nav-link" runat="server" NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink>
+                    </li>
+				</ul>
+				<!-- Links -->
+
+			</div>
+			<!-- Collapsible content -->
+
+			</nav>
+			<!--/.Navbar-->
             </header>
             <main>
                 <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">

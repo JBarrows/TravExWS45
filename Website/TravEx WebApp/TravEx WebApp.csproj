@@ -81,6 +81,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="images\logo.png" />
+    <Content Include="Logout.aspx" />
     <Content Include="OrderSummary.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -157,6 +158,13 @@
     <Compile Include="App_Code\TravelExpertsDB.cs" />
     <Content Include="App_Code\Class1.cs" />
     <Compile Include="App_Code\CustomerLogin.cs" />
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OrderSummary.aspx.cs">
       <DependentUpon>OrderSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

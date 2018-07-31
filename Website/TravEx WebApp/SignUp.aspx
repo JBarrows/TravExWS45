@@ -3,8 +3,10 @@
     This page written by Joel Barr
     -------------------------------------------------%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
+  
     <div class="row mx-3 my-4">
             <div class="card bg-light border-success col-lg-4 p-0 order-lg-last">
                 <div class="card-header p-3">

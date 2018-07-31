@@ -16,7 +16,12 @@ namespace TravEx_WebApp
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 DebugFillForm();
+                //refresh the master page
+            }
+                
+ 
         }
 
         private void DebugFillForm()
@@ -103,6 +108,8 @@ namespace TravEx_WebApp
             if (customerID == null || !CustomerDB.CheckPassword(customerID.Value, txtLoginPassword.Text)) return;
 
             Login(customerID.Value);
+
+
         }
 
         protected void loginPasswordValidator_ServerValidate(object source, ServerValidateEventArgs args)

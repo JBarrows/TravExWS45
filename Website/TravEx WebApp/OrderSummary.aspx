@@ -2,10 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">          
     <link href="styles/OrderSummary.css" rel="stylesheet" />
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-
+       
         <h1 class="jumbotron text-center text-secondary">Booking Summary</h1>
         <h4 class="text-secondary">Here are the list of your bookings.</h4>
         <br />

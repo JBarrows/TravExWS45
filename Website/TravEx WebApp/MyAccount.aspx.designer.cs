@@ -31,6 +31,24 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
         
         /// <summary>
+        /// vrFN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrFN;
+        
+        /// <summary>
+        /// vrLN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrLN;
+        
+        /// <summary>
         /// txtAddress control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace TravEx_WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        
+        /// <summary>
+        /// vrAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vrAddress;
         
         /// <summary>
         /// txtCity control.
@@ -112,13 +139,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.Button btnCancle;
         
         /// <summary>
-        /// lblMessage control.
+        /// lblUpdatError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Label lblUpdatError;
         
         /// <summary>
         /// txtOldPassword control.
@@ -148,13 +175,13 @@ namespace TravEx_WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtConfirmPwd;
         
         /// <summary>
-        /// btnSubmit control.
+        /// btnReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button btnReset;
         
         /// <summary>
         /// btnClear control.
@@ -164,5 +191,14 @@ namespace TravEx_WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClear;
+        
+        /// <summary>
+        /// lblResetError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResetError;
     }
 }

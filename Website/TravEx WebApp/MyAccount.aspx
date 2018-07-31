@@ -10,18 +10,29 @@
                     <div class="form-row">
                         <div class="col-md-6 form-group">
                             First Name
-                            <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="vgUpdate"></asp:TextBox>
                         </div>
                         <div class="col-md-6 form-group ">
                             Last Name
-                            <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="vgUpdate"></asp:TextBox>
                         </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <asp:RequiredFieldValidator ID="vrFN" runat="server" ErrorMessage="First Name is required." ControlToValidate="txtFirstName" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <asp:RequiredFieldValidator ID="vrLN" runat="server" ErrorMessage="Last Name is required." ControlToValidate="txtLastName" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
+                       </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             Street Address
                             <asp:TextBox ID="txtAddress" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
                         </div>
+                    </div>
+                    <div class="form-row">
+                        <asp:RequiredFieldValidator ID="vrAddress" runat="server" ErrorMessage="Street Address is required." ControlToValidate="txtAddress" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-row">
                         <div class="col-8 col-md-5 form-group">
@@ -70,15 +81,15 @@
                     <br/>
                     <div class="form-row">
                         <div class="col-md-6">
-                            <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-warning mb-2" Text="Update" Width="100%" OnClick="btnUpdate_Click" />
+                            <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-warning mb-2" Text="Update" Width="100%" OnClick="btnUpdate_Click" ValidationGroup="vgUpdate" />
                         </div>
                         <div class="col-md-6">
-                            <asp:Button ID="btnCancle" runat="server" CssClass="btn btn-warning" Text="Cancle" CausesValidation="False" Width="100%" />
+                            <asp:Button ID="btnCancle" runat="server" CssClass="btn btn-warning" Text="Cancle" CausesValidation="False" Width="100%" OnClick="btnCancle_Click" />
                         </div>                      
                     </div>
                     <div class="form-row">
                         <div class="col">
-                        <asp:Label ID="lblMessage" runat="server" Text="Note"></asp:Label>
+                        <asp:Label ID="lblUpdatError" runat="server" Text="Note"></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -111,10 +122,15 @@
                     <br/>
                     <div class="form-row">
                         <div class="col-md-6">
-                            <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-warning mb-2" Text="Submit" Width="100%" />
+                            <asp:Button ID="btnReset" runat="server" CssClass="btn btn-warning mb-2" Text="Reset" Width="100%" OnClick="btnSubmit_Click" />
                         </div>
                         <div class="col-md-6">
-                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-warning" Text="Clear" CausesValidation="False" Width="100%" />
+                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-warning" Text="Clear" CausesValidation="False" Width="100%" OnClick="btnClear_Click" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                        <asp:Label ID="lblResetError" runat="server" Text="Note"></asp:Label>
                         </div>
                     </div>
                 </div>

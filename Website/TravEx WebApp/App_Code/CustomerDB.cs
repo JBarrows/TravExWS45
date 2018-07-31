@@ -312,6 +312,7 @@ namespace TravEx_WebApp.App_Code
                                     "CustEmail = @CustEmail " +
                                 "WHERE CustomerId = @CustomerId";
             SqlCommand cmd = new SqlCommand(UpdateSmt, con);
+            cmd.Parameters.AddWithValue("@CustomerId", custId);
             cmd.Parameters.AddWithValue("@CustFirstName", cust.CustFirstName);
             cmd.Parameters.AddWithValue("@CustLastName", cust.CustLastName);
             cmd.Parameters.AddWithValue("@CustAddress", cust.CustAddress);
@@ -342,17 +343,15 @@ namespace TravEx_WebApp.App_Code
         //Author: Lindsay---------------------------------------------------------------------------
         //reset customer's password by customerId
         [DataObjectMethod(DataObjectMethodType.Update)]
-        public static bool ResetCustomerPassword(CustomerLogin original_Login, CustomerLogin login)
+        public static bool ResetCustomerPassword(CustomerLogin reset)
         {
             SqlConnection con = TravelExpertsDB.GetConnection();
             string UpdateSmt = "Update Logins " +
-                                "SET Password = @NewPassword " +
-                                "WHERE CustomerId = @OldCustomerId " +
-                                "AND Password = @OdPassword";
+                                "SET Password = @Password " +
+                                "WHERE CustomerId = @CustomerId";
             SqlCommand cmd = new SqlCommand(UpdateSmt, con);
-            cmd.Parameters.AddWithValue("@NewPassword", login.Password);
-            cmd.Parameters.AddWithValue("@OldCustomerId", original_Login.CustomerId);
-            cmd.Parameters.AddWithValue("@OldPasswordId", original_Login.Password);
+            cmd.Parameters.AddWithValue("@CustomerId", reset.CustomerId);
+            cmd.Parameters.AddWithValue("@Password", reset.Password);
             try
             {
                 con.Open();

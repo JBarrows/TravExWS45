@@ -107,7 +107,10 @@ namespace TravEx_WebApp.App_Code
                     cust.CustHomePhone = reader["CustHomePhone"].ToString();
                     cust.CustBusPhone = reader["CustBusPhone"].ToString();
                     cust.CustEmail = reader["CustEmail"].ToString();
-                    cust.AgentId = (int)reader["AgentId"];
+                    if (reader["AgentId"] == DBNull.Value)
+                        cust.AgentId = null;
+                    else
+                        cust.AgentId = (int)reader["AgentId"];
                 }
             }
             catch (Exception ex)

@@ -80,7 +80,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="HeaderFooter.aspx" />
     <Content Include="images\logo.png" />
     <Content Include="OrderSummary.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -109,7 +108,7 @@
     <Content Include="SignIn.aspx" />
     <Content Include="MyAccount.aspx" />
     <Content Include="MyOrders.aspx" />
-    <Content Include="styles\HeaderFooter.css" />
+    <Content Include="styles\HeaderAndFooter.css" />
     <Content Include="webfonts\fa-solid-900.svg" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -163,13 +162,6 @@
     <Content Include="App_Code\ProductDB.cs" />
     <Content Include="App_Code\SupplierDB.cs" />
     <Content Include="App_Code\Product_SupplierDB.cs" />
-    <Compile Include="HeaderFooter.aspx.cs">
-      <DependentUpon>HeaderFooter.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HeaderFooter.aspx.designer.cs">
-      <DependentUpon>HeaderFooter.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OrderSummary.aspx.cs">
       <DependentUpon>OrderSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

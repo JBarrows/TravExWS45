@@ -9,14 +9,11 @@ namespace TravEx_WebApp
 {
     public partial class OrderSummary : System.Web.UI.Page
     {
+        int loggedInCustomerID;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btnPrint_Click(object sender, EventArgs e)
-        {
-            btnPrint.Attributes.Add("onclick", "window.print();");
+            Session["CustomerId"] = 143;
+            loggedInCustomerID = (int)Session["CustomerId"];
         }
 
     }

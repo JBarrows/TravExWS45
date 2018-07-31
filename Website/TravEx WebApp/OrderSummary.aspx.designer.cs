@@ -13,33 +13,6 @@ namespace TravEx_WebApp {
     public partial class OrderSummary {
         
         /// <summary>
-        /// btnPrint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrint;
-        
-        /// <summary>
-        /// ddlCustomerId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomerId;
-        
-        /// <summary>
-        /// ObjectDataSource7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource7;
-        
-        /// <summary>
         /// GridView6 control.
         /// </summary>
         /// <remarks>

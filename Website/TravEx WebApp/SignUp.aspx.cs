@@ -15,27 +15,35 @@ namespace TravEx_WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                DebugFillForm();
+            //if (!IsPostBack)
+            //    DebugFillForm();
         }
 
-        private void DebugFillForm()
-        {
-            txtFirstName.Text = "Joel";
-            txtLastName.Text = "Barr";
-            txtAddress.Text = "4519 Vegas rd NW";
-            txtCity.Text = "Calgary";
-            txtPostal.Text = "a4a4a4";
-            txtHomePhone.Text = "403-593-5520";
-            txtWorkPhone.Text = "4035935520";
-            txtEmail.Text = "Joelbarr1220@gmail.com";
-            txtPassword1.Text = "password";
-            txtPassword2.Text = "password";
+        //private void DebugFillForm()
+        //{
+        //    txtFirstName.Text = "Joel";
+        //    txtLastName.Text = "Barr";
+        //    txtAddress.Text = "4519 Vegas rd NW";
+        //    txtCity.Text = "Calgary";
+        //    txtPostal.Text = "a4a4a4";
+        //    txtHomePhone.Text = "403-593-5520";
+        //    txtWorkPhone.Text = "4035935520";
+        //    txtEmail.Text = "Joelbarr1220@gmail.com";
+        //    txtPassword1.Text = "password";
+        //    txtPassword2.Text = "password";
 
-        }
+        //}
 
+        /// <summary>
+        /// Handles the Click event of the btnRegister control.
+        /// Tries to insert a new customer to the database
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <exception cref="Exception">Cannot retrieve new customer ID</exception>
         protected void btnRegister_Click(object sender, EventArgs e)
         {
+            //Create customer from form controls
             Customer customer = new Customer()
             {
                 CustFirstName = txtFirstName.Text,
@@ -50,12 +58,11 @@ namespace TravEx_WebApp
                 CustEmail = txtEmail.Text
             };
 
+            //Try to insert to the database
             int? customerID = CustomerDB.InsertCustomer(customer);
 
-            if (customerID == null)
-            {
+            if (customerID == null) //Throw exception if insertion failed
                 throw new Exception("Cannot retrieve new customer ID");
-            }
 
             //Create Login
             CustomerLogin login = new CustomerLogin()
@@ -71,12 +78,21 @@ namespace TravEx_WebApp
             Login(customerID.Value);
         }
 
+        /// <summary>
+        /// Sets a session variable to track the user and redirects to home page
+        /// </summary>
+        /// <param name="customerID">The customer identifier.</param>
         private void Login(int customerID)
         {
             Session["CustomerId"] = customerID;
-            Server.Transfer("MyAccount.aspx", true);
+            Server.Transfer("Default.aspx", true);
         }
 
+        /// <summary>
+        /// Checks that the username used for logging in exists
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
         protected void loginEmailvalidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = false;
@@ -87,6 +103,10 @@ namespace TravEx_WebApp
                 args.IsValid = true;
         }
 
+        /// <summary>
+        /// Retrieve a customerID related to the entered username
+        /// </summary>
+        /// <returns></returns>
         private int? GetLoginID()
         {
             if (txtLoginEmail.Text == String.Empty) return null;
@@ -97,6 +117,12 @@ namespace TravEx_WebApp
             return login.CustomerId;
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnLogin control.
+        /// Tries to log the user in if the password is correct
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             int? customerID = GetLoginID();
@@ -105,6 +131,12 @@ namespace TravEx_WebApp
             Login(customerID.Value);
         }
 
+        /// <summary>
+        /// Handles the ServerValidate event of the loginPasswordValidator control.
+        /// Checks that the given login password is a match for the username
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
         protected void loginPasswordValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = false;
@@ -121,6 +153,12 @@ namespace TravEx_WebApp
                 args.IsValid = true;
         }
 
+        /// <summary>
+        /// Handles the ServerValidate event of the emailExistsValidator control.
+        /// Checks whether an email already exists in the Customer database
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
         protected void emailExistsValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = false;

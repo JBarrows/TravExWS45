@@ -11,7 +11,7 @@ namespace TravEx_WebApp
 {
 
 
-    public partial class WebForm3
+    public partial class WebForm2
     {
     }
 }

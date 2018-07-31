@@ -5,19 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TravEx_WebApp
+namespace WebApplication1
 {
-    public partial class OrderSummary : System.Web.UI.Page
+    public partial class RegisterLogin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
-        protected void btnPrint_Click(object sender, EventArgs e)
-        {
-            btnPrint.Attributes.Add("onclick", "window.print();");
-        }
-
     }
 }

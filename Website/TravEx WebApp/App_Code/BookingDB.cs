@@ -12,7 +12,7 @@ namespace TravEx_WebApp.App_Code
     public static class BookingDB
     {
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public static List<Booking> GetBookings()
+        public static List<Booking> GetAllBookingId()
         {
             List<Booking> bookings = new List<Booking>(); // make an empty list
             Booking bk; // reference to new state object
@@ -53,6 +53,7 @@ namespace TravEx_WebApp.App_Code
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static Booking GetBookingByBookingId(int BookingId)
         {
+            
             Booking booking = null; // found booking
             // define connection
             SqlConnection connection = TravelExpertsDB.GetConnection();
@@ -94,6 +95,55 @@ namespace TravEx_WebApp.App_Code
             }
 
             return booking;
+        }
+
+        // retrieves customer with given ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static List<Booking> GetBookingsByCustomerId(int CustomerId)
+        {
+            List<Booking> bookings = new List<Booking>();
+            Booking booking = null; // found booking
+            // define connection
+            SqlConnection connection = TravelExpertsDB.GetConnection();
+
+            // define the select query command
+            string selectQuery = "select * " +
+                                 "from Bookings " +
+                                 "where CustomerId = @CustomerId";
+            SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+            selectCommand.Parameters.AddWithValue("@CustomerId", CustomerId);
+            try
+            {
+                // open the connection
+                connection.Open();
+
+                // execute the query
+                SqlDataReader reader = selectCommand.ExecuteReader();
+
+                // process the result if any
+                while (reader.Read()) // if there is customer
+                {
+                    booking = new Booking();
+                    booking.BookingId = (int)reader["BookingId"];
+                    booking.BookingDate = reader["BookingDate"] as DateTime?;
+                    booking.BookingNo = reader["BookingNo"].ToString();
+                    booking.TravelerCount = reader["TravelerCount"] as float?;
+                    booking.CustomerId = reader["CustomerId"] as int?;
+                    booking.TripTypeId = reader["TripTypeId"].ToString();
+                    booking.PackageId = reader["PackageId"] as int?;
+                    bookings.Add(booking);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; // let the form handle it
+            }
+            finally
+            {
+                connection.Close(); // close connecto no matter what
+            }
+
+            return bookings;
         }
 
     }

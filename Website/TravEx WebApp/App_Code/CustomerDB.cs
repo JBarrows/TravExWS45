@@ -11,6 +11,59 @@ namespace TravEx_WebApp.App_Code
     [DataObject(true)]
     public static class CustomerDB
     {
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static List<Customer> GetAllCustomers()
+        {
+            List<Customer> customers = new List<Customer>(); // make an empty list
+            Customer cust;
+            // create connection
+            SqlConnection connection = TravelExpertsDB.GetConnection();
+
+            // create select command
+            string selectString = "SELECT * FROM Customers " +
+                                  "ORDER BY CustomerId";
+            SqlCommand selectCommand = new SqlCommand(selectString, connection);
+            try
+            {
+
+                connection.Open();
+
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    cust = new Customer();
+                    cust.CustomerId = (int)reader["CustomerId"];
+                    cust.CustFirstName = reader["CustFirstName"].ToString();
+                    cust.CustLastName = reader["CustLastName"].ToString();
+                    cust.CustAddress = reader["CustAddress"].ToString();
+                    cust.CustCity = reader["CustCity"].ToString();
+                    cust.CustProv = reader["CustProv"].ToString();
+                    cust.CustPostal = reader["CustPostal"].ToString();
+                    cust.CustCountry = reader["CustCountry"].ToString();
+                    cust.CustHomePhone = reader["CustHomePhone"].ToString();
+                    cust.CustBusPhone = reader["CustBusPhone"].ToString();
+                    cust.CustEmail = reader["CustEmail"].ToString();
+                    cust.AgentId = (int)reader["AgentId"];
+                    customers.Add(cust);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex; // throw it to the form to handle
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return customers;
+        }
+
+
+
+
+
+
         // retrieves customer with given ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static Customer GetCustomerByCustomerId(int CustomerId)
@@ -113,83 +166,6 @@ namespace TravEx_WebApp.App_Code
         {         
             return GetCustomerByCustomerId(GetCustomerIdByBookingId(BookingId));
         }
-
-        //updates customer's information by customerId
-        [DataObjectMethod(DataObjectMethodType.Update)]
-        public static bool UpdateCustomerByCustomerId(int custId, Customer cust)
-        {
-            SqlConnection con = TravelExpertsDB.GetConnection();
-            string UpdateSmt = "UPDATE Customers " +
-                               "SET CustFirstName = @CustFirstName, " +
-                                    "CustLastName = @CustLastName, " +
-                                    "CustAddress = @CustAddress, " +
-                                    "CustCity = @CustCity, " +
-                                    "CustProv = @CustProv, " +
-                                    "CustPostal = @CustPostal, " +
-                                    "CustHomePhone = @CustHomePhone, " +
-                                    "CustBusPhone = @CustBusphone, " +
-                                    "CustEmail = @CustEmail " +
-                                "WHERE CustomerId = @CustomerId";
-            SqlCommand cmd = new SqlCommand(UpdateSmt, con);
-            cmd.Parameters.AddWithValue("@CustFirstName", cust.CustFirstName);
-            cmd.Parameters.AddWithValue("@CustLastName", cust.CustLastName);
-            cmd.Parameters.AddWithValue("@CustAddress", cust.CustAddress);
-            cmd.Parameters.AddWithValue("@CustCity", cust.CustCity);
-            cmd.Parameters.AddWithValue("@CustProv", cust.CustProv);
-            cmd.Parameters.AddWithValue("@CustPostal", cust.CustPostal);
-            cmd.Parameters.AddWithValue("@CustHomePhone", cust.CustHomePhone);
-            cmd.Parameters.AddWithValue("@CustBusPhone", cust.CustBusPhone);
-            cmd.Parameters.AddWithValue("@CustEmail", cust.CustEmail);
-
-            try
-            {
-                con.Open();
-                int count = cmd.ExecuteNonQuery();
-                if (count > 0) return true;
-                else return false;
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-
-        //reset customer's password by customerId
-        [DataObjectMethod(DataObjectMethodType.Update)]
-        public static bool ResetCustomerPassword(CustomerLogin original_Login, CustomerLogin login)
-        {
-            SqlConnection con = TravelExpertsDB.GetConnection();
-            string UpdateSmt = "Update Logins " +
-                                "SET Password = @NewPassword " +
-                                "WHERE CustomerId = @OldCustomerId " +
-                                "AND Password = @OdPassword";
-            SqlCommand cmd = new SqlCommand(UpdateSmt, con);
-            cmd.Parameters.AddWithValue("@NewPassword", login.Password);
-            cmd.Parameters.AddWithValue("@OldCustomerId", original_Login.CustomerId);
-            cmd.Parameters.AddWithValue("@OldPasswordId", original_Login.Password);
-            try
-            {
-                con.Open();
-                int count = cmd.ExecuteNonQuery();
-                if (count > 0) return true;
-                else return false;
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-
-        //get the customer's password by customerId
-        //[DataObjectMethod(DataObjectMethodType.Select)]
 
     }
 }

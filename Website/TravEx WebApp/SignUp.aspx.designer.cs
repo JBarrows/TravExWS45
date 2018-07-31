@@ -13,31 +13,40 @@ namespace TravEx_WebApp {
     public partial class SignUp {
         
         /// <summary>
-        /// plhLogin control.
+        /// txtLoginEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plhLogin;
+        protected global::System.Web.UI.WebControls.TextBox txtLoginEmail;
         
         /// <summary>
-        /// TextBox1 control.
+        /// loginEmailvalidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.CustomValidator loginEmailvalidator;
         
         /// <summary>
-        /// TextBox2 control.
+        /// txtLoginPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtLoginPassword;
+        
+        /// <summary>
+        /// loginPasswordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator loginPasswordValidator;
         
         /// <summary>
         /// btnLogin control.

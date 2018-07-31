@@ -1,35 +1,48 @@
 ﻿<%@ Page Title="Sign Up" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="TravEx_WebApp.SignUp" %>
+<%---------------------------------------------------
+    This page written by Joel Barr
+    -------------------------------------------------%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-    <asp:PlaceHolder ID="plhLogin" runat="server" Visible="false">
-            <div class="card bg-info text-white row col p-4">
-                <div class="card-head text-center">
+    <div class="row mx-3 my-4">
+            <div class="card bg-light border-success col-lg-4 p-0 order-lg-last">
+                <div class="card-header p-3">
                     <h1>Login</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-3">
                     <%-- Email --%> 
-                    <div class="row col">
-                            <p class="col-6 text-right">Email</p>
-                            <asp:TextBox ID="TextBox1" CssClass="form-control col-md-3" runat="server"></asp:TextBox>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            Email
+                            <asp:TextBox ID="txtLoginEmail" CssClass="form-control" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
+                            <asp:CustomValidator ID="loginEmailvalidator" runat="server" ErrorMessage="Invalid email" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginEmail" OnServerValidate="loginEmailvalidator_ServerValidate" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" SetFocusOnError="True"></asp:CustomValidator>
+                        </div>
                     </div>
                     <%--Password --%>
-                    <div class="row col">
-                        <p class="col-6 text-right">Password</p>
-                        <asp:TextBox ID="TextBox2" CssClass="form-control col-md-3" runat="server"></asp:TextBox>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            Password
+                            <asp:TextBox ID="txtLoginPassword" CssClass="form-control" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
+                            <asp:CustomValidator ID="loginPasswordValidator" runat="server" ErrorMessage="Incorrect password" CssClass="alert alert-danger col-12 mt-3" ControlToValidate="txtLoginPassword" ValidateEmptyText="True" ValidationGroup="loginGroup" Display="Dynamic" OnServerValidate="loginPasswordValidator_ServerValidate" SetFocusOnError="True"></asp:CustomValidator>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-5"></div> 
-                            <asp:Button ID="btnLogin" runat="server" Text="Sign In" CssClass=" btn btn-success col-12 col-md-2" />
-                        <div class="col-md-5"></div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <asp:Button ID="btnLogin" runat="server" Text="Sign In" CssClass="btn btn-success col-6" ValidationGroup="loginGroup" OnClick="btnLogin_Click" />
+                        </div>
                     </div>
                 </div>
-            </div>
-    </asp:PlaceHolder>
-            <div class="card bg-warning row col p-4">
-                <h1 class="row">Register</h1>
-                <div class="card-body">
+            </div> <%-- /Login Card --%>
+
+            <div class="col-lg"></div> <%--Spacer--%>
+
+            <div class="card border-info bg-light col-lg-7 p-0 order-lg-first">
+                <div class="card-header p-3">
+                    <h1>Register</h1>
+                </div>
+                <div class="card-body p-3">
                     <div class="form-row">
                         <%-- Email --%>
                         <div class="col-md-6 form-group">
@@ -128,6 +141,6 @@
                         </div>
                     </div>
                 </div>
-               
-            </div>
+            </div> <%-- /Register Card --%>
+        </div> <%-- /Main Row --%>
 </asp:Content>

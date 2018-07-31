@@ -11,33 +11,26 @@
                         <div class="col-md-6 form-group">
                             First Name
                             <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="vgUpdate"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrFirstName" runat="server" ErrorMessage="First Name is required." ControlToValidate="txtFirstName" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-md-6 form-group ">
                             Last Name
                             <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="vgUpdate"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 form-group">
-                            <asp:RequiredFieldValidator ID="vrFN" runat="server" ErrorMessage="First Name is required." ControlToValidate="txtFirstName" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="col-md-6 form-group">
                             <asp:RequiredFieldValidator ID="vrLN" runat="server" ErrorMessage="Last Name is required." ControlToValidate="txtLastName" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
-                       </div>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             Street Address
                             <asp:TextBox ID="txtAddress" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrAddress" runat="server" ErrorMessage="Street Address is required." ControlToValidate="txtAddress" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <asp:RequiredFieldValidator ID="vrAddress" runat="server" ErrorMessage="Street Address is required." ControlToValidate="txtAddress" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-row">
                         <div class="col-8 col-md-5 form-group">
                             City
                             <asp:TextBox ID="txtCity" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrCity" runat="server" ErrorMessage="City is required." ControlToValidate="txtCity" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-4 col-md-2 form-group"> 
                             Prov
@@ -59,13 +52,16 @@
                         </div>
                         <div class="col-md-5 form-group">
                             Postal Code
+                            
                             <asp:TextBox ID="txtPostal" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 form-group">
                             Home Phone
                             <asp:TextBox ID="txtHomePhone" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
                         </div>
                         <div class="col-md-6 form-group ">
                             Business Phone
@@ -105,18 +101,24 @@
                         <div class="col form-group">
                             Current Password
                             <asp:TextBox ID="txtOldPassword" CssClass="form-control" runat="server"></asp:TextBox>
+                            
+                            <asp:CustomValidator ID="CustomValidator3" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             New Password
                             <asp:TextBox ID="txtNewPassword" CssClass="form-control" runat="server"></asp:TextBox>
+                            
+                            <asp:CustomValidator ID="CustomValidator4" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             Confirm Password
                             <asp:TextBox ID="txtConfirmPwd" CssClass="form-control" runat="server"></asp:TextBox>
+                            
+                            <asp:CustomValidator ID="CustomValidator5" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
                         </div>
                     </div>
                     <br/>

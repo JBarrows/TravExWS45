@@ -207,3 +207,5 @@ project.lock.json
 *.feature.cs
 *.feature.xlsx.*
 *.Specs_*.html
+Website/TravEx WebApp/SignIn.aspx.cs
+Website/TravEx WebApp/SignIn.aspx.designer.cs

@@ -1,4 +1,8 @@
 ﻿
 #btnPrint {
-    float: right;
+    align-self:flex-end;
+}
+
+#GridView1{
+    clear:both;
 }

@@ -31,7 +31,7 @@ namespace TravEx_WebApp.App_Code
 
         public string CustEmail { get; set; }
 
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
     }
 
 }

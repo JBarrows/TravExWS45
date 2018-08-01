@@ -1,43 +1,40 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyAccount.aspx.cs" Inherits="TravEx_WebApp.WebForm3" %>
+﻿<%-- Author: Lindsay --%>
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyAccount.aspx.cs" Inherits="TravEx_WebApp.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 
         <div class="row m-5">
-            <div class="card bg-info text-white col-lg-7 p-4">
+            <div class="card bg-light border-success col-lg-7 p-0">
+                <div class="card-header p-3">
                     <h2 class="row">Personal Information</h2>
-                <div class="card-body">
+                </div>
+                <div class="card-body p-3">
                     <div class="form-row">
                         <div class="col-md-6 form-group">
                             First Name
                             <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="vgUpdate"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrFirstName" runat="server" ErrorMessage="First Name is required." ControlToValidate="txtFirstName" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-md-6 form-group ">
                             Last Name
                             <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" Width="100%" ValidationGroup="vgUpdate"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrLN" runat="server" ErrorMessage="Last Name is required." ControlToValidate="txtLastName" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 form-group">
-                            <asp:RequiredFieldValidator ID="vrFN" runat="server" ErrorMessage="First Name is required." ControlToValidate="txtFirstName" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <asp:RequiredFieldValidator ID="vrLN" runat="server" ErrorMessage="Last Name is required." ControlToValidate="txtLastName" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
-                       </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             Street Address
                             <asp:TextBox ID="txtAddress" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrAddress" runat="server" ErrorMessage="Street Address is required." ControlToValidate="txtAddress" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <asp:RequiredFieldValidator ID="vrAddress" runat="server" ErrorMessage="Street Address is required." ControlToValidate="txtAddress" ForeColor="#FF3300" ValidationGroup="vgUpdate"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-row">
                         <div class="col-8 col-md-5 form-group">
                             City
                             <asp:TextBox ID="txtCity" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrCity" runat="server" ErrorMessage="City is required." ControlToValidate="txtCity" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-4 col-md-2 form-group"> 
                             Prov
@@ -59,37 +56,41 @@
                         </div>
                         <div class="col-md-5 form-group">
                             Postal Code
+                            
                             <asp:TextBox ID="txtPostal" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrPostal" runat="server" ErrorMessage="Postal Code is required." ControlToValidate="txtPostal" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="vRegExPostal" runat="server" Display="Dynamic" ErrorMessage="Invalid Postal Code." SetFocusOnError="True" ValidationExpression="[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]" ValidationGroup="vgUpdate" ControlToValidate="txtPostal" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 form-group">
                             Home Phone
                             <asp:TextBox ID="txtHomePhone" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrHomePage" runat="server" ErrorMessage="Home Phone is required." ControlToValidate="txtHomePhone" ValidationGroup="vgUpdate" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="vRegExHomePage" runat="server" Display="Dynamic" ErrorMessage="Invalid Phone Number." SetFocusOnError="True" ValidationExpression="(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}" ValidationGroup="vgUpdate" ControlToValidate="txtHomePhone" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                         <div class="col-md-6 form-group ">
                             Business Phone
                             <asp:TextBox ID="txtBusPhone" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="vRegExBusPhone" runat="server" Display="Dynamic" ErrorMessage="Invalid Phone Number." SetFocusOnError="True" ValidationExpression="(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}" ValidationGroup="vgUpdate" ControlToValidate="txtBusPhone" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             Email
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Width="100%"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="vRegExEmail" runat="server" ErrorMessage="Invalid Email" SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="vgUpdate"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <br/>
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col">
                             <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-warning mb-2" Text="Update" Width="100%" OnClick="btnUpdate_Click" ValidationGroup="vgUpdate" />
                         </div>
-                        <div class="col-md-6">
-                            <asp:Button ID="btnCancle" runat="server" CssClass="btn btn-warning" Text="Cancle" CausesValidation="False" Width="100%" OnClick="btnCancle_Click" />
-                        </div>                      
                     </div>
                     <div class="form-row">
                         <div class="col">
-                        <asp:Label ID="lblUpdatError" runat="server" Text="Note"></asp:Label>
+                        <asp:Label ID="lblUpdateError" runat="server"></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -98,39 +99,42 @@
                 
             </div>
 
-            <div class="card bg-info text-white col-lg-4 p-4">
-                <h2 class="row">Reset Password</h2>
-                <div class="card-body">
+            <div class="card bg-light border-danger col-lg-4 p-0">
+                <div class="card-header p-3">
+                    <h2 class="row">Reset Password</h2>
+                </div>
+                <div class="card-body p-3">
                     <div class="form-row">
                         <div class="col form-group">
                             Current Password
-                            <asp:TextBox ID="txtOldPassword" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtOldPassword" CssClass="form-control" runat="server" TextMode="Password" ValidationGroup="vgReset"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrOldPwd" runat="server" ErrorMessage="Current password is required." ControlToValidate="txtOldPassword" ValidationGroup="vgReset" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>     
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             New Password
-                            <asp:TextBox ID="txtNewPassword" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassword" CssClass="form-control" runat="server" ValidationGroup="vgReset" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrNewPwd" runat="server" ErrorMessage="Please enter a New password." ControlToValidate="txtNewPassword" ValidationGroup="vgReset" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>  
+                            
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
                             Confirm Password
-                            <asp:TextBox ID="txtConfirmPwd" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtConfirmPwd" CssClass="form-control" runat="server" ValidationGroup="vgReset" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="vrConfrimPwd" runat="server" ErrorMessage="Please enter your new password again." ControlToValidate="txtConfirmPwd" ValidationGroup="vgReset" Display="Dynamic" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>  
                         </div>
                     </div>
                     <br/>
                     <div class="form-row">
-                        <div class="col-md-6">
-                            <asp:Button ID="btnReset" runat="server" CssClass="btn btn-warning mb-2" Text="Reset" Width="100%" OnClick="btnSubmit_Click" />
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-warning" Text="Clear" CausesValidation="False" Width="100%" OnClick="btnClear_Click" />
+                        <div class="col">
+                            <asp:Button ID="btnReset" runat="server" CssClass="btn btn-warning mb-2" Text="Reset" Width="100%" OnClick="btnSubmit_Click" ValidationGroup="vgReset" />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
-                        <asp:Label ID="lblResetError" runat="server" Text="Note"></asp:Label>
+                        <asp:Label ID="lblResetError" runat="server"></asp:Label>
                         </div>
                     </div>
                 </div>

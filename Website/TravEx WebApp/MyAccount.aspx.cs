@@ -33,12 +33,13 @@ namespace TravEx_WebApp
                 }
                 catch (Exception ex)
                 {
-                    lblUpdatError.Text = ex.Message;
+                    lblUpdateError.Text = ex.Message;
                 }
             }
 
         }
 
+        //fill the customer's personal information
         private void fillCustomer(Customer cust)
         {
             txtFirstName.Text = cust.CustFirstName;
@@ -52,6 +53,7 @@ namespace TravEx_WebApp
             txtEmail.Text = cust.CustEmail;
         }
 
+        //update the customer's personal information
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             Customer newCust = new Customer();
@@ -67,27 +69,24 @@ namespace TravEx_WebApp
             try
             {
                 if (CustomerDB.UpdateCustomerByCustomerId((int)Session["CustomerId"], newCust))
-                    lblUpdatError.Text = "Your information updated.";
+                    lblUpdateError.Text = "Your information updated.";
             }
             catch (Exception ex)
             {
-                lblUpdatError.Text = ex.Message;
+                lblUpdateError.Text = ex.Message;
             }
         }
 
-        
-        protected void btnCancle_Click(object sender, EventArgs e)
-        {
-            fillCustomer(cust);
-        }
-
-        protected void btnClear_Click(object sender, EventArgs e)
+        //clear the password reset form 
+            protected void btnClear_Click(object sender, EventArgs e)
         {
             txtOldPassword.Text = "";
             txtNewPassword.Text = "";
             txtConfirmPwd.Text = "";
+            lblResetError.Text = "";
         }
 
+        //reset the password 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             CustomerLogin reset = new CustomerLogin();
@@ -96,11 +95,11 @@ namespace TravEx_WebApp
             string newPwd = txtNewPassword.Text;
             string confirmPwd = txtConfirmPwd.Text;
 
-            if (!CustomerDB.CheckPassword(cust.CustomerId, oldPwd))
-                lblResetError.Text = "Invalid current password. Please try again.";
+            if (!CustomerDB.CheckPassword((int)Session["CustomerId"], oldPwd))
+                lblResetError.Text = "Current password incorrect. Please try again.";
             else // do reset
             {
-                reset.CustomerId = cust.CustomerId;
+                reset.CustomerId = (int)Session["CustomerId"];
                 reset.Password = newPwd;
                 try
                 {

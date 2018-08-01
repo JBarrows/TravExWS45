@@ -27,12 +27,12 @@
 
                 <nav id="nav1">
                     <ul id="navul">
-                        <li><a href="index.php">Home</a></li>
+                        <li><asp:HyperLink ID="HyperIndex" runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink></li>
                         <li><a href="packages.php">About Us</a></li>
                         <li><a href="customer_registration_form.php">Packages</a></li>
 					    <li><a href="login.php">Contact</a></li>
                         <li><asp:HyperLink ID="HyperLogin1" runat="server" NavigateUrl="~/SignUp.aspx">Login/Register</asp:HyperLink></li>
-                        <li><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MyAccount.aspx">Personal Information</asp:HyperLink></li>
+                        <li><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MyAccount.aspx">Profile</asp:HyperLink></li>
                         <li><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/OrderSummary.aspx">My Bookings</asp:HyperLink></li>
                         <li><asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink></li>                                           
                     </ul>

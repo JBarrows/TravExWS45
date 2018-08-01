@@ -835,12 +835,19 @@ namespace TravEx_DBMA
                                             MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (confirmation != DialogResult.Yes)
                 return; //Escape if user does not confirm
-
+            int rowCount = lstPkgProductSuppliers.SelectedIndices.Count;
             int rowsDeleted = 0;
-            foreach (int i in lstPkgProductSuppliers.SelectedIndices)
+            NamedPackageProductSupplier[] toDelete = new NamedPackageProductSupplier[rowCount];
+            for (int i = 0; i < rowCount; i++)
             {
-                //Remove each selected product
-                rowsDeleted += PackageProdSuppDB.Delete(selectedPackage.ProductsAndSuppliers[i]);
+                //Set each selected product to be deleted
+                int selectedIndex = lstPkgProductSuppliers.SelectedIndices[i];
+                toDelete[i] = selectedPackage.ProductsAndSuppliers[selectedIndex];
+            }
+            for (int i = 0; i < rowCount;i++)
+            { 
+                //Delete each row selected above
+                rowsDeleted += PackageProdSuppDB.Delete(toDelete[i]);
             }
 
             //Display result

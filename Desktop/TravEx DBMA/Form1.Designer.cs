@@ -47,6 +47,7 @@
             this.tabProducts = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.productIdComboBox = new System.Windows.Forms.ComboBox();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
@@ -96,7 +97,6 @@
             this.txtPkgDesc = new System.Windows.Forms.TextBox();
             this.cmbPackageID = new System.Windows.Forms.ComboBox();
             this.datPkgEnd = new System.Windows.Forms.DateTimePicker();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             descriptionLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
@@ -113,10 +113,10 @@
             this.tabControl1.SuspendLayout();
             this.tabProducts.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.tabSuppliers.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPackages.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -312,6 +312,10 @@
             this.productIdComboBox.TabIndex = 13;
             this.productIdComboBox.SelectedIndexChanged += new System.EventHandler(this.productIdComboBox_SelectedIndexChanged);
             // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(TravelExpertsPackages.Product);
+            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -374,13 +378,13 @@
             // 
             // prod_colSuppliersID
             // 
-            this.prod_colSuppliersID.Text = "Supplier ID";
-            this.prod_colSuppliersID.Width = 70;
+            this.prod_colSuppliersID.Text = "ID";
+            this.prod_colSuppliersID.Width = 43;
             // 
             // prod_colSuppliersname
             // 
             this.prod_colSuppliersname.Text = "Supplier Name";
-            this.prod_colSuppliersname.Width = 110;
+            this.prod_colSuppliersname.Width = 210;
             // 
             // lvProductSupplier
             // 
@@ -414,7 +418,7 @@
             // prod_colProdSupplierPSID
             // 
             this.prod_colProdSupplierPSID.Text = "ProductSupplierId";
-            this.prod_colProdSupplierPSID.Width = 249;
+            this.prod_colProdSupplierPSID.Width = 100;
             // 
             // lvProProducts
             // 
@@ -430,8 +434,8 @@
             // 
             // prod_colProductsID
             // 
-            this.prod_colProductsID.Text = "Product ID";
-            this.prod_colProductsID.Width = 81;
+            this.prod_colProductsID.Text = "ID";
+            this.prod_colProductsID.Width = 44;
             // 
             // prod_colProductsName
             // 
@@ -668,8 +672,8 @@
             // lstPkgProductSuppliers
             // 
             this.lstPkgProductSuppliers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colPkgSuppliers,
-            this.colPkgProducts});
+            this.colPkgProducts,
+            this.colPkgSuppliers});
             this.lstPkgProductSuppliers.FullRowSelect = true;
             this.lstPkgProductSuppliers.Location = new System.Drawing.Point(323, 26);
             this.lstPkgProductSuppliers.Name = "lstPkgProductSuppliers";
@@ -804,10 +808,6 @@
             this.datPkgEnd.TabIndex = 65;
             this.datPkgEnd.ValueChanged += new System.EventHandler(this.OnPackageDataModified);
             // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(TravelExpertsPackages.Product);
-            // 
             // supplierBindingSource
             // 
             this.supplierBindingSource.DataSource = typeof(TravelExpertsPackages.Supplier);
@@ -824,13 +824,13 @@
             this.tabProducts.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.tabSuppliers.ResumeLayout(false);
             this.tabSuppliers.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPackages.ResumeLayout(false);
             this.tabPackages.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.ResumeLayout(false);
 

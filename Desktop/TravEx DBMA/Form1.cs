@@ -51,6 +51,8 @@ namespace TravEx_DBMA
 
             LoadSupplierList();
 
+            productIdComboBox.SelectedIndex = 0;
+
         }
 
         public void loadProductIdComboBox()
@@ -873,6 +875,11 @@ namespace TravEx_DBMA
             {
                 MessageBox.Show(ex.Message, "Error Deleting Package");
             }
+        }
+
+        private void tabProducts_Click(object sender, EventArgs e)
+        {
+
         }
 
         // Show "Add Product to Package" dialog

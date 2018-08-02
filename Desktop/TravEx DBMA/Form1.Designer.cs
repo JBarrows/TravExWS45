@@ -41,6 +41,7 @@
             System.Windows.Forms.Label lblProSupplierList;
             System.Windows.Forms.Label lblProProductList;
             System.Windows.Forms.Label lblProProSupList;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.supNameLabel = new System.Windows.Forms.Label();
             this.supplierIdLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -84,8 +85,8 @@
             this.tabPackages = new System.Windows.Forms.TabPage();
             this.btnPkgDelete = new System.Windows.Forms.Button();
             this.lstPkgProductSuppliers = new System.Windows.Forms.ListView();
-            this.colPkgSuppliers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPkgProducts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPkgSuppliers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDeleteProd_Supplier = new System.Windows.Forms.Button();
             this.btnAddProduct_Supplier = new System.Windows.Forms.Button();
             this.btnPkgSave = new System.Windows.Forms.Button();
@@ -682,15 +683,15 @@
             this.lstPkgProductSuppliers.UseCompatibleStateImageBehavior = false;
             this.lstPkgProductSuppliers.View = System.Windows.Forms.View.Details;
             // 
-            // colPkgSuppliers
-            // 
-            this.colPkgSuppliers.Text = "Supplier";
-            this.colPkgSuppliers.Width = 204;
-            // 
             // colPkgProducts
             // 
             this.colPkgProducts.Text = "Product";
             this.colPkgProducts.Width = 150;
+            // 
+            // colPkgSuppliers
+            // 
+            this.colPkgSuppliers.Text = "Supplier";
+            this.colPkgSuppliers.Width = 204;
             // 
             // btnDeleteProd_Supplier
             // 
@@ -818,6 +819,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 455);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Travel Experts";
             this.tabControl1.ResumeLayout(false);

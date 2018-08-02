@@ -8,7 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsPackages;
-
+/*
+ * Purpose: ASP.NET Workshop 5
+ * Author:  Joel Barr
+ * Date:    July, 2018 
+ */
 namespace TravEx_DBMA
 {
     public partial class frmNewPackageProductSupplier : Form

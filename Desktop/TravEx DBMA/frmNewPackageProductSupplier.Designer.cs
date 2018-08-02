@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewPackageProductSupplier));
             this.cboProduct = new System.Windows.Forms.ComboBox();
             this.lblProduct = new System.Windows.Forms.Label();
             this.cboSuppliers = new System.Windows.Forms.ComboBox();
@@ -114,6 +115,7 @@
             this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.cboSuppliers);
             this.Controls.Add(this.cboProduct);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmNewPackageProductSupplier";

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+/***********************************
+ * This page written by Carol He
+ ***********************************/
 namespace TravEx_WebApp
 {
     public partial class Site : System.Web.UI.MasterPage

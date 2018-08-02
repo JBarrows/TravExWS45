@@ -27,7 +27,6 @@ namespace TravEx_WebApp
             {
                 try
                 {
-                    //cust = CustomerDB.GetCustomerByCustomerId(143);
                     cust = CustomerDB.GetCustomerByCustomerId((int)Session["CustomerId"]);
                     fillCustomer(cust);
                 }

@@ -15,24 +15,9 @@ namespace TravEx_WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //    DebugFillForm();
+
         }
 
-        //private void DebugFillForm()
-        //{
-        //    txtFirstName.Text = "Joel";
-        //    txtLastName.Text = "Barr";
-        //    txtAddress.Text = "4519 Vegas rd NW";
-        //    txtCity.Text = "Calgary";
-        //    txtPostal.Text = "a4a4a4";
-        //    txtHomePhone.Text = "403-593-5520";
-        //    txtWorkPhone.Text = "4035935520";
-        //    txtEmail.Text = "Joelbarr1220@gmail.com";
-        //    txtPassword1.Text = "password";
-        //    txtPassword2.Text = "password";
-
-        //}
 
         /// <summary>
         /// Handles the Click event of the btnRegister control.

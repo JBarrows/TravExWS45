@@ -9,7 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsPackages;
-
+/*
+ * Purpose: ASP.NET Workshop 4
+ * Author: Lindsay
+ * Date:July, 2018 
+ */
 namespace TravEx_DBMA
 {
     public partial class frmAddUpdateProduct : Form

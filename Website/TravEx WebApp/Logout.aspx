@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Logout.aspx.cs" Inherits="TravEx_WebApp.Logout" %>
-
+<%---------------------------------------------------
+    This page written by Carol He
+    -------------------------------------------------%>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

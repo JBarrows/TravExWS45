@@ -7,6 +7,9 @@ body {
     margin: 0;
     padding-left: 8%;
     padding-right: 8%;
+    /*background-image: url(../images/beach-sea-faint.jpg);
+    background-size: cover;
+    background-attachment:fixed;*/
 }
 
 header div {

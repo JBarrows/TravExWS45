@@ -8,7 +8,7 @@ using System.Web;
 
 /*
  * Purpose: ASP.NET Workshop 5
- * Author: Carol, Lindsay
+ * Author: Carol, Lindsay, Joel
  * Date:July, 2018 
  */
 
@@ -17,6 +17,10 @@ namespace TravEx_WebApp.App_Code
     [DataObject(true)]
     public static class CustomerDB
     {
+        /// <summary>
+        /// Gets all customers.
+        /// </summary>
+        /// By Carol
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static List<Customer> GetAllCustomers()
         {
@@ -66,11 +70,8 @@ namespace TravEx_WebApp.App_Code
         }
 
 
-
-
-
-
         // retrieves customer with given ID
+        // By Carol
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static Customer GetCustomerByCustomerId(int CustomerId)
         {
@@ -125,6 +126,7 @@ namespace TravEx_WebApp.App_Code
             return cust;
         }
 
+        // By Joel
         internal static CustomerLogin GetLoginByUserName(string text)
         {
             CustomerLogin login = null; // found customer
@@ -166,6 +168,8 @@ namespace TravEx_WebApp.App_Code
             return login;
         }
 
+        // BY Joel
+        // OBSOLETE
         internal static Customer GetCustomerByEmail(string email)
         {
             Customer cust = null; // found customer
@@ -219,6 +223,7 @@ namespace TravEx_WebApp.App_Code
             return cust;
         }
 
+        // By Joel
         internal static bool CheckPassword(int customerId, string password)
         {
             SqlConnection conn = TravelExpertsDB.GetConnection();
@@ -241,6 +246,7 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
+        // By Joel
         internal static bool LoginExists(int customerId)
         {
             SqlConnection conn = TravelExpertsDB.GetConnection();
@@ -262,6 +268,7 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
+        // By Joel
         internal static void InsertLogin(CustomerLogin login)
         {
             SqlConnection conn = TravelExpertsDB.GetConnection();
@@ -288,6 +295,7 @@ namespace TravEx_WebApp.App_Code
             }
         }
 
+        // By Carol
         // retrieves CustomerId with given BookingId
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static int GetCustomerIdByBookingId(int BookingId)
@@ -333,6 +341,7 @@ namespace TravEx_WebApp.App_Code
         }
 
         // retrieves customer with given ID
+        // By Carol
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static Customer GetCustomerByBookingId(int BookingId)
         {         
@@ -420,7 +429,8 @@ namespace TravEx_WebApp.App_Code
         /// Inserts the customer.
         /// </summary>
         /// <param name="customer">The customer.</param>
-        /// <returns>The new Customer's IC</returns>
+        /// <returns>The new Customer's Customer ID</returns>
+        /// By Joel
         public static int? InsertCustomer(Customer customer)
         {
             int? custID = null;

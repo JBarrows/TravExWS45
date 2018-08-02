@@ -1,5 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TravEx_WebApp.Site" %>
-
+<%---------------------------------------------------
+    This page created by Lindsay Li 
+    Header, footer, nav bar by Carol He
+    -------------------------------------------------%>
 <!DOCTYPE html>
 
 <html>

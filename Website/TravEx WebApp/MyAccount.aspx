@@ -84,8 +84,11 @@
                     </div>
                     <br/>
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-md-6 form-group">
                             <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-warning mb-2" Text="Update" Width="100%" OnClick="btnUpdate_Click" ValidationGroup="vgUpdate" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-warning mb-2" Text="Cancel" Width="100%" OnClick="btnCancel_Click"/>
                         </div>
                     </div>
                     <div class="form-row">
@@ -128,8 +131,11 @@
                     </div>
                     <br/>
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-md-6 form-group">
                             <asp:Button ID="btnReset" runat="server" CssClass="btn btn-warning mb-2" Text="Reset" Width="100%" OnClick="btnSubmit_Click" ValidationGroup="vgReset" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-warning mb-2" Text="Clear" Width="100%" OnClick="btnClear_Click1"/>
                         </div>
                     </div>
                     <div class="form-row">

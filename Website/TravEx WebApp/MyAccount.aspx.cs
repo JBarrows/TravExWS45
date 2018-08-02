@@ -27,7 +27,6 @@ namespace TravEx_WebApp
             {
                 try
                 {
-                    //cust = CustomerDB.GetCustomerByCustomerId(143);
                     cust = CustomerDB.GetCustomerByCustomerId((int)Session["CustomerId"]);
                     fillCustomer(cust);
                 }
@@ -69,21 +68,15 @@ namespace TravEx_WebApp
             try
             {
                 if (CustomerDB.UpdateCustomerByCustomerId((int)Session["CustomerId"], newCust))
+                {
                     lblUpdateError.Text = "Your information updated.";
+                }
+
             }
             catch (Exception ex)
             {
                 lblUpdateError.Text = ex.Message;
             }
-        }
-
-        //clear the password reset form 
-            protected void btnClear_Click(object sender, EventArgs e)
-        {
-            txtOldPassword.Text = "";
-            txtNewPassword.Text = "";
-            txtConfirmPwd.Text = "";
-            lblResetError.Text = "";
         }
 
         //reset the password 
@@ -113,6 +106,23 @@ namespace TravEx_WebApp
                     lblResetError.Text = ex.Message;
                 }
             }
+        }
+
+        //clear the password reset form 
+        protected void btnClear_Click1(object sender, EventArgs e)
+        {
+            txtOldPassword.Text = "";
+            txtNewPassword.Text = "";
+            txtConfirmPwd.Text = "";
+            lblResetError.Text = "";
+        }
+
+        //cancel the update
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            cust = CustomerDB.GetCustomerByCustomerId((int)Session["CustomerId"]);
+            fillCustomer(cust);
+            lblUpdateError.Text = "";
         }
     }
 }

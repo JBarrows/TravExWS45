@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUpdateProduct));
             this.label1 = new System.Windows.Forms.Label();
             this.txtProdName = new System.Windows.Forms.TextBox();
             this.btnAccept = new System.Windows.Forms.Button();
@@ -100,6 +101,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtProdName);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAddUpdateProduct";
             this.Text = "AddUpdateProduct";
             this.Load += new System.EventHandler(this.frmAddUpdateProduct_Load);

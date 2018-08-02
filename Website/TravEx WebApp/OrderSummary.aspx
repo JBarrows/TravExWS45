@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Booking Summary" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OrderSummary.aspx.cs" Inherits="TravEx_WebApp.OrderSummary" %>
-
+<%---------------------------------------------------
+    This page written by Carol He
+    -------------------------------------------------%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">          
     <link href="styles/OrderSummary.css" rel="stylesheet" />
 
